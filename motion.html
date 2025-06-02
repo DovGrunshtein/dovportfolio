@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Sections</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <style>
+      .logo a {
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- DESKTOP NAV -->
+    <nav id="desktop-nav">
+      <div class="logo"><a href="index.html">Dov Grunshtein</a></div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#experience">Knowledge</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HAMBURGER NAV -->
+    <nav id="hamburger-nav">
+      <div class="logo"><a href="index.html">Dov Grunshtein</a></div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="index.html#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="index.html#experience" onclick="toggleMenu()">Knowledge</a></li>
+          <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul>
+        <li><a href="#motion">MOTION</a></li>
+      </ul>
+    </div>
+
+    <!-- SECTIONS -->
+    <section id="motion" class="project-section">
+      <h2 class="section-title">MOTION</h2>
+      <div class="video-row horizontal">
+        <video controls>
+          <source src="Motion/Homework Clumzzy.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="Motion/Render.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="Motion/e0fc2679-63b0-4bc2-9758-9f5b678f3cdb.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- BUTTON AND FORM -->
+    <button id="toggle-tools">+ Add</button>
+    <div id="add-media-form">
+      <label for="media-type">Type:</label>
+      <select id="media-type">
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+      </select>
+
+      <label for="media-url">File name:</label>
+      <input type="text" id="media-url" placeholder="example.jpg or video.mp4" />
+
+      <label for="media-section">Section:</label>
+      <select id="media-section">
+        <option value="motion">MOTION</option>
+      </select>
+
+      <button id="submit-media">Add</button>
+    </div>
+
+    <!-- POPUP -->
+    <div id="popup-overlay">
+      <img id="popup-image" src="" alt="preview" />
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+      });
+    </script>
+  </body>
+</html>

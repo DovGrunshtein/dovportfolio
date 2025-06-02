@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Sections</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <style>
+      .logo a {
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- DESKTOP NAV -->
+    <nav id="desktop-nav">
+      <div class="logo"><a href="index.html">Dov Grunshtein</a></div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#experience">Knowledge</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HAMBURGER NAV -->
+    <nav id="hamburger-nav">
+      <div class="logo"><a href="index.html">Dov Grunshtein</a></div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="index.html#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="index.html#experience" onclick="toggleMenu()">Knowledge</a></li>
+          <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul>
+        <li><a href="#film">Film</a></li>
+        <li><a href="#social">Social Media</a></li>
+        <li><a href="#bts">BTS</a></li>
+      </ul>
+    </div>
+
+    <!-- SECTIONS -->
+    <section id="film" class="project-section">
+      <h2 class="section-title">FILM</h2>
+      <div class="video-row horizontal">
+        <video controls>
+          <source src="videos/About Especie Humana HD.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/ThirdVertical.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Especie humana.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section id="social" class="project-section">
+      <h2 class="section-title">SOCIAL MEDIA</h2>
+      <div class="video-row vertical">
+        <video controls>
+          <source src="videos/Drop 2 - reel 2.aep.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/iota Soft Living 1.MP4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Tana6.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Reel 4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Main reel 10 - Drop 1 .mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video> 
+        <video controls>
+          <source src="videos/Ceci Gervaso.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Reel 3.3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Jose 4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Pieza 3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Alfonso.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Dani Kaplan Mirando Cultura.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/Reel1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+    
+    <section id="bts" class="project-section">
+      <h2 class="section-title">BTS</h2>
+      <div class="video-row horizontal">
+        <video controls>
+          <source src="videos/Amex BTS2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video controls>
+          <source src="videos/CAPCOM 9.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
