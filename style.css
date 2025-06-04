@@ -714,15 +714,76 @@ h2 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1200px;
+  gap: 30px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .video-row.vertical video {
-  width: 280px;
-  height: 497px;
+  width: 300px;
+  height: 533px;
   object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-row.vertical video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styles for vertical videos */
+@media screen and (max-width: 1400px) {
+  .video-row.vertical {
+    max-width: 1000px;
+  }
+  
+  .video-row.vertical video {
+    width: 250px;
+    height: 444px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .video-row.vertical {
+    max-width: 800px;
+  }
+  
+  .video-row.vertical video {
+    width: 200px;
+    height: 355px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .video-row.vertical {
+    max-width: 600px;
+    gap: 20px;
+  }
+  
+  .video-row.vertical video {
+    width: 160px;
+    height: 284px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .video-row.vertical {
+    max-width: 100%;
+    gap: 15px;
+  }
+  
+  .video-row.vertical video {
+    width: 140px;
+    height: 248px;
+  }
+}
+
+/* Remove old vertical video styles */
+#motion .video-row.vertical video {
+  width: auto;
+  height: auto;
 }
 
 .project-section {
@@ -744,13 +805,21 @@ h2 {
     flex-direction: column;
     height: auto;
     gap: 2rem;
-    padding: 5rem 0 0 0;
-    margin-bottom: -2rem;
+    padding: 3rem 0 0 0;
+    margin-top: -0.5rem;
   }
 
   #about {
     padding-top: 0.5rem;
     margin-top: 1rem;
+  }
+
+  .about-pic {
+    margin-top: 1.5rem;
+  }
+
+  #projects {
+    margin-top: 2rem;
   }
 
   .section-container {
@@ -816,9 +885,8 @@ h2 {
   }
 
   .video-row.vertical video {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
+    width: 180px;
+    height: 320px;
   }
 
   /* Adjust popup for mobile */
@@ -935,6 +1003,36 @@ h2 {
   .nav-links-container {
     display: none;
   }
+
+  article {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  article .icon {
+    cursor: default;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  article div {
+    flex: 1;
+  }
+
+  .article-container {
+    display: flex;
+    text-align: initial;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 2.5rem;
+    justify-content: space-around;
+    padding: 1rem;
+  }
 }
 
 /* Small mobile devices */
@@ -955,7 +1053,8 @@ h2 {
   }
 
   .video-row.vertical video {
-    max-width: 100%;
+    width: 160px;
+    height: 284px;
   }
 
   /* Adjust hamburger menu for very small screens */
@@ -1288,3 +1387,154 @@ body::before {
   pointer-events: none;
   z-index: -1;
 }
+
+/* Video Popup Styles */
+#video-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#video-popup-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.video-popup-container {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+#video-popup-overlay.show .video-popup-container {
+  transform: scale(1);
+}
+
+#popup-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.close-popup {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.close-popup:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Video thumbnail styles */
+.video-row video {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+}
+
+.video-row video:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-row video::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-row video:hover::before {
+  opacity: 1;
+}
+
+.video-row video::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.video-row video:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .video-popup-container {
+    width: 90%;
+  }
+  
+  .close-popup {
+    top: -35px;
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .video-popup-container {
+    width: 95%;
+  }
+  
+  .close-popup {
+    top: -30px;
+    font-size: 1.8rem;
+  }
+}
+
+/* Specific styles for MOTION page vertical videos */
+#motion .video-row.vertical video {
+  width: 60px;
+  height: 106px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  #motion .video-row.vertical video {
+    width: 50px;
+    height: 88px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #motion .video-row.vertical video {
+    width: 40px;
+    height: 71px;
+  }
+}
+

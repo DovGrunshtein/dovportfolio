@@ -62,37 +62,34 @@
         <video controls>
           <source src="Motion/Render.mov" type="video/mp4">
           Your browser does not support the video tag.
-        </video>
+      
+      </div>
+    </section>
+
+    <section id="vertical-motion" class="project-section">
+      <h2 class="section-title"></h2>
+      <div class="video-row vertical">
         <video controls>
           <source src="Motion/e0fc2679-63b0-4bc2-9758-9f5b678f3cdb.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+
       </div>
     </section>
-
-    <!-- BUTTON AND FORM -->
-    <button id="toggle-tools">+ Add</button>
-    <div id="add-media-form">
-      <label for="media-type">Type:</label>
-      <select id="media-type">
-        <option value="image">Image</option>
-        <option value="video">Video</option>
-      </select>
-
-      <label for="media-url">File name:</label>
-      <input type="text" id="media-url" placeholder="example.jpg or video.mp4" />
-
-      <label for="media-section">Section:</label>
-      <select id="media-section">
-        <option value="motion">MOTION</option>
-      </select>
-
-      <button id="submit-media">Add</button>
-    </div>
 
     <!-- POPUP -->
     <div id="popup-overlay">
       <img id="popup-image" src="" alt="preview" />
+    </div>
+
+    <!-- Video Popup -->
+    <div id="video-popup-overlay">
+      <div class="video-popup-container">
+        <video id="popup-video" controls>
+          Your browser does not support the video tag.
+        </video>
+        <button class="close-popup">&times;</button>
+      </div>
     </div>
 
     <script src="script.js"></script>
