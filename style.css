@@ -523,8 +523,14 @@ article .icon {
 footer {
   height: auto;
   margin: 0 1rem;
+<<<<<<< HEAD
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+=======
   padding: 2rem 0;
   text-align: center;
+>>>>>>> parent of d1761ca (cheli review)
 }
 
 footer p {
@@ -532,7 +538,44 @@ footer p {
   margin-top: 1rem;
 }
 
+<<<<<<< HEAD
+.nav-links-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.nav-links-container .nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background: #ffffff;
+  color: rgb(117, 117, 117);
+}
+.top-nav {
+  position: sticky;
+  top: 0;
+  background: #222;
+  padding: 10px 0;
+  z-index: 10;
+}
+.top-nav ul {
+=======
 footer .nav-links-container {
+>>>>>>> parent of d1761ca (cheli review)
   display: flex;
   justify-content: center;
   width: 100%;
@@ -1202,7 +1245,7 @@ footer .nav-links li {
 }
 
 .article-container article:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateX(10px);
 }
 
