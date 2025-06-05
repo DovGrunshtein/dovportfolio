@@ -21,7 +21,8 @@ popupOverlay.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const titles = document.querySelectorAll('.section-title');
+  const sections = document.querySelectorAll('section:not(#experience)');
+  const titles = document.querySelectorAll('.section-title:not(#experience .section-title)');
   const brandNames = document.querySelectorAll('.brand-name');
 
   const observer = new IntersectionObserver((entries) => {
@@ -32,13 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.1 });
 
-  titles.forEach(title => {
-    observer.observe(title);
-  });
-
-  brandNames.forEach(name => {
-    observer.observe(name);
-  });
+  // Observe all sections, titles, and brand names except Knowledge section
+  sections.forEach(section => observer.observe(section));
+  titles.forEach(title => observer.observe(title));
+  brandNames.forEach(name => observer.observe(name));
 });
 
 // Carousel functionality
@@ -121,26 +119,6 @@ scrollToTopButton.addEventListener('click', () => {
     top: 0,
     behavior: 'smooth'
   });
-});
-
-// Add intersection observer for section animations
-const observerOptions = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, observerOptions);
-
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-  observer.observe(section);
 });
 
 // Add hover sound effect for buttons
