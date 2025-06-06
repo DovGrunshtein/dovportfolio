@@ -889,14 +889,14 @@ footer p {
   }
 }
 
-.gallery {
+  .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
     width: 100%;
   }
-.gallery img {
-  width: 100%;
+  .gallery img {
+    width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 8px;
@@ -921,7 +921,7 @@ footer p {
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1000;
   justify-content: center;
-  align-items: center;
+    align-items: center;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -1005,25 +1005,43 @@ footer p {
 }
 .video-row {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 1.5rem; /* Consistent gap */
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.video-row.horizontal {
+  flex-direction: row;
+}
+
+.video-row.vertical {
+  flex-direction: column;
+}
+
+.video-thumbnail {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  width: 300px; /* Reduced from default size */
+  height: 240px; /* Maintains 5:4 aspect ratio */
+}
+
+.video-row.vertical .video-thumbnail {
+  width: 250px; /* Even smaller for vertical layout */
+  height: 200px;
+}
+
+.video-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail img {
   width: 100%;
-  }
-.video-row.horizontal video, .video-row.vertical video {
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px; /* Rounded corners for videos */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.video-row.horizontal video {
-  width: 100%;
-  max-width: 450px; /* Max width for horizontal videos */
-  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
-}
-.video-row.vertical video {
-  width: 100%;
-  max-width: 280px; /* Max width for vertical videos */
-  aspect-ratio: 9 / 16; /* Maintain aspect ratio */
+  display: block;
 }
 
 /* ADD VIDEO FORM STYLING (if used) */
@@ -1228,11 +1246,11 @@ footer p {
   /* Sidebar becomes a bottom bar on mobile */
   .sidebar {
     position: fixed;
-    left: 0;
+  left: 0;
     bottom: 0;
     top: auto;
     transform: none;
-    width: 100%;
+  width: 100%;
     background-color: rgba(234, 234, 234, 0.95);
     padding: 0.5rem;
     border-radius: 0;
@@ -1397,4 +1415,78 @@ footer p {
   #experience .article-container {
     min-height: 300px; /* Ensure equal height on desktop */
   }
+}
+
+.video-thumbnail {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.video-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-thumbnail::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-thumbnail:hover::after {
+  opacity: 1;
+}
+
+#video-popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-popup-container {
+  position: relative;
+  width: 80%;
+  max-width: 1200px;
+}
+
+#popup-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  display: block;
+}
+
+.close-popup {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 5px;
 }

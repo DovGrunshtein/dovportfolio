@@ -101,32 +101,49 @@ if (document.body.classList.contains("gallery-page")) {
   }
 }
 
-// ✅ פתיחת פופאפ לוידאו מהתיקייה thumbnails/videos/
-document.querySelectorAll(".video-thumbnail").forEach((thumb) => {
-  thumb.addEventListener("click", () => {
-    const videoSrc = thumb.getAttribute("data-video-src");
-    const popupVideo = document.getElementById("popup-video");
-    const popupOverlay = document.getElementById("video-popup-overlay");
+// Video popup functionality
+function openVideoPopup(videoSrc) {
+  const popup = document.getElementById('video-popup-overlay');
+  const video = document.getElementById('popup-video');
+  
+  video.src = videoSrc;
+  popup.style.display = 'flex';
+  video.play();
+}
 
-    if (popupVideo && popupOverlay) {
-      popupVideo.src = videoSrc;
-      popupOverlay.style.display = "flex";
-      document.body.style.overflow = "hidden";
+function closeVideoPopup() {
+  const popup = document.getElementById('video-popup-overlay');
+  const video = document.getElementById('popup-video');
+  
+  video.pause();
+  video.src = '';
+  popup.style.display = 'none';
+}
+
+// Add click handlers to all video thumbnails
+document.addEventListener('DOMContentLoaded', function() {
+  const thumbnails = document.querySelectorAll('.video-thumbnail');
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', function() {
+      const videoSrc = this.getAttribute('data-video-src');
+      openVideoPopup(videoSrc);
+    });
+  });
+  
+  // Close popup when clicking outside the video
+  document.getElementById('video-popup-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeVideoPopup();
+    }
+  });
+  
+  // Close popup when pressing Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeVideoPopup();
     }
   });
 });
-
-// סגירת פופאפ ווידאו
-function closeVideoPopup() {
-  const overlay = document.getElementById("video-popup-overlay");
-  const video = document.getElementById("popup-video");
-  if (overlay && video) {
-    video.pause();
-    video.src = "";
-    overlay.style.display = "none";
-    document.body.style.overflow = "";
-  }
-}
 
 // ✅ הדגשת קישור סיידבר לפי מיקום גלילה
 const sections = document.querySelectorAll("main section[id]");
