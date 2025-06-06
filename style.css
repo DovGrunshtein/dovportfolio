@@ -437,7 +437,7 @@ section.visible {
     flex-direction: row; /* Place image and content side by side */
     align-items: flex-start; /* Align items to the top */
     gap: 4rem; /* More space between image and content */
-  }
+}
 
   .about-pic-container {
     width: 400px; /* Larger size for desktop */
@@ -450,7 +450,7 @@ section.visible {
     margin-top: 0; /* Remove top margin to align with picture */
     padding: 0;
     max-width: 800px;
-  }
+}
 
   .about-containers {
     flex-direction: row; /* Place boxes side by side */
@@ -847,79 +847,46 @@ footer p {
 .sidebar a {
   color: rgb(0, 0, 0);
   text-decoration: none;
-  font-weight: 500;
+  font-size: 1.2rem;
   display: block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
 }
 
-.sidebar a:hover, 
+.sidebar a:hover {
+  color: var(--primary-color);
+}
+
 .sidebar a.active {
-  background-color: rgba(255, 255, 255, 0.175);
-  color: #000;
+  color: var(--primary-color);
+  font-weight: bold;
 }
 
-/* Mobile Sidebar */
+/* Add margin to main content to prevent sidebar overlap */
+.project-section {
+  margin-left: 200px; /* Adjust this value based on your sidebar width */
+  padding: 2rem;
+  max-width: calc(100% - 200px); /* Ensure content doesn't overflow */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .project-section {
+    margin-left: 150px;
+    max-width: calc(100% - 150px);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .sidebar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    top: auto;
-    width: 100%;
-    max-height: none;
-    border-radius: 0;
-    padding: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.98);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: none; /* Hide sidebar on mobile */
   }
-
-  .sidebar ul {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0 0.5rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+  
+  .project-section {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 1rem;
   }
-
-  .sidebar ul::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-
-  .sidebar li {
-    margin: 0;
-    flex-shrink: 0;
-  }
-
-  .sidebar a {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    white-space: nowrap;
-  }
-
-  /* Add padding to main content to account for bottom navigation */
-  body.gallery-page main,
-  body.video-projects-page main {
-    padding-bottom: 70px;
-  }
-}
-
-/* Desktop Layout Adjustments */
-@media screen and (min-width: 769px) {
-  body.gallery-page main,
-  body.video-projects-page main {
-    padding-left: 240px;
-    max-width: calc(100% - 240px);
-  }
-}
-
-/* Main content adjustment for pages with sidebar */
-body.gallery-page main, body.video-projects-page main {
-    /* Padding will be added via media query for desktop */
 }
 
 .gallery {
@@ -988,7 +955,7 @@ body.gallery-page main, body.video-projects-page main {
 
 .gallery img:hover {
   transform: scale(1.02);
-}
+  }
 
 #popup-video-container { /* For video popup */
   position: relative;
@@ -997,12 +964,12 @@ body.gallery-page main, body.video-projects-page main {
   background-color: #000;
   border-radius: 8px;
   padding:10px;
-}
+  }
 #popup-video-container video{
     width:100%;
     max-height: 80vh;
     border-radius: 6px;
-}
+  }
 .close-popup-btn {
     position: absolute;
     top: -15px;
@@ -1042,7 +1009,7 @@ body.gallery-page main, body.video-projects-page main {
   flex-wrap: wrap;
   gap: 1.5rem; /* Consistent gap */
   width: 100%;
-}
+  }
 .video-row.horizontal video, .video-row.vertical video {
   object-fit: cover;
   border-radius: 8px; /* Rounded corners for videos */
@@ -1088,10 +1055,10 @@ body.gallery-page main, body.video-projects-page main {
     color: white;
     cursor: pointer;
     border: none;
-}
+  }
 #add-video-form button:hover {
     background-color: #555;
-}
+  }
 
 
 /* SCROLL TO TOP BUTTON */
@@ -1175,11 +1142,11 @@ body.gallery-page main, body.video-projects-page main {
     flex-direction: row; /* Side-by-side for tablets */
     flex-wrap: wrap;
     justify-content: center;
-  }
+}
   .about-containers > .details-container { /* Children of .about-containers */
      width: calc(50% - 1rem); /* Two items per row */
      min-width: 280px;
-  }
+}
 
   article { /* Skill items */
     flex-basis: calc(50% - 0.5rem);
@@ -1314,8 +1281,8 @@ body.gallery-page main, body.video-projects-page main {
   .text-container {
     max-width: 500px; /* Keep consistent with boxes */
     padding: 0 1rem;
-  }
-  
+}
+
   .text-container p {
     text-align: center;
     word-break: keep-all;
@@ -1351,7 +1318,7 @@ body.gallery-page main, body.video-projects-page main {
   article p {
     margin: 0;
     font-size: 0.9rem;
-  }
+}
 }
 
 /* Safe area insets for modern mobile devices */
