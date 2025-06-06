@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dov Grunshtein - Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Removed mediaqueries.css as styles are merged into style.css -->
   </head>
   <body>
     <nav id="desktop-nav">
@@ -41,18 +42,11 @@
     <main>
       <section id="profile">
         <div class="section__pic-container">
-          <img 
-            src="./assets/profile-pic.png" 
-            alt="Dov Grunshtein profile picture" 
-            class="parallax-effect" 
-            fetchpriority="high"
-            width="300"
-            height="300"
-            onerror="this.onerror=null;this.src='https://placehold.co/300x300/E0E0E0/B0B0B0?text=Profile+Image'"/>
+          <img src="./assets/profile-pic.png" alt="Dov Grunshtein profile picture" class="parallax-effect" onerror="this.onerror=null;this.src='https://placehold.co/250x250/E0E0E0/B0B0B0?text=Profile+Image'"/>
         </div>
         <div class="section__text">
           <p class="section__text__p1">Hello, I'm</p>
-          <h1 class="title typing-effect">Dov Grunshtein</h1>
+          <h1 class="title typing-effect">Dov Grunshtein</h1> <!-- Added class for typing effect -->
           <p class="section__text__p2">1,2,3 SHOOT!</p>
           <div class="btn-container">
             <button
@@ -74,12 +68,9 @@
         <div class="section-container">
           <div class="section__pic-container about-pic-container">
             <img
-              loading="lazy"
               src="./assets/about-pic.png"
               alt="About me picture"
               class="about-pic"
-              width="200"
-              height="200"
               onerror="this.onerror=null;this.src='https://placehold.co/200x200/E0E0E0/B0B0B0?text=About+Image';"
             />
           </div>
@@ -87,12 +78,9 @@
             <div class="about-containers">
               <div class="details-container">
                 <img
-                  loading="lazy"
                   src="./assets/experience.png"
                   alt="Experience icon"
                   class="icon"
-                  width="32"
-                  height="32"
                   onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
                 />
                 <h3>Experience</h3>
@@ -100,12 +88,9 @@
               </div>
               <div class="details-container">
                 <img
-                  loading="lazy"
                   src="./assets/education.png"
                   alt="Education icon"
                   class="icon"
-                  width="32"
-                  height="32"
                   onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
                 />
                 <h3>More Than</h3>
@@ -115,14 +100,15 @@
             <div class="text-container">
               <p>
                 I am a versatile professional specializing in video production, with expertise in filming, editing,
-                and directing. Additionally, I have experience in still photography, sound engineering, and music
-                production. I am dedicated to achieving high standards and exceeding both personal and client
-                objectives through diligent effort and creative innovation. I've worked as part of large production
-                companies as well as independent social media productions.
+  and directing. Additionally, I have experience in still photography, sound engineering, and music
+  production. I am dedicated to achieving high standards and exceeding both personal and client
+  objectives through diligent effort and creative innovation. I've worked as part of large production
+  companies as well as independent social media productions.
               </p>
             </div>
           </div>
         </div>
+        <!-- Removed arrow icon as per previous suggestions for cleaner nav -->
       </section>
 
       <section id="projects">
@@ -132,14 +118,12 @@
           <div class="about-containers">
             <div class="details-container color-container">
               <img
-                loading="lazy"
                 src="./assets/project-1.png"
                 alt="Video Projects"
                 class="project-img"
-                width="380"
-                height="200"
-                onerror="this.onerror=null;this.src='https://placehold.co/380x200/E0E0E0/B0B0B0?text=Video+Project';"
+                onerror="this.onerror=null;this.src='https://placehold.co/300x200/E0E0E0/B0B0B0?text=Video+Project';"
               />
+
               <div class="btn-container">
                 <button
                   class="btn btn-color-2 project-btn"
@@ -151,14 +135,12 @@
             </div>
             <div class="details-container color-container">
               <img
-                loading="lazy"
                 src="./assets/project-2.png"
                 alt="Picture Projects"
                 class="project-img"
-                width="380"
-                height="200"
-                onerror="this.onerror=null;this.src='https://placehold.co/380x200/E0E0E0/B0B0B0?text=Picture+Project';"
+                onerror="this.onerror=null;this.src='https://placehold.co/300x200/E0E0E0/B0B0B0?text=Picture+Project';"
               />
+
               <div class="btn-container">
                 <button
                   class="btn btn-color-2 project-btn"
@@ -170,19 +152,15 @@
             </div>
             <div class="details-container color-container">
               <img
-                loading="lazy"
                 src="./assets/project-3.png"
                 alt="Motion Projects"
                 class="project-img"
-                width="380"
-                height="200"
-                onerror="this.onerror=null;this.src='https://placehold.co/380x200/E0E0E0/B0B0B0?text=Motion+Project';"
+                onerror="this.onerror=null;this.src='https://placehold.co/300x200/E0E0E0/B0B0B0?text=Motion+Project';"
               />
               <div class="btn-container">
                 <button
                   class="btn btn-color-2 project-btn"
-                  onclick="location.href='motion.html'"
-                >
+                  onclick="location.href='motion.html'" <!-- Make sure motion.html exists -->
                   MOTION
                 </button>
               </div>
@@ -191,37 +169,55 @@
         </div>
       </section>
 
-      <section id="experience">
+      <section id="experience"> <!-- This is the "Knowledge" section -->
         <p class="section__text__p1">Explore My</p>
         <h1 class="title">Knowledge</h1>
         <div class="experience-details-container">
-          <div class="about-containers">
+          <div class="about-containers"> <!-- This creates two columns for "Softwares" and "Languages" -->
             <div class="details-container">
               <h2 class="experience-sub-title">Softwares</h2>
               <div class="article-container">
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>After Effects</h3><p>Experienced</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>After Effects</h3>
+                    <p>Experienced</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Premiere Pro</h3><p>Experienced</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Premiere Pro</h3>
+                    <p>Experienced</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Photoshop</h3><p>Experienced</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Photoshop</h3>
+                    <p>Experienced</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Cubase</h3><p>Experienced</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Cubase</h3>
+                    <p>Experienced</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Lightroom</h3><p>Experienced</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Lightroom</h3>
+                    <p>Experienced</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Blender</h3><p>Intermediate</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Blender</h3>
+                    <p>Intermediate</p>
+                  </div>
                 </article>
               </div>
             </div>
@@ -229,16 +225,25 @@
               <h2 class="experience-sub-title">Languages</h2>
               <div class="article-container">
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Hebrew</h3><p>Native</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Hebrew</h3>
+                    <p>Native</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>English</h3><p>Excellent</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>English</h3>
+                    <p>Excellent</p>
+                  </div>
                 </article>
                 <article>
-                  <img loading="lazy" src="./assets/checkmark.png" alt="Checkmark icon" class="icon" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';"/>
-                  <div><h3>Spanish</h3><p>Excellent</p></div>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=C';" />
+                  <div>
+                    <h3>Spanish</h3>
+                    <p>Excellent</p>
+                  </div>
                 </article>
               </div>
             </div>
@@ -252,24 +257,21 @@
         <div class="contact-info-upper-container">
           <div class="contact-info-container">
             <img
-              loading="lazy"
               src="./assets/email.png"
               alt="Email icon"
               class="icon contact-icon email-icon"
-              width="28" height="28"
-              onerror="this.onerror=null;this.src='https://placehold.co/28x28/E0E0E0/B0B0B0?text=Icon';"
+              onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
             />
             <p><a href="mailto:Doviprodm@gmail.com">Doviprodm@gmail.com</a></p>
           </div>
           <div class="contact-info-container">
             <img
-              loading="lazy"
               src="./assets/whatsapp.png"
               alt="WhatsApp icon"
               class="icon contact-icon"
-              width="24" height="24"
-              onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/B0B0B0?text=Icon';"
+              onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
             />
+            <!-- For WhatsApp, consider a wa.me link if you want it clickable -->
             <p><a href="https://wa.me/972524065621" target="_blank">+972524065621</a></p>
           </div>
         </div>
@@ -290,8 +292,11 @@
       <p>Copyright &#169; 2025 Dov Grunshtein. All Rights Reserved.</p>
     </footer>
 
-    <button class="scroll-to-top" onclick="scrollToTop()"></button>
+    <button class="scroll-to-top" onclick="scrollToTop()">
+      <!-- Content is CSS pseudo-element -->
+    </button>
 
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
+    <!-- The inline script for video form specific to projects.html should be moved there -->
   </body>
 </html>

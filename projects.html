@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Sections</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
+    <link rel="stylesheet" href="mediaqueries.css" media="print" onload="this.media='all'" />
     <style>
       .logo a {
         cursor: default;
@@ -57,15 +57,15 @@
     <section id="film" class="project-section">
       <h2 class="section-title">FILM</h2>
       <div class="video-row horizontal">
-        <video controls>
+        <video controls preload="none">
           <source src="videos/About Especie Humana HD.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/ThirdVertical.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Especie humana.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -75,51 +75,51 @@
     <section id="social" class="project-section">
       <h2 class="section-title">SOCIAL MEDIA</h2>
       <div class="video-row vertical">
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Drop 2 - reel 2.aep.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/iota Soft Living 1.MP4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Tana6.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Reel 4.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Main reel 10 - Drop 1 .mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video> 
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Ceci Gervaso.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Reel 3.3.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Jose 4.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Pieza 3.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Alfonso.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Dani Kaplan Mirando Cultura.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Reel1.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -129,11 +129,11 @@
     <section id="bts" class="project-section">
       <h2 class="section-title">BTS</h2>
       <div class="video-row horizontal">
-        <video controls>
+        <video controls preload="none">
           <source src="videos/Amex BTS2.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="videos/CAPCOM 9.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -143,13 +143,13 @@
     <!-- Video Popup -->
     <div id="video-popup-overlay">
       <div class="video-popup-container">
-        <video id="popup-video" controls>
+        <video id="popup-video" controls preload="none">
           Your browser does not support the video tag.
         </video>
         <button class="close-popup">&times;</button>
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

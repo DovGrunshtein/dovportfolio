@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Sections</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
+    <link rel="stylesheet" href="mediaqueries.css" media="print" onload="this.media='all'" />
     <style>
       .logo a {
         cursor: default;
@@ -55,48 +55,42 @@
     <section id="motion" class="project-section">
       <h2 class="section-title">MOTION</h2>
       <div class="video-row horizontal">
-        <video controls>
+        <video controls preload="none">
           <source src="Motion/Homework Clumzzy.mov" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <video controls>
+        <video controls preload="none">
           <source src="Motion/Render.mov" type="video/mp4">
           Your browser does not support the video tag.
-      
+        </video>
       </div>
     </section>
 
     <section id="vertical-motion" class="project-section">
       <h2 class="section-title"></h2>
       <div class="video-row vertical">
-        <video controls>
+        <video controls preload="none">
           <source src="Motion/e0fc2679-63b0-4bc2-9758-9f5b678f3cdb.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-
       </div>
     </section>
 
     <!-- POPUP -->
     <div id="popup-overlay">
-      <img id="popup-image" src="" alt="preview" />
+      <img id="popup-image" src="" alt="preview" loading="lazy" />
     </div>
 
     <!-- Video Popup -->
     <div id="video-popup-overlay">
       <div class="video-popup-container">
-        <video id="popup-video" controls>
+        <video id="popup-video" controls preload="none">
           Your browser does not support the video tag.
         </video>
         <button class="close-popup">&times;</button>
       </div>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-      window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-      });
-    </script>
+    <script src="script.js" defer></script>
   </body>
 </html>

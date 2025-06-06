@@ -1,153 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery Page</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <!-- DESKTOP NAV -->
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Gallery Page
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="mediaqueries.css" media="print" onload="this.media='all'" rel="stylesheet"/>
+ </head>
+ <body class="gallery-page">
   <nav id="desktop-nav">
-    <div class="logo"><a href="index.html">Dov Grunshtein</a></div>
-    <div>
-        <ul class="nav-links">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#experience">Knowledge</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-    </div>
-  </nav>
-
-  <!-- HAMBURGER NAV -->
-  <nav id="hamburger-nav">
-    <div class="logo"><a href="index.html">Dov Grunshtein</a></div>
-    <div class="hamburger-menu">
-      <div class="hamburger-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="menu-links">
-        <li><a href="index.html#about" onclick="toggleMenu()">About</a></li>
-        <li><a href="index.html#experience" onclick="toggleMenu()">Knowledge</a></li>
-        <li><a href="index.html#projects" onclick="toggleMenu()">Projects</a></li>
-        <li><a href="index.html#contact" onclick="toggleMenu()">Contact</a></li>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <ul>
-      <li><a href="#vesogia">VESOGIA</a></li>
-      <li><a href="#especie">ESPECIE HUMANA</a></li>
-      <li><a href="#milo">MILÓ</a></li>
-      <li><a href="#natulitatuli">NATINATULI</a></li>
-      <li><a href="#forum">FORUM ind.</a></li>
-      <li><a href="#outdoors">OUTDOORS</a></li> 
+   <div class="logo">
+    <a href="index.html">
+     Dov Grunshtein
+    </a>
+   </div>
+   <div>
+    <ul class="nav-links">
+     <li>
+      <a href="index.html#about">
+       About
+      </a>
+     </li>
+     <li>
+      <a href="index.html#experience">
+       Knowledge
+      </a>
+     </li>
+     <li>
+      <a href="index.html#projects">
+       Projects
+      </a>
+     </li>
+     <li>
+      <a href="index.html#contact">
+       Contact
+      </a>
+     </li>
     </ul>
+   </div>
+  </nav>
+  <nav id="hamburger-nav">
+   <div class="logo">
+    <a href="index.html">
+     Dov Grunshtein
+    </a>
+   </div>
+   <div class="hamburger-menu">
+    <div class="hamburger-icon" onclick="toggleMenu()">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </div>
+    <div class="menu-links">
+     <li>
+      <a href="index.html#about" onclick="toggleMenu()">
+       About
+      </a>
+     </li>
+     <li>
+      <a href="index.html#experience" onclick="toggleMenu()">
+       Knowledge
+      </a>
+     </li>
+     <li>
+      <a href="index.html#projects" onclick="toggleMenu()">
+       Projects
+      </a>
+     </li>
+     <li>
+      <a href="index.html#contact" onclick="toggleMenu()">
+       Contact
+      </a>
+     </li>
+    </div>
+   </div>
+  </nav>
+  <div class="sidebar">
+   <ul>
+    <li>
+     <a href="#vesogia">
+      VESOGIA
+     </a>
+    </li>
+    <li>
+     <a href="#especie">
+      ESPECIE HUMANA
+     </a>
+    </li>
+    <li>
+     <a href="#milo">
+      MILÓ
+     </a>
+    </li>
+    <li>
+     <a href="#natulitatuli">
+      NATINATULI
+     </a>
+    </li>
+    <li>
+     <a href="#forum">
+      FORUM ind.
+     </a>
+    </li>
+    <li>
+     <a href="#outdoors">
+      OUTDOORS
+     </a>
+    </li>
+   </ul>
   </div>
-
   <main>
-    <section id="vesogia">
-      <h2>VESOGIA</h2>
-      <div class="gallery">
-        <img src="images/Vesogia/DSC09421-Edit.jpg" alt="Vesogia 1" />
-        <img src="images/Vesogia/DSC09484-Edit.jpg" alt="Vesogia 2" />
-        <img src="images/Vesogia/DSC09504-Edit.jpg" alt="Vesogia 3" />
-        <img src="images/Vesogia/DSC09778-Edit.jpg" alt="Vesogia 4" />
-        <img src="images/Vesogia/DSC09634-Edit.jpg" alt="Vesogia 5" />
-        <img src="images/Vesogia/DSC09646-Edit.jpg" alt="Vesogia 6" />
-        <img src="images/Vesogia/f82184192-Edit.jpg" alt="Vesogia 7" />
-        <img src="images/Vesogia/f80770560-Edit.jpg" alt="Vesogia 8" />
-        <img src="images/Vesogia/DSC09864-Edit.jpg" alt="Vesogia 9" />
-        <img src="images/Vesogia/DSC09844-Edit.jpg" alt="Vesogia 10" />
-        <img src="images/Vesogia/DSC00153-Edit.jpg" alt="Vesogia 11" />
-        <img src="images/Vesogia/DSC00027-Edit.jpg" alt="Vesogia 12" />
-      </div>
-    </section>
-
-    <section id="especie">
-      <h2>ESPECIE HUMANA</h2>
-      <div class="gallery">
-        <img src="images/Especie Humana/DSC01051-Edit.jpg" alt="Especie 1" />
-        <img src="images/Especie Humana/DSC01054-Edit.jpg" alt="Especie 2" />
-        <img src="images/Especie Humana/DSC02109-Edit.jpg" alt="Especie 3" />
-        <img src="images/Especie Humana/DSC02046-Edit.jpg" alt="Especie 4" />
-        <img src="images/Especie Humana/DSC02084-Edit.jpg" alt="Especie 5" />
-        <img src="images/Especie Humana/DSC01847-Edit.jpg" alt="Especie 6" />
-        <img src="images/Especie Humana/DSC01157-Edit-Edit.jpg" alt="Especie 7" />
-        <img src="images/Especie Humana/DSC01008-Edit.jpg" alt="Especie 8" />
-        <img src="images/Especie Humana/DSC00883-Edit.jpg" alt="Especie 9" />
-      </div>
-    </section>
-
-    <section id="milo">
-      <h2>MILÓ</h2>
-      <div class="gallery">
-        <img src="images/Miló/DSC04491.jpg" alt="Milo 1" />
-        <img src="images/Miló/DSC04498-Edit-2.jpg" alt="Milo 2" />
-        <img src="images/Miló/DSC04540-Edit.jpg" alt="Milo 3" />
-        <img src="images/Miló/DSC04173.jpg" alt="Milo 4" />
-        <img src="images/Miló/DSC04007.jpg" alt="Milo 5" />
-        <img src="images/Miló/DSC03925-Edit-Edit.jpg" alt="Milo 6" />
-        <img src="images/Miló/DSC03390.jpg" alt="Milo 7" />
-        <img src="images/Miló/DSC03362.jpg" alt="Milo 8" />
-        <img src="images/Miló/DSC03036-2.jpg" alt="Milo 9" />
-      </div>
-    </section>
-
-    <section id="natulitatuli">
-      <h2>NATULITATULI</h2>
-      <div class="gallery">
-        <img src="images/Natulitatuli/DSC00018-Edit 1.jpg" alt="Natinatuli 1" />
-        <img src="images/Natulitatuli/DSC00014-Edit 1.jpg" alt="Natinatuli 2" />
-        <img src="images/Natulitatuli/DSC00062-Edit-Edit 1.jpg" alt="Natinatuli 3" />
-        <img src="images/Natulitatuli/DSC00073-Edit.jpg" alt="Natinatuli 4" />
-        <img src="images/Natulitatuli/DSC09883-Edit-min.jpg " alt="Natinatuli 5" />
-        <img src="images/Natulitatuli/DSC09934-Edit 1.jpg" alt="Natinatuli 6" />
-      </div>
-    </section>
-
-    <section id="forum">
-      <h2>FORUM ind.</h2>
-      <div class="gallery">
-        <img src="images/Forum/DSC07887.jpg" alt="Forum 1" />
-        <img src="images/Forum/DSC07869.jpg" alt="Forum 2" />
-        <img src="images/Forum/DSC08008.jpg" alt="Forum 3" />
-        <img src="images/Forum/DSC00181(1).jpg" alt="Forum 4" />
-        <img src="images/Forum/DSC00097.jpg" alt="Forum 5" />
-        <img src="images/Forum/DSC07985.jpg" alt="Forum 6" />
-     </div>
-    </section>
-    
-    <section id="outdoors">
-      <h2>OUTDOORS</h2>
-      <div class="gallery">
-        <img src="images/Outdoor/_MG_7403_1.jpg" alt="Forum 1" />
-        <img src="images/Outdoor/_MG_0015.jpg" alt="Forum 2" />
-        <img src="images/Outdoor/_MG_7675.jpg" alt="Forum 3" />
-        <img src="images/Outdoor/_MG_6438.jpg" alt="Forum 4" />
-        <img src="images/Outdoor/_MG_0485.jpg" alt="Forum 5" />
-        <img src="images/Outdoor/_MG_3007.jpg" alt="Forum 6" />
-        <img src="images/Outdoor/_MG_7575.jpg" alt="Forum 7" />
-        <img src="images/Outdoor/IMG_6453.jpg" alt="Forum 8" />
-        <img src="images/Outdoor/_MG_0363.jpg" alt="Forum 9" />
-        <img src="images/Outdoor/DSC_0318.jpg" alt="Forum 10" />
-        <img src="images/Outdoor/_MG_7125-Enhanced-NR.jpg" alt="Forum 11" />
-        <img src="images/Outdoor/_MG_6875.jpg" alt="Forum 12" />
-
-      </div>
-    </section>
+   <section id="vesogia">
+    <h2>
+     VESOGIA
+    </h2>
+    <div class="gallery">
+     <img src="thumbnails/DSC09749-Edit-2_thumb.jpg" alt="Vesogia 1" loading="lazy" data-full="images/Vesogia/DSC09749-Edit-2.jpg" />
+     <img src="thumbnails/DSC09586-Edit_thumb.jpg" alt="Vesogia 2" loading="lazy" data-full="images/Vesogia/DSC09586-Edit.jpg" />
+     <img src="thumbnails/DSC09796-Edit_thumb.jpg" alt="Vesogia 3" loading="lazy" data-full="images/Vesogia/DSC09796-Edit.jpg" />
+     <img src="thumbnails/DSC00134-Edit_thumb.jpg" alt="Vesogia 4" loading="lazy" data-full="images/Vesogia/DSC00134-Edit.jpg" />
+     <img src="thumbnails/DSC09484-Edit_thumb.jpg" alt="Vesogia 5" loading="lazy" data-full="images/Vesogia/DSC09484-Edit.jpg" />
+     <img src="thumbnails/DSC09778-Edit_thumb.jpg" alt="Vesogia 6" loading="lazy" data-full="images/Vesogia/DSC09778-Edit.jpg" />
+     <img src="thumbnails/DSC00024-Edit-2_thumb.jpg" alt="Vesogia 7" loading="lazy" data-full="images/Vesogia/DSC00024-Edit-2.jpg" />
+     <img src="thumbnails/DSC00097-Edit-2_thumb.jpg" alt="Vesogia 8" loading="lazy" data-full="images/Vesogia/DSC00097-Edit-2.jpg" />
+     <img src="thumbnails/DSC09943-Edit_thumb.jpg" alt="Vesogia 9" loading="lazy" data-full="images/Vesogia/DSC09943-Edit.jpg" />
+     <img src="thumbnails/f112476160-Edit_thumb.jpg" alt="Vesogia 10" loading="lazy" data-full="images/Vesogia/f112476160-Edit.jpg" />
+     <img src="thumbnails/DSC09504-Edit_thumb.jpg" alt="Vesogia 11" loading="lazy" data-full="images/Vesogia/DSC09504-Edit.jpg" />
+     <img src="thumbnails/DSC00153Hori_thumb.jpg" alt="Vesogia 12" loading="lazy" data-full="images/Vesogia/DSC00153Hori.jpg" />
+     <img src="thumbnails/DSC00153-Edit_thumb.jpg" alt="Vesogia 13" loading="lazy" data-full="images/Vesogia/DSC00153-Edit.jpg" />
+     <img src="thumbnails/DSC09897-Edit_thumb.jpg" alt="Vesogia 14" loading="lazy" data-full="images/Vesogia/DSC09897-Edit.jpg" />
+     <img src="thumbnails/DSC09471-Edit_thumb.jpg" alt="Vesogia 15" loading="lazy" data-full="images/Vesogia/DSC09471-Edit.jpg" />
+     <img src="thumbnails/DSC00027-Edit_thumb.jpg" alt="Vesogia 16" loading="lazy" data-full="images/Vesogia/DSC00027-Edit.jpg" />
+     <img src="thumbnails/f82184192-Edit_thumb.jpg" alt="Vesogia 17" loading="lazy" data-full="images/Vesogia/f82184192-Edit.jpg" />
+     <img src="thumbnails/DSC09634-Edit_thumb.jpg" alt="Vesogia 18" loading="lazy" data-full="images/Vesogia/DSC09634-Edit.jpg" />
+     <img src="thumbnails/DSC00072-Edit_thumb.jpg" alt="Vesogia 19" loading="lazy" data-full="images/Vesogia/DSC00072-Edit.jpg" />
+     <img src="thumbnails/f80770560-Edit_thumb.jpg" alt="Vesogia 20" loading="lazy" data-full="images/Vesogia/f80770560-Edit.jpg" />
+     <img src="thumbnails/DSC00076-Edit-2_thumb.jpg" alt="Vesogia 21" loading="lazy" data-full="images/Vesogia/DSC00076-Edit-2.jpg" />
+     <img src="thumbnails/DSC09813-Edit_thumb.jpg" alt="Vesogia 22" loading="lazy" data-full="images/Vesogia/DSC09813-Edit.jpg" />
+     <img src="thumbnails/DSC09518-Edit_thumb.jpg" alt="Vesogia 23" loading="lazy" data-full="images/Vesogia/DSC09518-Edit.jpg" />
+     <img src="thumbnails/DSC09466-Edit_thumb.jpg" alt="Vesogia 24" loading="lazy" data-full="images/Vesogia/DSC09466-Edit.jpg" />
+     <img src="thumbnails/DSC09864-Edit_thumb.jpg" alt="Vesogia 25" loading="lazy" data-full="images/Vesogia/DSC09864-Edit.jpg" />
+     <img src="thumbnails/DSC09378-Edit_thumb.jpg" alt="Vesogia 26" loading="lazy" data-full="images/Vesogia/DSC09378-Edit.jpg" />
+     <img src="thumbnails/DSC09940-Edit_thumb.jpg" alt="Vesogia 27" loading="lazy" data-full="images/Vesogia/DSC09940-Edit.jpg" />
+     <img src="thumbnails/DSC09937-Edit_thumb.jpg" alt="Vesogia 28" loading="lazy" data-full="images/Vesogia/DSC09937-Edit.jpg" />
+     <img src="thumbnails/DSC09501-Edit_thumb.jpg" alt="Vesogia 29" loading="lazy" data-full="images/Vesogia/DSC09501-Edit.jpg" />
+     <img src="thumbnails/DSC00029-Edit_thumb.jpg" alt="Vesogia 30" loading="lazy" data-full="images/Vesogia/DSC00029-Edit.jpg" />
+     <img src="thumbnails/DSC00120-Edit_thumb.jpg" alt="Vesogia 31" loading="lazy" data-full="images/Vesogia/DSC00120-Edit.jpg" />
+     <img src="thumbnails/DSC09975-Edit_thumb.jpg" alt="Vesogia 32" loading="lazy" data-full="images/Vesogia/DSC09975-Edit.jpg" />
+     <img src="thumbnails/DSC00042-Edit_thumb.jpg" alt="Vesogia 33" loading="lazy" data-full="images/Vesogia/DSC00042-Edit.jpg" />
+     <img src="thumbnails/DSC00134Hori_thumb.jpg" alt="Vesogia 34" loading="lazy" data-full="images/Vesogia/DSC00134Hori.jpg" />
+     <img src="thumbnails/DSC09561-Edit_thumb.jpg" alt="Vesogia 35" loading="lazy" data-full="images/Vesogia/DSC09561-Edit.jpg" />
+     <img src="thumbnails/DSC09421-Edit_thumb.jpg" alt="Vesogia 36" loading="lazy" data-full="images/Vesogia/DSC09421-Edit.jpg" />
+     <img src="thumbnails/DSC09646-Edit_thumb.jpg" alt="Vesogia 37" loading="lazy" data-full="images/Vesogia/DSC09646-Edit.jpg" />
+     <img src="thumbnails/DSC09368-Edit_thumb.jpg" alt="Vesogia 38" loading="lazy" data-full="images/Vesogia/DSC09368-Edit.jpg" />
+     <img src="thumbnails/f81683712-Edit_thumb.jpg" alt="Vesogia 39" loading="lazy" data-full="images/Vesogia/f81683712-Edit.jpg" />
+     <img src="thumbnails/DSC09484Hori_thumb.jpg" alt="Vesogia 40" loading="lazy" data-full="images/Vesogia/DSC09484Hori.jpg" />
+     <img src="thumbnails/DSC09866-Edit_thumb.jpg" alt="Vesogia 41" loading="lazy" data-full="images/Vesogia/DSC09866-Edit.jpg" />
+     <img src="thumbnails/DSC09451-Edit_thumb.jpg" alt="Vesogia 42" loading="lazy" data-full="images/Vesogia/DSC09451-Edit.jpg" />
+     <img src="thumbnails/DSC09749-Edit_thumb.jpg" alt="Vesogia 43" loading="lazy" data-full="images/Vesogia/DSC09749-Edit.jpg" />
+     <img src="thumbnails/f79857920-Edit_thumb.jpg" alt="Vesogia 44" loading="lazy" data-full="images/Vesogia/f79857920-Edit.jpg" />
+     <img src="thumbnails/f81095168-Edit_thumb.jpg" alt="Vesogia 45" loading="lazy" data-full="images/Vesogia/f81095168-Edit.jpg" />
+     <img src="thumbnails/DSC09426-Edit_thumb.jpg" alt="Vesogia 46" loading="lazy" data-full="images/Vesogia/DSC09426-Edit.jpg" />
+     <img src="thumbnails/DSC09895-Edit_thumb.jpg" alt="Vesogia 47" loading="lazy" data-full="images/Vesogia/DSC09895-Edit.jpg" />
+     <img src="thumbnails/f78369280-Edit_thumb.jpg" alt="Vesogia 48" loading="lazy" data-full="images/Vesogia/f78369280-Edit.jpg" />
+     <img src="thumbnails/DSC09594-Edit_thumb.jpg" alt="Vesogia 49" loading="lazy" data-full="images/Vesogia/DSC09594-Edit.jpg" />
+     <img src="thumbnails/DSC09507-Edit_thumb.jpg" alt="Vesogia 50" loading="lazy" data-full="images/Vesogia/DSC09507-Edit.jpg" />
+     <img src="thumbnails/DSC09620-Edit_thumb.jpg" alt="Vesogia 51" loading="lazy" data-full="images/Vesogia/DSC09620-Edit.jpg" />
+     <img src="thumbnails/DSC09844-Edit_thumb.jpg" alt="Vesogia 52" loading="lazy" data-full="images/Vesogia/DSC09844-Edit.jpg" />
+    </div>
+   </section>
+   <section id="especie">
+    <h2>
+     ESPECIE HUMANA
+    </h2>
+    <div class="gallery">
+     <img src="thumbnails/DSC01051-Edit_thumb.jpg" alt="Especie 1" loading="lazy" data-full="images/Especie Humana/DSC01051-Edit.jpg" />
+     <img src="thumbnails/DSC01054-Edit_thumb.jpg" alt="Especie 2" loading="lazy" data-full="images/Especie Humana/DSC01054-Edit.jpg" />
+     <img src="thumbnails/DSC02109-Edit_thumb.jpg" alt="Especie 3" loading="lazy" data-full="images/Especie Humana/DSC02109-Edit.jpg" />
+     <img src="thumbnails/DSC02046-Edit_thumb.jpg" alt="Especie 4" loading="lazy" data-full="images/Especie Humana/DSC02046-Edit.jpg" />
+     <img src="thumbnails/DSC02084-Edit_thumb.jpg" alt="Especie 5" loading="lazy" data-full="images/Especie Humana/DSC02084-Edit.jpg" />
+     <img src="thumbnails/DSC01847-Edit_thumb.jpg" alt="Especie 6" loading="lazy" data-full="images/Especie Humana/DSC01847-Edit.jpg" />
+     <img src="thumbnails/DSC01157-Edit-Edit_thumb.jpg" alt="Especie 7" loading="lazy" data-full="images/Especie Humana/DSC01157-Edit-Edit.jpg" />
+     <img src="thumbnails/DSC01008-Edit_thumb.jpg" alt="Especie 8" loading="lazy" data-full="images/Especie Humana/DSC01008-Edit.jpg" />
+     <img src="thumbnails/DSC00883-Edit_thumb.jpg" alt="Especie 9" loading="lazy" data-full="images/Especie Humana/DSC00883-Edit.jpg" />
+    </div>
+   </section>
+   <section id="milo">
+    <h2>
+     MILÓ
+    </h2>
+    <div class="gallery">
+     <img src="thumbnails/DSC04491_thumb.jpg" alt="Milo 1" loading="lazy" data-full="images/Miló/DSC04491.jpg" />
+     <img src="thumbnails/DSC04498-Edit-2_thumb.jpg" alt="Milo 2" loading="lazy" data-full="images/Miló/DSC04498-Edit-2.jpg" />
+     <img src="thumbnails/DSC04540-Edit_thumb.jpg" alt="Milo 3" loading="lazy" data-full="images/Miló/DSC04540-Edit.jpg" />
+     <img src="thumbnails/DSC04173_thumb.jpg" alt="Milo 4" loading="lazy" data-full="images/Miló/DSC04173.jpg" />
+     <img src="thumbnails/DSC04007_thumb.jpg" alt="Milo 5" loading="lazy" data-full="images/Miló/DSC04007.jpg" />
+     <img src="thumbnails/DSC03925-Edit-Edit_thumb.jpg" alt="Milo 6" loading="lazy" data-full="images/Miló/DSC03925-Edit-Edit.jpg" />
+     <img src="thumbnails/DSC03390_thumb.jpg" alt="Milo 7" loading="lazy" data-full="images/Miló/DSC03390.jpg" />
+     <img src="thumbnails/DSC03362_thumb.jpg" alt="Milo 8" loading="lazy" data-full="images/Miló/DSC03362.jpg" />
+     <img src="thumbnails/DSC03036-2_thumb.jpg" alt="Milo 9" loading="lazy" data-full="images/Miló/DSC03036-2.jpg" />
+    </div>
+   </section>
+   <section id="natulitatuli">
+    <h2>
+     NATULITATULI
+    </h2>
+    <div class="gallery">
+     <img src="thumbnails/DSC00018-Edit 1_thumb.jpg" alt="Natinatuli 1" loading="lazy" data-full="images/Natulitatuli/DSC00018-Edit 1.jpg" />
+     <img src="thumbnails/DSC00014-Edit 1_thumb.jpg" alt="Natinatuli 2" loading="lazy" data-full="images/Natulitatuli/DSC00014-Edit 1.jpg" />
+     <img src="thumbnails/DSC00062-Edit-Edit 1_thumb.jpg" alt="Natinatuli 3" loading="lazy" data-full="images/Natulitatuli/DSC00062-Edit-Edit 1.jpg" />
+     <img src="thumbnails/DSC00073-Edit_thumb.jpg" alt="Natinatuli 4" loading="lazy" data-full="images/Natulitatuli/DSC00073-Edit.jpg" />
+     <img src="thumbnails/DSC09883-Edit-min_thumb.jpg" alt="Natinatuli 5" loading="lazy" data-full="images/Natulitatuli/DSC09883-Edit-min.jpg" />
+     <img src="thumbnails/DSC09934-Edit 1_thumb.jpg" alt="Natinatuli 6" loading="lazy" data-full="images/Natulitatuli/DSC09934-Edit 1.jpg" />
+    </div>
+   </section>
+   <section id="forum">
+    <h2>
+     FORUM ind.
+    </h2>
+    <div class="gallery">
+     <img src="thumbnails/DSC07887_thumb.jpg" alt="Forum 1" loading="lazy" data-full="images/Forum/DSC07887.jpg" />
+     <img src="thumbnails/DSC07869_thumb.jpg" alt="Forum 2" loading="lazy" data-full="images/Forum/DSC07869.jpg" />
+     <img src="thumbnails/DSC08008_thumb.jpg" alt="Forum 3" loading="lazy" data-full="images/Forum/DSC08008.jpg" />
+     <img src="thumbnails/DSC00181(1)_thumb.jpg" alt="Forum 4" loading="lazy" data-full="images/Forum/DSC00181(1).jpg" />
+     <img src="thumbnails/DSC00097_thumb.jpg" alt="Forum 5" loading="lazy" data-full="images/Forum/DSC00097.jpg" />
+     <img src="thumbnails/DSC07985_thumb.jpg" alt="Forum 6" loading="lazy" data-full="images/Forum/DSC07985.jpg" />
+    </div>
+   </section>
+   <section id="outdoors">
+    <h2>
+     OUTDOORS
+    </h2>
+    <div class="gallery">
+     <img src="thumbnails/_MG_7403_1_thumb.jpg" alt="Outdoor 1" loading="lazy" data-full="images/Outdoor/_MG_7403_1.jpg" />
+     <img src="thumbnails/_MG_0015_thumb.jpg" alt="Outdoor 2" loading="lazy" data-full="images/Outdoor/_MG_0015.jpg" />
+     <img src="thumbnails/_MG_7675_thumb.jpg" alt="Outdoor 3" loading="lazy" data-full="images/Outdoor/_MG_7675.jpg" />
+     <img src="thumbnails/_MG_6438_thumb.jpg" alt="Outdoor 4" loading="lazy" data-full="images/Outdoor/_MG_6438.jpg" />
+     <img src="thumbnails/_MG_0485_thumb.jpg" alt="Outdoor 5" loading="lazy" data-full="images/Outdoor/_MG_0485.jpg" />
+     <img src="thumbnails/_MG_3007_thumb.jpg" alt="Outdoor 6" loading="lazy" data-full="images/Outdoor/_MG_3007.jpg" />
+     <img src="thumbnails/_MG_7575_thumb.jpg" alt="Outdoor 7" loading="lazy" data-full="images/Outdoor/_MG_7575.jpg" />
+     <img src="thumbnails/IMG_6453_thumb.jpg" alt="Outdoor 8" loading="lazy" data-full="images/Outdoor/IMG_6453.jpg" />
+     <img src="thumbnails/_MG_0363_thumb.jpg" alt="Outdoor 9" loading="lazy" data-full="images/Outdoor/_MG_0363.jpg" />
+     <img src="thumbnails/DSC_0318_thumb.jpg" alt="Outdoor 10" loading="lazy" data-full="images/Outdoor/DSC_0318.jpg" />
+     <img src="thumbnails/_MG_7125-Enhanced-NR_thumb.jpg" alt="Outdoor 11" loading="lazy" data-full="images/Outdoor/_MG_7125-Enhanced-NR.jpg" />
+     <img src="thumbnails/_MG_6875_thumb.jpg" alt="Outdoor 12" loading="lazy" data-full="images/Outdoor/_MG_6875.jpg" />
+    </div>
+   </section>
   </main>
-
   <div id="popup-overlay">
-    <img id="popup-image" src="" alt="Popup View" />
+   <img alt="Popup View" id="popup-image" loading="lazy" src=""/>
   </div>
-
-  <script src="script.js"></script>
-</body>
+  <script defer="" src="script.js">
+  </script>
+ </body>
 </html>
