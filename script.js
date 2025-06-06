@@ -194,3 +194,57 @@ videoPopupOverlay.addEventListener('click', (e) => {
     popupVideo.currentTime = 0;
   }
 });
+
+// Sidebar Navigation
+function initSidebarNavigation() {
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('section[id]');
+
+  // Function to update active link
+  function updateActiveLink() {
+    const scrollPosition = window.scrollY;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  // Add click event listeners to sidebar links
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 80; // Adjust for header height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Update active link on scroll
+  window.addEventListener('scroll', updateActiveLink);
+  // Initial update
+  updateActiveLink();
+}
+
+// Initialize sidebar navigation when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  initSidebarNavigation();
+  // ... rest of your existing DOMContentLoaded code ...
+});
