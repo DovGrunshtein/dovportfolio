@@ -881,7 +881,7 @@ footer p {
   .sidebar {
     display: none; /* Hide sidebar on mobile */
   }
-  
+
   .project-section {
     margin-left: 0;
     max-width: 100%;
@@ -925,7 +925,7 @@ footer p {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease;
-}
+  }
 
 #popup-overlay.show {
   display: flex;
@@ -1008,15 +1008,15 @@ footer p {
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
-}
+  }
 
 .video-row.horizontal {
   flex-direction: row;
-}
+  }
 
 .video-row.vertical {
   flex-direction: column;
-}
+  }
 
 .video-thumbnail {
   position: relative;
@@ -1031,18 +1031,18 @@ footer p {
 .video-row.vertical .video-thumbnail {
   width: 250px; /* Even smaller for vertical layout */
   height: 200px;
-}
+  }
 
 .video-thumbnail:hover {
   transform: scale(1.02);
-}
+  }
 
 .video-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
+  }
 
 /* ADD VIDEO FORM STYLING (if used) */
 #add-video-form {
@@ -1168,7 +1168,7 @@ footer p {
 
   article { /* Skill items */
     flex-basis: calc(50% - 0.5rem);
-  }
+}
 
   #projects .about-containers {
      flex-direction: row;
@@ -1220,7 +1220,7 @@ footer p {
     min-height: auto;
     padding-top: 11rem; /* Add more space at the top */
     padding-bottom: 10rem;
-  }
+}
   .section__pic-container { width: 150px; height: 150px; }
   .about-pic-container { width: 130px; height: 130px; }
   
@@ -1291,7 +1291,7 @@ footer p {
     right: 15px;
     width: 40px;
     height: 40px;
-  }
+}
   .scroll-to-top::before { font-size: 20px; }
 
   #popup-video-container { width: 90vw; }
@@ -1350,7 +1350,7 @@ footer p {
   }
    nav#hamburger-nav, nav#desktop-nav {
     padding-top: max(1rem, env(safe-area-inset-top));
-  }
+}
 .scroll-to-top {
      bottom: max(20px, calc(env(safe-area-inset-bottom) + 20px));
      right: max(20px, env(safe-area-inset-right));
@@ -1367,7 +1367,7 @@ footer p {
   .details-container {
     margin: 0 auto; /* Ensure center alignment on mobile */
     text-align: center;
-  }
+}
 }
 
 /* Large screens (Desktops) */
@@ -1403,14 +1403,14 @@ footer p {
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
-  }
+}
 
   #experience .details-container {
     flex: 1;
     max-width: none;
     min-width: 300px;
   height: 100%;
-  }
+}
 
   #experience .article-container {
     min-height: 300px; /* Ensure equal height on desktop */

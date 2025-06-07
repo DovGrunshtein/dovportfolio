@@ -3,9 +3,9 @@ function toggleMenu() {
   const menu = document.querySelector(".menu-links");
   const icon = document.querySelector(".hamburger-icon");
   if (menu && icon) {
-    menu.classList.toggle("open");
-    icon.classList.toggle("open");
-  }
+  menu.classList.toggle("open");
+  icon.classList.toggle("open");
+}
 }
 
 // פונקציית דיבאונס לשימוש בגלילה
@@ -47,8 +47,8 @@ document.addEventListener("click", (e) => {
 // Image popup functionality for pictures.html
 if (document.body.classList.contains("gallery-page")) {
   const galleryImages = document.querySelectorAll(".gallery img");
-  const popupOverlay = document.getElementById("popup-overlay");
-  const popupImage = document.getElementById("popup-image");
+const popupOverlay = document.getElementById("popup-overlay");
+const popupImage = document.getElementById("popup-image");
 
   if (galleryImages.length > 0 && popupOverlay && popupImage) {
     // Use event delegation for better performance
@@ -66,16 +66,16 @@ if (document.body.classList.contains("gallery-page")) {
           
           // Trigger the animation after a small delay
           requestAnimationFrame(() => {
-            popupOverlay.classList.add("show");
+    popupOverlay.classList.add("show");
           });
         }
-      });
-    });
+  });
+});
 
     popupOverlay.addEventListener("click", (e) => {
       if (e.target === popupOverlay) {
         // Remove the show class first for fade out
-        popupOverlay.classList.remove("show");
+  popupOverlay.classList.remove("show");
         
         // Wait for the fade out animation to complete
         setTimeout(() => {
@@ -90,7 +90,7 @@ if (document.body.classList.contains("gallery-page")) {
       if (e.key === 'Escape' && popupOverlay.classList.contains('show')) {
         // Remove the show class first for fade out
         popupOverlay.classList.remove("show");
-        
+
         // Wait for the fade out animation to complete
         setTimeout(() => {
           popupOverlay.style.display = 'none';
@@ -128,8 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const videoSrc = this.getAttribute('data-video-src');
       openVideoPopup(videoSrc);
     });
-  });
-  
+});
+
   // Close popup when clicking outside the video
   document.getElementById('video-popup-overlay').addEventListener('click', function(e) {
     if (e.target === this) {
