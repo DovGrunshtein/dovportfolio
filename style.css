@@ -1037,8 +1037,56 @@ footer p {
   }
 
 .video-row.vertical {
-  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Specific styles for social media section */
+#social .video-row.vertical {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+#social .video-thumbnail.vertical {
+  width: 180px;
+  height: 320px;
+  margin: 0;
+}
+
+/* Media queries for social media section */
+@media (min-width: 1200px) {
+  #social .video-row.vertical {
+    justify-content: center;
+    gap: 1rem;
   }
+  
+  #social .video-thumbnail.vertical {
+    width: calc(25% - 0.75rem); /* Changed to 4 per row (25%) */
+    max-width: 220px; /* Reduced max-width for 4 per row */
+    height: auto;
+    aspect-ratio: 9/16;
+  }
+}
+
+@media (max-width: 1199px) {
+  #social .video-row.vertical {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  #social .video-thumbnail.vertical {
+    width: 180px;
+    height: 320px;
+  }
+}
 
 .video-thumbnail {
   position: relative;
