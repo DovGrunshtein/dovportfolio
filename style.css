@@ -880,35 +880,57 @@ footer p {
 @media screen and (max-width: 768px) {
   .sidebar {
     display: none; /* Hide sidebar on mobile */
-  }
+}
 
-  .project-section {
+.project-section {
     margin-left: 0;
     max-width: 100%;
     padding: 1rem;
   }
 }
 
-  .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
   gap: 1rem;
-    width: 100%;
-  }
-  .gallery img {
-    width: 100%;
-  height: 250px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gallery img {
+  width: calc(25% - 0.75rem); /* Exactly 4 images per row */
+  aspect-ratio: 4/5; /* Vertical orientation */
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.5s ease; /* filter from your CSS */
-  filter: brightness(0.95); /* from your CSS */
+  transition: transform 0.3s ease;
+  min-width: 200px;
 }
+
 .gallery img:hover {
-  transform: scale(1.05) rotate(1deg); /* from your CSS */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  filter: brightness(1.1); /* from your CSS */
+  transform: scale(1.02);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1200px) {
+  .gallery img {
+    width: calc(33.333% - 0.75rem); /* 3 images per row */
+    min-width: 150px; /* Smaller minimum width for mobile */
+  }
+}
+
+@media (max-width: 900px) {
+  .gallery img {
+    width: calc(33.333% - 0.75rem); /* Keep 3 images per row */
+    min-width: 120px; /* Even smaller minimum width */
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery img {
+    width: calc(33.333% - 0.75rem); /* Keep 3 images per row */
+    min-width: 100px; /* Smallest minimum width */
+  }
 }
 
 #popup-overlay {
@@ -1489,4 +1511,66 @@ footer p {
   font-size: 2rem;
   cursor: pointer;
   padding: 5px;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+}
+
+.image-row.horizontal {
+  flex-direction: row;
+}
+
+.image-row.vertical {
+  flex-direction: column;
+}
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  width: calc(25% - 0.75rem); /* Exactly 4 images per row */
+  aspect-ratio: 4/5; /* Vertical orientation */
+  min-width: 200px;
+}
+
+.image-row.vertical .image-container {
+  width: 200px;
+  height: 250px; /* Maintains 4:5 ratio */
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1200px) {
+  .image-container {
+    width: calc(33.333% - 0.75rem); /* 3 images per row */
+  }
+}
+
+@media (max-width: 900px) {
+  .image-container {
+    width: calc(50% - 0.75rem); /* 2 images per row */
+  }
+}
+
+@media (max-width: 600px) {
+  .image-container {
+    width: 100%; /* 1 image per row */
+  }
 }
