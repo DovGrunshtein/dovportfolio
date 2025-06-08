@@ -1046,14 +1046,18 @@ footer p {
   overflow: hidden;
   border-radius: 8px;
   transition: transform 0.3s ease;
-  width: 300px; /* Reduced from default size */
-  height: 240px; /* Maintains 5:4 aspect ratio */
+  width: 300px; /* Default width for horizontal thumbnails */
+  height: 240px; /* Default height for horizontal thumbnails (4:3 ratio) */
+}
+
+.video-thumbnail.vertical {
+  width: 200px; /* Width for vertical thumbnails */
+  height: 355px; /* Height for vertical thumbnails (9:16 ratio) */
 }
 
 .video-row.vertical .video-thumbnail {
-  width: 250px; /* Even smaller for vertical layout */
-  height: 200px;
-  }
+  margin: 0.5rem;
+}
 
 .video-thumbnail:hover {
   transform: scale(1.02);
