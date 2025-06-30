@@ -301,14 +301,10 @@ section.visible {
   object-fit: cover;
 }
 /* Parallax effect on profile image (optional, from your script) */
-#profile .section__pic-container img.parallax-effect {
-    /* JS will handle transform */
-}
+/* Parallax effect handled by JavaScript */
 
 
-.section__text {
-  /* Styles for .section__text__p1, .title, .section__text__p2 are above */
-}
+/* Section text styles are defined above for individual elements */
 
 #socials-container { /* Assuming this is for future use, currently not in HTML */
   display: flex;
@@ -702,9 +698,7 @@ section.visible {
 }
 
 /* CONTACT SECTION */
-#contact {
-  /* General section styles apply */
-}
+/* Contact section uses general section styles */
 .contact-info-upper-container {
   display: flex;
   flex-direction: column;
@@ -1018,9 +1012,7 @@ footer p {
 }
 
 /* VIDEO PROJECT STYLES (from your style.css) */
-.project-section { /* This is likely a section on projects.html (videos) */
-  /* General section styles apply */
-}
+/* Project section styles - using general section styles */
 .section-title { /* Generic title, ensure it matches .title or has its own styling */
   text-align: center;
   margin-bottom: 20px;
@@ -1033,9 +1025,7 @@ footer p {
   margin-bottom: 2rem;
   }
 
-.video-row.horizontal {
-  flex-direction: row;
-  }
+/* .video-row.horizontal uses default flex-direction: row */
 
 .video-row.vertical {
   display: flex;
@@ -1588,9 +1578,7 @@ footer p {
   justify-content: space-between;
 }
 
-.image-row.horizontal {
-  flex-direction: row;
-}
+/* .image-row.horizontal uses default flex-direction: row */
 
 .image-row.vertical {
   flex-direction: column;
