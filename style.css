@@ -892,9 +892,9 @@ footer p {
 .gallery {
     display: flex;
     flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-between;
-  width: 100%;
+    gap: 1rem;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .gallery img {
@@ -905,6 +905,7 @@ footer p {
   cursor: pointer;
   transition: transform 0.3s ease;
   min-width: 200px;
+  flex-shrink: 0; /* Prevent images from shrinking */
 }
 
 .gallery img:hover {
@@ -914,21 +915,21 @@ footer p {
 /* Media query for smaller screens */
 @media (max-width: 1200px) {
   .gallery img {
-    width: calc(33.333% - 0.75rem); /* 3 images per row */
+    width: calc(33.333% - 0.67rem); /* 3 images per row */
     min-width: 150px; /* Smaller minimum width for mobile */
   }
 }
 
 @media (max-width: 900px) {
   .gallery img {
-    width: calc(33.333% - 0.75rem); /* Keep 3 images per row */
+    width: calc(50% - 0.5rem); /* 2 images per row */
     min-width: 120px; /* Even smaller minimum width */
   }
 }
 
 @media (max-width: 600px) {
   .gallery img {
-    width: calc(33.333% - 0.75rem); /* Keep 3 images per row */
+    width: calc(50% - 0.5rem); /* 2 images per row */
     min-width: 100px; /* Smallest minimum width */
   }
 }
@@ -1267,9 +1268,16 @@ footer p {
     max-width: calc(100% - 200px);
   }
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
   }
-  .gallery img { height: 200px; }
+  .gallery img { 
+    height: 200px; 
+    width: calc(33.333% - 0.67rem);
+    min-width: 150px;
+  }
 
   .video-row.horizontal video { max-width: 400px; }
   .video-row.vertical video { max-width: 240px; }
@@ -1351,10 +1359,17 @@ footer p {
     max-width: 100%;
   }
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
+    justify-content: flex-start;
 }
-  .gallery img { height: 150px; border-radius: 6px; }
+  .gallery img { 
+    height: 150px; 
+    border-radius: 6px;
+    width: calc(50% - 0.25rem);
+    min-width: 100px;
+  }
 
   .video-row.horizontal, .video-row.vertical { flex-direction: column; align-items: center; }
   .video-row.horizontal video, .video-row.vertical video { width: 100%; max-width: 300px; height: auto; }
