@@ -120,27 +120,73 @@ function closeVideoPopup() {
   popup.style.display = 'none';
 }
 
+// YouTube popup functionality
+function openYouTubePopup(youtubeId) {
+  const popup = document.getElementById('youtube-popup-overlay');
+  const iframe = document.getElementById('popup-youtube');
+  
+  iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+  popup.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeYouTubePopup() {
+  const popup = document.getElementById('youtube-popup-overlay');
+  const iframe = document.getElementById('popup-youtube');
+  
+  iframe.src = '';
+  popup.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 // Add click handlers to all video thumbnails
 document.addEventListener('DOMContentLoaded', function() {
   const thumbnails = document.querySelectorAll('.video-thumbnail');
   thumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', function() {
       const videoSrc = this.getAttribute('data-video-src');
-      openVideoPopup(videoSrc);
+      if (videoSrc) {
+        openVideoPopup(videoSrc);
+      }
     });
-});
-
-  // Close popup when clicking outside the video
-  document.getElementById('video-popup-overlay').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeVideoPopup();
-    }
   });
+
+  // YouTube thumbnail click handlers
+  const youtubeThumbnails = document.querySelectorAll('.youtube-thumbnail');
+  youtubeThumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', function() {
+      const youtubeId = this.getAttribute('data-youtube-id');
+      if (youtubeId) {
+        openYouTubePopup(youtubeId);
+      }
+    });
+  });
+
+  // Close video popup when clicking outside the video
+  const videoPopup = document.getElementById('video-popup-overlay');
+  if (videoPopup) {
+    videoPopup.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeVideoPopup();
+      }
+    });
+  }
   
-  // Close popup when pressing Escape key
+  // Close YouTube popup when clicking outside the video
+  const youtubePopup = document.getElementById('youtube-popup-overlay');
+  if (youtubePopup) {
+    youtubePopup.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeYouTubePopup();
+      }
+    });
+  }
+  
+  // Close popups when pressing Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeVideoPopup();
+      closeYouTubePopup();
     }
   });
 });

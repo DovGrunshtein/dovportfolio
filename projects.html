@@ -57,21 +57,23 @@
     <section id="film" class="project-section">
       <h2 class="section-title">FILM</h2>
       <div class="video-row horizontal">
-      <div class="video-thumbnail">
-  <iframe width="360" height="202"
-    src="https://www.youtube.com/embed/1P6JHbbxBY4"
-    title="Especie Humana - My Story"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen>
-  </iframe>
-</div>
-        <div class="video-thumbnail" data-video-src="videos/ThirdVertical.mp4">
-          <img src="thumbnails/videos/ThirdVertical_thumb.jpg" alt="Third Vertical" loading="lazy" />
+    
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="VgLbjTJIjnQ">
+          <img src="https://img.youtube.com/vi/VgLbjTJIjnQ/maxresdefault.jpg" alt="Forum - Te viste bien" loading="lazy" />
         </div>
-        <div class="video-thumbnail" data-video-src="videos/Especie humana.mp4">
-          <img src="thumbnails/videos/Especie humana_thumb.jpg" alt="Especie Humana" loading="lazy" />
+    
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="1P6JHbbxBY4">
+          <img src="https://img.youtube.com/vi/1P6JHbbxBY4/maxresdefault.jpg" alt="Especie Humana - My Story" loading="lazy" />
         </div>
+    
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="uPkaeN7DHz0">
+          <img src="https://img.youtube.com/vi/uPkaeN7DHz0/maxresdefault.jpg" alt="iota Soft Living / Indoor Collection" loading="lazy" />
+        </div>
+    
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="ysX7PsvA_Xk">
+          <img src="https://img.youtube.com/vi/ysX7PsvA_Xk/maxresdefault.jpg" alt="Especie Humana" loading="lazy" />
+        </div>
+        
       </div>
     </section>
 
@@ -148,6 +150,18 @@
           Your browser does not support the video tag.
         </video>
         <button class="close-popup" onclick="closeVideoPopup()">&times;</button>
+      </div>
+    </div>
+
+    <!-- YouTube Popup -->
+    <div id="youtube-popup-overlay">
+      <div class="youtube-popup-container">
+        <iframe id="popup-youtube" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+        <button class="close-popup" onclick="closeYouTubePopup()">&times;</button>
       </div>
     </div>
 
