@@ -1543,12 +1543,23 @@ footer p {
   height: 240px;
 }
 
+/* YouTube thumbnails in vertical layout (social media section) */
+.video-row.vertical .youtube-thumbnail {
+  width: 200px;
+  height: 355px; /* 9:16 aspect ratio for vertical videos */
+  border: 2px solid #ccc; /* Debug border to see if elements are there */
+  background: #f0f0f0; /* Debug background */
+  margin: 10px;
+}
+
 .youtube-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+  min-width: 100px; /* Ensure minimum size */
+  min-height: 100px;
 }
 
 .youtube-thumbnail:hover img {
@@ -1673,6 +1684,11 @@ footer p {
     width: 280px;
     height: 210px;
   }
+  
+  .video-row.vertical .youtube-thumbnail {
+    width: 180px;
+    height: 320px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1683,6 +1699,11 @@ footer p {
   .youtube-thumbnail {
     width: 250px;
     height: 188px;
+  }
+  
+  .video-row.vertical .youtube-thumbnail {
+    width: 160px;
+    height: 284px;
   }
   
 
@@ -1699,9 +1720,31 @@ footer p {
     height: 225px;
   }
   
+  .video-row.vertical .youtube-thumbnail {
+    width: 140px;
+    height: 249px;
+  }
+  
 
   
   .youtube-popup-container {
     width: 95vw;
   }
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 200px;
+  height: 355px;
+  margin: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.video-thumbnail img,
+.video-thumbnail iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

@@ -122,10 +122,19 @@ function closeVideoPopup() {
 
 // YouTube popup functionality
 function openYouTubePopup(youtubeId) {
+  console.log('Opening YouTube popup for ID:', youtubeId);
   const popup = document.getElementById('youtube-popup-overlay');
   const iframe = document.getElementById('popup-youtube');
   
-  iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+  if (!popup || !iframe) {
+    console.error('Popup elements not found!');
+    return;
+  }
+  
+  const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+  console.log('Embed URL:', embedUrl);
+  
+  iframe.src = embedUrl;
   popup.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
@@ -141,6 +150,8 @@ function closeYouTubePopup() {
 
 // Add click handlers to all video thumbnails
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM Content Loaded');
+  console.log('Page URL:', window.location.href);
   const thumbnails = document.querySelectorAll('.video-thumbnail');
   thumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', function() {
@@ -153,9 +164,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // YouTube thumbnail click handlers
   const youtubeThumbnails = document.querySelectorAll('.youtube-thumbnail');
-  youtubeThumbnails.forEach(thumbnail => {
+  console.log('Found YouTube thumbnails:', youtubeThumbnails.length);
+  
+  // Debug: Check if elements are visible
+  youtubeThumbnails.forEach((thumbnail, index) => {
+    const rect = thumbnail.getBoundingClientRect();
+    console.log(`Thumbnail ${index + 1} dimensions:`, rect.width, 'x', rect.height);
+    console.log(`Thumbnail ${index + 1} visible:`, rect.width > 0 && rect.height > 0);
+  });
+  
+  youtubeThumbnails.forEach((thumbnail, index) => {
+    const youtubeId = thumbnail.getAttribute('data-youtube-id');
+    console.log(`Thumbnail ${index + 1}:`, youtubeId);
+    
     thumbnail.addEventListener('click', function() {
       const youtubeId = this.getAttribute('data-youtube-id');
+      console.log('Clicked YouTube ID:', youtubeId);
       if (youtubeId) {
         openYouTubePopup(youtubeId);
       }
@@ -217,3 +241,25 @@ if (sidebarLinks.length > 0) {
   window.addEventListener("scroll", updateActiveSidebarLink, { passive: true });
   updateActiveSidebarLink();
 }
+
+document.querySelectorAll('iframe').forEach(iframe => {
+  const src = iframe.src;
+
+  // אם זה לינק רגיל מיוטיוב עם watch?v=
+  if (src.includes("youtube.com/watch?v=")) {
+    const videoId = src.split("v=")[1].split("&")[0];
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  // אם זה לינק מסוג youtu.be
+  else if (src.includes("youtu.be/")) {
+    const videoId = src.split("youtu.be/")[1].split("?")[0];
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  // אם זה לינק של @user - אין מה להטמיע
+  else if (src.includes("@")) {
+    // אפשר להסתיר את הוידאו או להסיר אותו מה־DOM
+    iframe.remove(); // או: iframe.style.display = 'none';
+  }
+});
