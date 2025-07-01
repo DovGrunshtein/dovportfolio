@@ -1813,9 +1813,9 @@ footer p {
 }
 
 @media (max-width: 600px) {
-  #social .video-row.vertical,
-  #bts .video-row.vertical {
-    grid-template-columns: repeat(2, 1fr) !important;
+  #social .video-row.vertical {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
   }
 }
 
@@ -1879,8 +1879,8 @@ footer p {
 /* --- ABSOLUTE OVERRIDE: SOCIAL MEDIA THUMBNAILS SMALL (48px) --- */
 #social .video-row.vertical .video-thumbnail,
 #social .video-row.vertical .youtube-thumbnail {
-  width: 200px !important;
-  max-width: 200px !important;
+  width: 170px !important;
+  max-width: 170px !important;
   min-width: 0 !important;
   aspect-ratio: 9/16 !important;
   height: auto !important;
