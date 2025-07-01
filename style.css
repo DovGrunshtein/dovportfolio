@@ -1887,13 +1887,13 @@ footer p {
 /* --- ABSOLUTE OVERRIDE: SOCIAL MEDIA THUMBNAILS SMALL (48px) --- */
 #social .video-row.vertical .video-thumbnail,
 #social .video-row.vertical .youtube-thumbnail {
-  width: 170px !important;
-  max-width: 170px !important;
+  width: 240px !important;
+  max-width: 240px !important;
   min-width: 0 !important;
   aspect-ratio: 9/16 !important;
   height: auto !important;
   min-height: 0 !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
   box-sizing: border-box !important;
   display: flex !important;
