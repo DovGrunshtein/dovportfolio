@@ -1949,3 +1949,19 @@ footer p {
     border-radius: 0;
   }
 }
+
+/* --- MOTION PAGE: FORCE 16x9 THUMBNAILS FOR HORIZONTAL ROW --- */
+#motion .video-row.horizontal .video-thumbnail.horizontal {
+  aspect-ratio: 16/9 !important;
+  width: 100% !important;
+  max-width: 320px !important;
+  height: auto !important;
+  min-height: 120px !important;
+  box-sizing: border-box !important;
+}
+#motion .video-row.horizontal .video-thumbnail.horizontal img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}

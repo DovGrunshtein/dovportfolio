@@ -54,31 +54,40 @@
     <!-- SECTIONS -->
     <section id="motion" class="project-section">
       <h2 class="section-title">MOTION</h2>
-      <div class="video-row horizontal">
-        <video controls preload="none">
-          <source src="Motion/Homework Clumzzy.mov" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <video controls preload="none">
-          <source src="Motion/Render.mov" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </section>
-
-    <section id="vertical-motion" class="project-section">
-      <h2 class="section-title"></h2>
-      <div class="video-row vertical">
-        <video controls preload="none">
-          <source src="Motion/e0fc2679-63b0-4bc2-9758-9f5b678f3cdb.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+      <div class="video-row horizontal" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; justify-items: center;">
+        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="O6Ajb2t88pA">
+          <img src="https://img.youtube.com/vi/O6Ajb2t88pA/hqdefault.jpg" alt="Motion Graphic 1" loading="lazy" />
+        </div>
+        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="f6VL4meYpow">
+          <img src="https://img.youtube.com/vi/f6VL4meYpow/maxresdefault.jpg" alt="Motion Graphic 2" loading="lazy" />
+        </div>
+        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="VgLbjTJIjnQ">
+          <img src="https://img.youtube.com/vi/VgLbjTJIjnQ/maxresdefault.jpg" alt="Motion Graphic 3" loading="lazy" />
+        </div>
       </div>
     </section>
 
     <!-- POPUP -->
-    <div id="popup-overlay">
-      <img id="popup-image" src="" alt="preview" loading="lazy" />
+    <!-- Video Popup -->
+    <div id="video-popup-overlay">
+      <div class="video-popup-container">
+        <video id="popup-video" controls preload="none">
+          Your browser does not support the video tag.
+        </video>
+        <button class="close-popup" onclick="closeVideoPopup()">&times;</button>
+      </div>
+    </div>
+
+    <!-- YouTube Popup -->
+    <div id="youtube-popup-overlay">
+      <div class="youtube-popup-container">
+        <iframe id="popup-youtube" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+        <button class="close-popup" onclick="closeYouTubePopup()">&times;</button>
+      </div>
     </div>
 
     <script src="script.js" defer></script>
