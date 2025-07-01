@@ -1559,7 +1559,7 @@ footer p {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0px;
   transition: transform 0.3s ease;
   width: 300px;
   height: 240px;
@@ -1996,5 +1996,11 @@ footer p {
     padding: 0 !important;
     border: 1px solid #fff !important;
     box-sizing: border-box !important;
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery img {
+    border-radius: 0 !important;
   }
 }
