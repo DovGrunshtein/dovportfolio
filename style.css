@@ -1036,20 +1036,34 @@ footer p {
 
 /* Specific styles for social media section */
 #social .video-row.vertical {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 0.2rem !important;
+  justify-items: center !important;
 }
 
-#social .video-thumbnail.vertical {
-  width: 180px;
-  height: 320px;
-  margin: 0;
+#social .video-row.vertical .video-thumbnail {
+  width: 24px !important;
+  max-width: 24px !important;
+  min-width: 0 !important;
+  aspect-ratio: 9/16 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#social .video-row.vertical .video-thumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  display: block !important;
 }
 
 /* Media queries for social media section */
@@ -1747,4 +1761,143 @@ footer p {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+#film .video-thumbnail,
+#bts .video-thumbnail {
+  aspect-ratio: 16/9;
+  width: 100%;
+  max-width: 300px; /* Optional: limit max width for large screens */
+  height: auto;
+  min-height: 180px;
+}
+
+#film .video-thumbnail img,
+#film .video-thumbnail iframe,
+#bts .video-thumbnail img,
+#bts .video-thumbnail iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#social .video-row.vertical,
+#bts .video-row.vertical {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 1rem;
+  justify-items: center;
+}
+
+#social .video-row.vertical .video-thumbnail,
+#bts .video-row.vertical .video-thumbnail {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  aspect-ratio: 9/16;
+  height: auto;
+  box-sizing: border-box;
+}
+
+#social .video-row.vertical .video-thumbnail:nth-child(3n+1),
+#bts .video-row.vertical .video-thumbnail:nth-child(3n+1) {
+  clear: left;
+}
+
+@media (max-width: 900px) {
+  #social .video-row.vertical,
+  #bts .video-row.vertical {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #social .video-row.vertical,
+  #bts .video-row.vertical {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+#film .video-row.horizontal,
+#bts .video-row.vertical,
+#social .video-row.vertical {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-items: center;
+}
+
+#film .video-row.horizontal .video-thumbnail,
+#bts .video-row.vertical .video-thumbnail,
+#social .video-row.vertical .video-thumbnail {
+  aspect-ratio: 16/9;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+#social .video-row.vertical .video-thumbnail {
+  aspect-ratio: 9/16;
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+#film .video-row.horizontal .video-thumbnail img,
+#film .video-row.horizontal .video-thumbnail iframe,
+#bts .video-row.vertical .video-thumbnail img,
+#bts .video-row.vertical .video-thumbnail iframe,
+#social .video-row.vertical .video-thumbnail img,
+#social .video-row.vertical .video-thumbnail iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  #film .video-row.horizontal,
+  #bts .video-row.vertical,
+  #social .video-row.vertical {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #film .video-row.horizontal,
+  #bts .video-row.vertical,
+  #social .video-row.vertical {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- ABSOLUTE OVERRIDE: SOCIAL MEDIA THUMBNAILS SMALL (48px) --- */
+#social .video-row.vertical .video-thumbnail,
+#social .video-row.vertical .youtube-thumbnail {
+  width: 200px !important;
+  max-width: 200px !important;
+  min-width: 0 !important;
+  aspect-ratio: 9/16 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#social .video-row.vertical .video-thumbnail img,
+#social .video-row.vertical .youtube-thumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  display: block !important;
 }
