@@ -40,41 +40,27 @@
     </nav>
 
     <main>
-      <section id="profile">
-        <div class="section__pic-container">
-          <img src="./assets/profile-pic.png" alt="Dov Grunshtein profile picture" class="parallax-effect" onerror="this.onerror=null;this.src='https://placehold.co/250x250/E0E0E0/B0B0B0?text=Profile+Image'"/>
-        </div>
-        <div class="section__text">
-          <p class="section__text__p1">Hello, I'm</p>
-          <h1 class="title typing-effect">Dov Grunshtein</h1> <!-- Added class for typing effect -->
-          <p class="section__text__p2">1,2,3 SHOOT!</p>
-          <div class="btn-container">
-            <button
-              class="btn btn-color-2"
-              onclick="window.open('./assets/resume-example.pdf')"
-            >
-              Download CV
-            </button>
-            <button class="btn btn-color-1" onclick="location.href='#contact'">
-              Contact Info
-            </button>
+      <!-- HERO SECTION: Full-bleed background image, overlay, bold text -->
+      <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">Dov Grunshtein</h1>
+          <h2 class="hero-subtitle">Photographer & Filmmaker</h2>
+          <p class="hero-tagline">Capturing stories in motion and stillness</p>
+          <div class="hero-btns">
+            <button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')">Download CV</button>
           </div>
         </div>
       </section>
 
-      <section id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-          <div class="section__pic-container about-pic-container">
-            <img
-              src="./assets/about-pic.png"
-              alt="About me picture"
-              class="about-pic"
-              onerror="this.onerror=null;this.src='https://placehold.co/200x200/E0E0E0/B0B0B0?text=About+Image';"
-            />
-          </div>
-          <div class="about-details-container">
+      <section id="about" class="about-bg-section">
+        <div class="about-bg"></div>
+        <div class="about-overlay"></div>
+        <div class="about-content-centered">
+          <p class="section__text__p1">Get To Know More</p>
+          <h1 class="title">About Me</h1>
+          <div class="about-details-centered">
             <div class="about-containers">
               <div class="details-container">
                 <img
@@ -108,7 +94,6 @@
             </div>
           </div>
         </div>
-        <!-- Removed arrow icon as per previous suggestions for cleaner nav -->
       </section>
 
       <section id="projects">

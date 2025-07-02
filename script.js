@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     thumbnail.addEventListener('click', function() {
       const videoSrc = this.getAttribute('data-video-src');
       if (videoSrc) {
-        openVideoPopup(videoSrc);
+      openVideoPopup(videoSrc);
       }
     });
   });
@@ -184,16 +184,16 @@ document.addEventListener('DOMContentLoaded', function() {
         openYouTubePopup(youtubeId);
       }
     });
-  });
+});
 
   // Close video popup when clicking outside the video
   const videoPopup = document.getElementById('video-popup-overlay');
   if (videoPopup) {
     videoPopup.addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeVideoPopup();
-      }
-    });
+    if (e.target === this) {
+      closeVideoPopup();
+    }
+  });
   }
   
   // Close YouTube popup when clicking outside the video
