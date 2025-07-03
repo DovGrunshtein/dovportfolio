@@ -27,6 +27,8 @@ document.addEventListener("click", (e) => {
   if (!link) return;
 
   const href = link.getAttribute("href");
+  
+  // Prevent smooth scroll for links that don't start with #
   if (!href || !href.startsWith("#")) return;
 
   e.preventDefault();
@@ -40,9 +42,13 @@ document.addEventListener("click", (e) => {
 
     window.scrollTo({ top: offsetTop, behavior: "smooth" });
 
-    if (link.closest("#hamburger-nav")) toggleMenu();
+    // Close hamburger menu if a link inside it is clicked
+    if (link.closest("#hamburger-nav")) {
+        toggleMenu();
+    }
   }
 });
+
 
 // Image popup functionality for pictures.html
 if (document.body.classList.contains("gallery-page")) {
@@ -106,33 +112,35 @@ function openVideoPopup(videoSrc) {
   const popup = document.getElementById('video-popup-overlay');
   const video = document.getElementById('popup-video');
   
-  video.src = videoSrc;
-  popup.style.display = 'flex';
-  video.play();
+  if(popup && video){
+      video.src = videoSrc;
+      popup.style.display = 'flex';
+      video.play();
+  }
 }
 
 function closeVideoPopup() {
   const popup = document.getElementById('video-popup-overlay');
   const video = document.getElementById('popup-video');
   
-  video.pause();
-  video.src = '';
-  popup.style.display = 'none';
+  if(popup && video){
+      video.pause();
+      video.src = '';
+      popup.style.display = 'none';
+  }
 }
 
 // YouTube popup functionality
 function openYouTubePopup(youtubeId) {
-  console.log('Opening YouTube popup for ID:', youtubeId);
   const popup = document.getElementById('youtube-popup-overlay');
   const iframe = document.getElementById('popup-youtube');
   
   if (!popup || !iframe) {
-    console.error('Popup elements not found!');
+    console.error('YouTube Popup elements not found!');
     return;
   }
   
   const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
-  console.log('Embed URL:', embedUrl);
   
   iframe.src = embedUrl;
   popup.style.display = 'flex';
@@ -143,77 +151,12 @@ function closeYouTubePopup() {
   const popup = document.getElementById('youtube-popup-overlay');
   const iframe = document.getElementById('popup-youtube');
   
-  iframe.src = '';
-  popup.style.display = 'none';
-  document.body.style.overflow = '';
+  if(popup && iframe){
+      iframe.src = '';
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+  }
 }
-
-// Add click handlers to all video thumbnails
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM Content Loaded');
-  console.log('Page URL:', window.location.href);
-  const thumbnails = document.querySelectorAll('.video-thumbnail');
-  thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', function() {
-      const videoSrc = this.getAttribute('data-video-src');
-      if (videoSrc) {
-      openVideoPopup(videoSrc);
-      }
-    });
-  });
-
-  // YouTube thumbnail click handlers
-  const youtubeThumbnails = document.querySelectorAll('.youtube-thumbnail');
-  console.log('Found YouTube thumbnails:', youtubeThumbnails.length);
-  
-  // Debug: Check if elements are visible
-  youtubeThumbnails.forEach((thumbnail, index) => {
-    const rect = thumbnail.getBoundingClientRect();
-    console.log(`Thumbnail ${index + 1} dimensions:`, rect.width, 'x', rect.height);
-    console.log(`Thumbnail ${index + 1} visible:`, rect.width > 0 && rect.height > 0);
-  });
-  
-  youtubeThumbnails.forEach((thumbnail, index) => {
-    const youtubeId = thumbnail.getAttribute('data-youtube-id');
-    console.log(`Thumbnail ${index + 1}:`, youtubeId);
-    
-    thumbnail.addEventListener('click', function() {
-      const youtubeId = this.getAttribute('data-youtube-id');
-      console.log('Clicked YouTube ID:', youtubeId);
-      if (youtubeId) {
-        openYouTubePopup(youtubeId);
-      }
-    });
-});
-
-  // Close video popup when clicking outside the video
-  const videoPopup = document.getElementById('video-popup-overlay');
-  if (videoPopup) {
-    videoPopup.addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeVideoPopup();
-    }
-  });
-  }
-  
-  // Close YouTube popup when clicking outside the video
-  const youtubePopup = document.getElementById('youtube-popup-overlay');
-  if (youtubePopup) {
-    youtubePopup.addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeYouTubePopup();
-      }
-    });
-  }
-  
-  // Close popups when pressing Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeVideoPopup();
-      closeYouTubePopup();
-    }
-  });
-});
 
 // ✅ הדגשת קישור סיידבר לפי מיקום גלילה
 const sections = document.querySelectorAll("main section[id]");
@@ -242,24 +185,109 @@ if (sidebarLinks.length > 0) {
   updateActiveSidebarLink();
 }
 
-document.querySelectorAll('iframe').forEach(iframe => {
-  const src = iframe.src;
+// Scroll to top button functionality
+const scrollToTopBtn = document.querySelector(".scroll-to-top");
 
-  // אם זה לינק רגיל מיוטיוב עם watch?v=
-  if (src.includes("youtube.com/watch?v=")) {
-    const videoId = src.split("v=")[1].split("&")[0];
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-  }
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-  // אם זה לינק מסוג youtu.be
-  else if (src.includes("youtu.be/")) {
-    const videoId = src.split("youtu.be/")[1].split("?")[0];
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-  }
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) { // Show button after scrolling 300px
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+}, { passive: true });
 
-  // אם זה לינק של @user - אין מה להטמיע
-  else if (src.includes("@")) {
-    // אפשר להסתיר את הוידאו או להסיר אותו מה־DOM
-    iframe.remove(); // או: iframe.style.display = 'none';
+
+// DOMContentLoaded to set up initial state and listeners
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Add click handlers to all video thumbnails
+  const thumbnails = document.querySelectorAll('.video-thumbnail');
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', function() {
+      const videoSrc = this.getAttribute('data-video-src');
+      const youtubeId = this.getAttribute('data-youtube-id');
+      if (videoSrc) {
+        openVideoPopup(videoSrc);
+      } else if (youtubeId) {
+        openYouTubePopup(youtubeId);
+      }
+    });
+  });
+
+  // Close video popup when clicking outside the video
+  const videoPopup = document.getElementById('video-popup-overlay');
+  if (videoPopup) {
+    videoPopup.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeVideoPopup();
+      }
+    });
   }
+  
+  // Close YouTube popup when clicking outside the video
+  const youtubePopup = document.getElementById('youtube-popup-overlay');
+  if (youtubePopup) {
+    youtubePopup.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeYouTubePopup();
+      }
+    });
+  }
+  
+  // Close popups when pressing Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeVideoPopup();
+      closeYouTubePopup();
+    }
+  });
+  
+  // Set initial language from localStorage
+  setLanguage(localStorage.getItem('language') || 'en'); 
+});
+
+
+// ====================================================================
+// =================== LANGUAGE SWITCHER FUNCTIONALITY ================
+// ====================================================================
+
+function setLanguage(lang) {
+    const isHebrew = lang === 'he';
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = isHebrew ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-en][data-he]').forEach(el => {
+        const text = el.getAttribute(isHebrew ? 'data-he' : 'data-en');
+        // Use innerHTML to correctly render <br> tags
+        if(el.innerHTML.includes('<br>')){
+            el.innerHTML = text;
+        } else {
+            el.textContent = text;
+        }
+    });
+
+    // Update body font-family
+    document.body.style.fontFamily = isHebrew 
+        ? "'Noto Sans Hebrew', 'Arial', sans-serif" 
+        : "'Poppins', sans-serif";
+        
+    // Save preference
+    localStorage.setItem('language', lang);
+}
+
+function toggleLanguage() {
+    const currentLang = localStorage.getItem('language') || 'en';
+    const newLang = currentLang === 'en' ? 'he' : 'en';
+    setLanguage(newLang);
+}
+
+// Set initial language on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('language') || 'en';
+    setLanguage(savedLang);
 });
