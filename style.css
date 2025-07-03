@@ -461,22 +461,19 @@ section.visible {
 #about .about-containers {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
-  width: 100%;
+  align-items: flex-start;
+  gap: 0.7rem;
+  width: 80%;
   justify-content: center;
-  align-items: center;
   margin-bottom: 1.5rem;
 }
 
 #about .details-container {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+  height: auto;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 350px;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #about .text-container {
@@ -644,7 +641,7 @@ section.visible {
   height: 100%;
   transform: translateX(-50%);
   background: url('./assets/6875.jpg') top center/cover no-repeat;
-  filter: blur(1.5px);
+  filter: blur(2.5px);
   z-index: 0;
   pointer-events: none;
 }
@@ -774,7 +771,7 @@ section.visible {
   width: 100vw;
   height: 100%;
   transform: translateX(-50%);
-  background: url('./assets/7125-Enhanced-NR.jpg') center center/cover no-repeat;
+  background: url('./assets/Sunset.jpg') center center/cover no-repeat;
   filter: blur(1.5px);
   z-index: 0;
   pointer-events: none;
@@ -2195,7 +2192,7 @@ footer p {
   animation: fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1);
 }
 .hero-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', serif;
   font-size: 3.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -2205,8 +2202,8 @@ footer p {
 }
 .hero-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.7rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 50;
   color: var(--accent-blue);
   margin-bottom: 1rem;
   letter-spacing: 0.02em;
@@ -2214,13 +2211,13 @@ footer p {
 }
 .hero-tagline {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 1;
   color: var(--accent-blue);
   margin-bottom: 2rem;
   letter-spacing: 0.02em;
   text-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  font-style: normal;
+  font-style: italic;
 }
 .hero-btns {
   display: flex;
@@ -2387,7 +2384,7 @@ footer p {
   height: 100%;
   background: url('./assets/IMG_4207.jpg') center center/cover no-repeat;
   filter: blur(0.5px) brightness(0.7) grayscale(10%);
-  z-index: 1;
+  z-index: 1.5;
   margin: 0;
   padding: 0;
 }
@@ -2418,6 +2415,7 @@ footer p {
   text-align: center;
   color: #fff;
   gap: 1.5rem;
+  padding-left: 3rem;
 }
 .about-content-centered .title {
   text-align: center !important;
@@ -2571,6 +2569,7 @@ footer p {
 
 #experience .title {
   color: #fff !important;
+  margin-bottom: 4.5rem !important;
 }
 
 .project-box {
@@ -2588,6 +2587,13 @@ footer p {
   margin: 0 auto 2rem auto;
   box-shadow: 0 4px 24px rgba(215, 215, 215, 0.1);
   transition: filter 0.3s;
+  border: 1px solid #fff;
+  border-radius: 1;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 8px #fff inset;
+  background-clip: padding-box;
+  z-index: 2;
+  position: relative;
 }
 .project-box::before {
   content: '';
@@ -2595,6 +2601,9 @@ footer p {
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(0deg, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.15) 100%);
   z-index: 1;
+  box-sizing: border-box;
+  border-radius: 3px;
+  pointer-events: none;
 }
 .project-box-label {
   position: relative;
@@ -2606,9 +2615,13 @@ footer p {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   text-align: center;
-  width: 100%;
-  padding: 2rem 0 1.5rem 0;
+  width: auto;
+  padding: 0.7em 1.5em;
   text-shadow: 0 2px 8px rgba(0,0,0,0.28);
+  border: 0.5px solid #fff;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.18);
+  display: inline-block;
 }
 .project-box:hover {
   filter: brightness(1.08) saturate(1.1);
@@ -2648,6 +2661,12 @@ footer p {
 }
 
 @media (max-width: 600px) {
+  #about .title::after {
+    margin: 0.5rem 0 0 1.2rem !important;
+  }
+  #about .title, #projects .title, #experience .title {
+    /* keep other mobile styles here if needed */
+  }
   #about.about-bg-section {
     min-height: unset !important;
     padding: 3.2rem 0 !important;
@@ -2663,6 +2682,7 @@ footer p {
   .about-content-centered .title {
     text-align: left !important;
     align-self: flex-start !important;
+    font-weight: 300 !important;
   }
   #projects {
     padding-top: 1.2rem !important;
@@ -2674,5 +2694,61 @@ footer p {
   .project-box {
     min-height: 80px !important;
     margin-bottom: 0.7rem !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  #projects .about-containers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .project-box {
+    width: 32%;
+    min-width: 120px;
+    max-width: 300px;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 992px) {
+  .about-content-centered {
+    padding-left: 3rem;
+  }
+}
+
+#about .title, #projects .title, #experience .title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+#about .title::after, #projects .title::after, #experience .title::after {
+  content: '';
+  display: block;
+  margin: 0.5rem auto 0 auto;
+  width: 120px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+@media (max-width: 600px) {
+  #about .title::after, #projects .title::after, #experience .title::after {
+    width: 100px;
+    height: 1px;
+  }
+}
+
+@media (max-width: 900px) {
+  .project-box-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0.7em 0;
+    margin: 0 auto;
   }
 }
