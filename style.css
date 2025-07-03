@@ -306,7 +306,7 @@ section.visible {
   top: 0; left: 0; width: 100%; height: 100%;
   background: url('./assets/2509.jpg') center center/cover no-repeat;
   z-index: 1;
-  filter: grayscale(10%) brightness(0.8) contrast(1.1);
+  filter: grayscale(5%) brightness(0.8) contrast(1) blur(2px);
   animation: heroFadeIn 1.2s ease;
 }
 @keyframes heroFadeIn {
@@ -316,7 +316,7 @@ section.visible {
 .hero-overlay {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(120deg, rgba(34,58,94,0.7) 0%, rgba(0,0,0,0.3) 100%);
+  background: linear-gradient(120deg, rgba(34,58,94,0.7) 0%, rgba(0,0,0,0.3) 100%) blur(2px);
   z-index: 2;
 }
 .hero-content {
@@ -452,7 +452,7 @@ section.visible {
   width: 100%;
   height: 100%;
   background: url('./assets/IMG_4207.jpg') center center/cover no-repeat;
-  filter: blur(0.5px) brightness(0.7) grayscale(10%);
+  filter: blur(0.05px) brightness(0.7) grayscale(7%) blur(2px);
   z-index: 1;
 }
 .about-overlay {
@@ -460,7 +460,7 @@ section.visible {
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, rgba(34,58,94,0.6) 0%, rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(120deg, rgba(34,58,94,0.6) 0%, rgba(0,0,0,0.5) 100%) blur(2px);
   z-index: 2;
 }
 .about-content-centered {
@@ -533,25 +533,23 @@ This replaces previous complex/conflicting rules.
   justify-content: center;
   gap: 1.5rem;
 }
-.about-details-centered .about-containers {
+#about .about-containers {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 2.5rem;
   width: 100%;
-  margin-bottom: 0;
 }
-.about-details-centered .details-container {
-  background: rgba(255,255,255,0.08);
-  border-radius: 1rem;
-  padding: 1.2rem 1.5rem;
-  color: #fff;
-  box-shadow: 0 2px 12px rgba(34,58,94,0.10);
-  min-width: 140px;
-  max-width: 220px;
+#about .details-container {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 2rem 1.5rem;
+  border-radius: 0;
+  align-items: flex-start;
+  min-width: 220px;
   margin: 0;
-  border: none;
 }
 
 .about-details-centered .details-container h3,
@@ -591,7 +589,8 @@ html[dir="rtl"] .about-details-centered .text-container {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(120deg, rgba(34,34,34,0.5) 0%, rgba(0,0,0,0.4) 100%);
+  background: inherit;
+  filter: blur(2px);
   z-index: 1;
 }
 #experience > * {
@@ -674,14 +673,26 @@ html[dir="rtl"] .about-details-centered .text-container {
 
 #experience .details-container:last-child .article-container {
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  margin: 30px 0 30px 60px;
+  align-items: center;
+  text-align: center;
+  margin: 30px auto;
 }
 #experience .details-container:last-child .article-container article {
-  width: 200px;
-  justify-content: flex-start;
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   margin: 14px auto;
+}
+#experience .details-container:last-child .article-container article .icon {
+  margin: 0;
+  flex-shrink: 0;
+}
+#experience .details-container:last-child .article-container article div {
+  text-align: center;
+  width: 100%;
 }
 
 #experience .details-container:first-child .article-container {
@@ -715,7 +726,8 @@ html[dir="rtl"] .about-details-centered .text-container {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(120deg, rgba(0, 0, 0, 0.092) 0%, rgba(0, 0, 0, 0.263) 100%);
+  background: inherit;
+  filter: blur(2px);
   z-index: 1;
 }
 #projects > * {
@@ -743,7 +755,7 @@ html[dir="rtl"] .about-details-centered .text-container {
 
 #projects .experience-details-container,
 #projects .about-containers {
-  margin-top: -40px !important;
+  margin-top: -80px !important;
   padding-top: 0 !important;
   display: flex;
   justify-content: center;
@@ -1231,4 +1243,19 @@ html[dir="rtl"] #hamburger-nav .logo {
   margin-bottom: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+body.hebrew #experience .article-container,
+body[lang="he"] #experience .article-container {
+  direction: rtl;
+  text-align: right;
+}
+body.hebrew #experience .article-container article,
+body[lang="he"] #experience .article-container article {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+#experience .article-container article div {
+  text-align: center;
+  width: 100%;
 }
