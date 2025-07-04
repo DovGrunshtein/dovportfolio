@@ -89,17 +89,6 @@ nav {
   color: black; /* Ensure logo link color */
 }
 
-.logo img {
-  height: var(--logo-height, 50px);
-  width: auto;
-  filter: drop-shadow(var(--logo-shadow, 0 4px 6px rgba(0, 0, 0, 0.148)));
-  transition: filter 0.3s ease;
-}
-
-.logo img:hover {
-  filter: drop-shadow(var(--logo-shadow-hover, 0 6px 10px rgba(0, 0, 0, 0.15)));
-}
-
 /* Desktop Navigation Links */
 #desktop-nav {
   display: flex;
