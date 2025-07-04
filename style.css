@@ -453,7 +453,7 @@ section.visible {
   width: 100%;
   height: 100%;
   /* FIXED PATH: Removed './' for better compatibility */
-  background: url('assets/IMG_4207.jpg') center center/cover no-repeat;
+  background: url('assets/IMG_4207.JPG') center center/cover no-repeat;
   filter: blur(0.05px) brightness(0.7) grayscale(7%) blur(2px);
   z-index: 1;
 }
