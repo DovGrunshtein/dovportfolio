@@ -113,9 +113,9 @@ function openVideoPopup(videoSrc) {
   const video = document.getElementById('popup-video');
   
   if(popup && video){
-      video.src = videoSrc;
-      popup.style.display = 'flex';
-      video.play();
+  video.src = videoSrc;
+  popup.style.display = 'flex';
+  video.play();
   }
 }
 
@@ -124,10 +124,10 @@ function closeVideoPopup() {
   const video = document.getElementById('popup-video');
   
   if(popup && video){
-      video.pause();
-      video.src = '';
-      popup.style.display = 'none';
-  }
+  video.pause();
+  video.src = '';
+  popup.style.display = 'none';
+}
 }
 
 // YouTube popup functionality
@@ -155,7 +155,7 @@ function closeYouTubePopup() {
       iframe.src = '';
       popup.style.display = 'none';
       document.body.style.overflow = '';
-  }
+    }
 }
 
 // ✅ הדגשת קישור סיידבר לפי מיקום גלילה
