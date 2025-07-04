@@ -1130,23 +1130,23 @@ footer p {
 
 /* LANGUAGE SWITCHER BUTTON */
 .lang-switcher {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #000000 0%, #6e66752f 100%);
   color: white;
   border: none;
   padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  font-size: 0.85rem;
+  border-radius: 1.01px;
+  font-size: 0.55rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.054);
   font-family: 'Poppins', sans-serif;
   margin-left: 2rem;
   flex-shrink: 0;
 }
 .lang-switcher:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
 }
 
 /* =================================== */
@@ -1210,8 +1210,8 @@ footer p {
   .hamburger-menu { gap: 0.5rem; }
   #hamburger-nav .lang-switcher {
     padding: 0.5rem 0.8rem;
-    font-size: 0.75rem;
-    border-radius: 20px;
+    font-size: 0.65rem;
+    border-radius: 5px;
     margin: 0;
   }
 
@@ -1247,6 +1247,16 @@ footer p {
 
   .gallery {
     grid-template-columns: 1fr;
+  }
+
+  html[dir="rtl"] #hamburger-nav .menu-links {
+    right: auto;
+    left: 0;
+    transform-origin: top left;
+    text-align: right;
+  }
+  html[dir="rtl"] #hamburger-nav .menu-links a {
+    text-align: right;
   }
 }
 
