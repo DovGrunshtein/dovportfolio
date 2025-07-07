@@ -1197,8 +1197,16 @@ footer p {
 
   #about.about-bg-section { min-height: auto; padding: 3rem 0; }
   .about-content-centered { padding: 0 1rem; }
-  .about-details-centered .about-containers { flex-direction: column; gap: 1rem; }
-  .about-details-centered .text-container { text-align: center !important; }
+  .about-details-centered .about-containers {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+  #about .details-container {
+    margin-left: -2rem ;
+    margin-right: -2rem;
+  }
 
   #experience, #projects { background-attachment: scroll; padding: 3rem 1rem; }
   #experience .title::after, #projects .title::after, #about .title::after { width: 100px; }
