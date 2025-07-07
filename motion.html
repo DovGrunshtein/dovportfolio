@@ -6,6 +6,7 @@
     <title>Video Sections</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" media="print" onload="this.media='all'" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
       .logo a {
         cursor: default;
@@ -13,7 +14,6 @@
     </style>
   </head>
   <body>
-    <!-- DESKTOP NAV -->
     <nav id="desktop-nav">
       <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Dov Grunshtein" style="height: 40px; width: auto;"></a></div>
       <div>
@@ -27,7 +27,6 @@
       <button id="lang-switch" class="lang-switcher" onclick="toggleLanguage()">עב / EN</button>
     </nav>
 
-    <!-- HAMBURGER NAV -->
     <nav id="hamburger-nav">
       <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Dov Grunshtein" style="height: 40px; width: auto;"></a></div>
       <div class="hamburger-menu">
@@ -46,41 +45,36 @@
       </div>
     </nav>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" data-aos="fade-right">
       <ul>
         <li><a href="#motion">MOTION</a></li>
       </ul>
     </div>
 
-    <!-- SECTIONS -->
     <section id="motion" class="project-section">
-      <h2 class="section-title">MOTION</h2>
+      <h2 class="section-title" data-aos="fade-up">MOTION</h2>
       <div class="video-row horizontal" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; justify-items: center;">
-        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="O6Ajb2t88pA">
-          <img src="https://img.youtube.com/vi/O6Ajb2t88pA/hqdefault.jpg" alt="Motion Graphic 1" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="O6Ajb2t88pA" data-aos="zoom-in-up" data-aos-delay="100">
+          <img src="https://i.ytimg.com/vi/O6Ajb2t88pA/hqdefault.jpg" alt="Motion Graphic 1" loading="lazy" />
         </div>
-        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="f6VL4meYpow">
-          <img src="https://img.youtube.com/vi/f6VL4meYpow/maxresdefault.jpg" alt="Motion Graphic 2" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="f6VL4meYpow" data-aos="zoom-in-up" data-aos-delay="200">
+          <img src="https://i.ytimg.com/vi/f6VL4meYpow/hqdefault.jpg" alt="Motion Graphic 2" loading="lazy" />
         </div>
-        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="VgLbjTJIjnQ">
-          <img src="https://img.youtube.com/vi/VgLbjTJIjnQ/maxresdefault.jpg" alt="Motion Graphic 3" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail horizontal" data-youtube-id="VgLbjTJIjnQ" data-aos="zoom-in-up" data-aos-delay="300">
+          <img src="https://i.ytimg.com/vi/VgLbjTJIjnQ/hqdefault.jpg" alt="Motion Graphic 3" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- POPUP -->
-    <!-- Video Popup -->
     <div id="video-popup-overlay">
       <div class="video-popup-container">
         <video id="popup-video" controls preload="none">
           Your browser does not support the video tag.
         </video>
-        <button class="close-popup" onclick="closeVideoPopup()">&times;</button>
+        <button class="close-popup" onclick="closeVideoPopup()">×</button>
       </div>
     </div>
 
-    <!-- YouTube Popup -->
     <div id="youtube-popup-overlay">
       <div class="youtube-popup-container">
         <iframe id="popup-youtube" 
@@ -88,10 +82,11 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowfullscreen>
         </iframe>
-        <button class="close-popup" onclick="closeYouTubePopup()">&times;</button>
+        <button class="close-popup" onclick="closeYouTubePopup()">×</button>
       </div>
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js" defer></script>
   </body>
 </html>

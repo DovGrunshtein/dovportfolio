@@ -204,6 +204,13 @@ window.addEventListener('scroll', () => {
 // DOMContentLoaded to set up initial state and listeners
 document.addEventListener('DOMContentLoaded', function() {
   
+  // Initialize AOS (Animate on Scroll) Library
+  AOS.init({
+    duration: 800, // Animation duration in milliseconds
+    once: true,    // Whether animation should happen only once
+    offset: 50,    // Trigger the animation 50px before the element is in view
+  });
+
   // Add click handlers to all video thumbnails
   const thumbnails = document.querySelectorAll('.video-thumbnail');
   thumbnails.forEach(thumbnail => {

@@ -17,6 +17,9 @@ body {
   font-family: "Poppins", sans-serif;
   color: rgb(85, 85, 85); /* Default text color */
   background-color: #ffffff; /* Explicit background color */
+  background-image: url('assets/Dots BG.png');
+  background-repeat: repeat;
+  background-size: auto;
   display: flex;
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
@@ -31,17 +34,15 @@ body::before {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(230,230,230,0.05) 25%, transparent 25%),
-              linear-gradient(-45deg, rgba(230,230,230,0.05) 25%, transparent 25%),
-              linear-gradient(45deg, transparent 75%, rgba(230,230,230,0.05) 75%),
-              linear-gradient(-45deg, transparent 75%, rgba(230,230,230,0.05) 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  opacity: 0.5; /* Adjusted opacity */
-  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('assets/Dots BG.png');
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 1;
+  filter: blur(2.2px);
   z-index: -1;
+  pointer-events: none;
 }
 
 p {
@@ -73,8 +74,6 @@ nav {
   align-items: center;
   padding: 1rem 2rem; /* Vertical and horizontal padding */
   min-height: 10vh;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -172,15 +171,12 @@ nav {
   position: absolute;
   top: calc(100% + 10px); /* Position below hamburger */
   right: 0; /* Align to the right */
-  background-color: white;
   width: max-content;
   min-width: 200px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6), opacity 0.5s ease, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
   z-index: 1001;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   transform-origin: top right;
   transform: scaleY(0);
   opacity: 0;
@@ -227,9 +223,6 @@ section {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 #about,
@@ -244,22 +237,6 @@ section {
 #projects .title,
 #experience .title {
   padding-top: 1.5rem;
-}
-
-/* For Intersection Observer animation */
-section.visible {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .section-container {
@@ -304,7 +281,6 @@ section.visible {
 .hero-bg {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  /* FIXED PATH: Removed './' for better compatibility */
   background: url('assets/2509.jpg') center center/cover no-repeat;
   z-index: 1;
   filter: grayscale(5%) brightness(0.8) contrast(1) blur(2px);
@@ -329,7 +305,6 @@ section.visible {
   max-width: 700px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  animation: fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1);
 }
 .hero-title {
   font-family: 'Poppins', serif;
@@ -422,17 +397,26 @@ section.visible {
   color: rgb(53, 53, 53);
 }
 
+/* Glassy "Download CV" Button */
 .hero-btns .btn-color-2 {
-    background: none;
-    color: #ffffff;
-    border: 2px solid #ffffff;
+  color: #ffffff;
+  border-radius: 8px; /* Rounded corners look better with glass */
+  
+  /* The Glass Effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .hero-btns .btn-color-2:hover {
-    background: #ffffff;
-    color: #223a5e;
+  color: #ffffff; /* Keep text color white on hover */
+  background: rgba(255, 255, 255, 0.3); /* Make the glass brighter */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
-
 
 /* ABOUT SECTION */
 #about.about-bg-section {
@@ -452,7 +436,6 @@ section.visible {
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100%;
   height: 100%;
-  /* FIXED PATH: Removed './' for better compatibility */
   background: url('assets/IMG_4207.JPG') center center/cover no-repeat;
   filter: blur(0.05px) brightness(0.7) grayscale(7%) blur(2px);
   z-index: 1;
@@ -481,19 +464,11 @@ section.visible {
   gap: 1.5rem;
 }
 
-/* ================================================================
-FIX FOR "ABOUT ME" TITLE CENTERING (BOTH LTR & RTL)
-The following rules ensure the title and its underline are always
-centered, regardless of language direction or screen size.
-This replaces previous complex/conflicting rules.
-================================================================
-*/
 #about .title {
   position: relative;
   display: block;
   width: 100%;
   max-width: 500px;
-  /* This is the key for centering: auto margins on both sides */
   margin-left: auto !important;
   margin-right: auto !important;
   margin-top: 1rem;
@@ -501,9 +476,7 @@ This replaces previous complex/conflicting rules.
   padding: 0;
   color: #fff;
   text-shadow: 0 2px 16px rgba(34,58,94,0.25);
-  /* Ensures text inside the block is centered */
   text-align: center !important;
-  /* Removes any problematic transforms from other rules */
   transform: none !important;
 }
 
@@ -514,7 +487,6 @@ This replaces previous complex/conflicting rules.
   height: 2px;
   background: #fff;
   border-radius: 2px;
-  /* Auto margins center the underline perfectly */
   margin: 0.5rem auto 0 auto;
   position: static;
   left: unset;
@@ -522,10 +494,8 @@ This replaces previous complex/conflicting rules.
 }
 
 .about-content-centered .title {
-  /* This helps centering within the parent flex container */
   align-self: center !important;
 }
-/* --- END OF FIX --- */
 
 .about-details-centered {
   width: 100%;
@@ -576,8 +546,7 @@ html[dir="rtl"] .about-details-centered .text-container {
 /* KNOWLEDGE (EXPERIENCE) SECTION */
 #experience {
   position: relative;
-  /* FIXED PATH: Removed './' for better compatibility */
-  background: url('assets/6875.jpg') top center/cover no-repeat fixed;
+  background: url('assets/6875.jpg') top center/cover no-repeat scroll;
   width: 100vw;
   min-height: 70vh;
   padding: 4rem 1rem;
@@ -634,7 +603,6 @@ html[dir="rtl"] .about-details-centered .text-container {
 #experience .details-container {
   border: 2px solid #fff;
   color: #fff;
-  background: rgba(0,0,0,0.32);
   width: 100%;
   flex: 1;
   padding: 2rem 1.5rem;
@@ -714,8 +682,7 @@ html[dir="rtl"] .about-details-centered .text-container {
 /* PROJECTS SECTION */
 #projects {
   position: relative;
-  /* FIXED PATH: Removed './' for better compatibility */
-  background: url('assets/Sunset.JPG') center center/cover no-repeat fixed;
+  background: url('assets/Sunset.JPG') center center/cover no-repeat scroll;
   width: 100vw;
   min-height: 60vh;
   padding: 4rem 1rem;
@@ -769,18 +736,22 @@ html[dir="rtl"] .about-details-centered .text-container {
 #projects .about-containers {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap; /* This allows boxes to stack on smaller screens */
   gap: 2rem;
   width: 100%;
   justify-content: center;
-  align-items: stretch;
+  align-items: stretch; /* This is important for making them the same height */
+  margin-top: -80px !important;
+  padding-top: 0 !important;
 }
+
 
 .project-box {
   position: relative;
   flex: 1;
   max-width: 380px;
   min-height: 220px;
-  border-radius: 1.2rem;
+  border-radius: 0.2rem;
   overflow: hidden;
   cursor: pointer;
   display: flex;
@@ -793,13 +764,20 @@ html[dir="rtl"] .about-details-centered .text-container {
   border: none; /* Remove border */
   background: transparent;
   box-shadow: none;
+  transition: all 0.3s ease; /* Add transition for smooth animations */
 }
+
+.project-box:hover {
+  transform: scale(1.05); /* Scale up slightly on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
 .project-box::before {
   display: none !important;
 }
 
 .project-box-label {
-  position: relative;
+ position: relative;
   z-index: 2;
   color: #fff;
   font-family: 'Poppins', sans-serif;
@@ -807,17 +785,32 @@ html[dir="rtl"] .about-details-centered .text-container {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  text-align: center;
-  padding: 0.8em 1.5em;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.28);
-  border: 0.5px solid #fff;
-  border-radius: 6px;
-  background: rgba(0,0,0,0.18);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
   margin-bottom: 1.5rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+
+  /* --- NEW: Sizing & Alignment --- */
+  width: 290px; /* This sets a fixed width for all labels. */
+  height: 95px; /* This sets a fixed height for all labels. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Padding is no longer needed as we use flexbox for centering. */
+
+  /* --- Glass Effect (Unchanged) --- */
+  background: rgba(255, 255, 255, 0.077);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
+
 .project-box:hover .project-box-label {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Move up more on hover */
+    background: rgba(255, 255, 255, 0.4); /* Brighter background on hover */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Brighter border on hover */
 }
 
 /* CONTACT SECTION */
@@ -830,24 +823,41 @@ html[dir="rtl"] .about-details-centered .text-container {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  border-radius: 1.5rem;
-  border: rgb(200, 200, 200) 0.1rem solid;
-  background: rgb(250, 250, 250);
-  padding: 1.5rem;
   width: 100%;
   max-width: 450px;
+  padding: 1.5rem;
+
+  /* --- NEW: Glass Effect --- */
+  background: rgba(255, 0, 0, 0.35);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.148);
 }
 
+/* CONTACT SECTION */
 .contact-info-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  transition: transform 0.3s ease;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+
+  /* --- NEW: Glass Effect --- */
+  background: rgba(255, 255, 255, 0.097);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  border-radius: 1rem;
+  border: 0.2px solid rgba(255, 255, 255, 0.041);
 }
 
 .contact-info-container:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.176);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info-container p {
@@ -876,8 +886,8 @@ html[dir="rtl"] .about-details-centered .text-container {
 }
 
 .contact-icon {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 /* FOOTER SECTION */
@@ -922,14 +932,10 @@ footer p {
   top: calc(10vh + 20px);
   left: 20px;
   width: 200px;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(5px);
   padding: 1rem;
-  border-radius: 4px;
   z-index: 900;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar ul { list-style: none; padding: 0; margin: 0; }
@@ -1055,20 +1061,15 @@ footer p {
   display: none;
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
   z-index: 1000;
   justify-content: center;
   align-items: center;
-}
-#video-popup-overlay.show, #youtube-popup-overlay.show {
-    display: flex;
 }
 .video-popup-container, .youtube-popup-container {
   position: relative;
   width: 90vw;
   max-width: 1200px;
   aspect-ratio: 16/9;
-  background: #000;
 }
 #youtube-popup-overlay.vertical-reel .youtube-popup-container {
     max-width: 420px;
@@ -1379,3 +1380,63 @@ body[lang="he"] #experience .article-container article {
     max-width: 100% !important;
   }
 }
+
+/* =================================== */
+/* ===== Glassmorphism Effect Styles ===== */
+/* =================================== */
+
+/* 1. Apply the glass effect to the main navigation bars */
+nav#desktop-nav,
+nav#hamburger-nav {
+    background: rgba(255, 255, 255, 0.35); /* Semi-transparent white background */
+    backdrop-filter: blur(12px);          /* The blur effect */
+    -webkit-backdrop-filter: blur(12px);  /* Adds support for Safari browser */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for the "edge" of the glass */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Style the hamburger dropdown menu */
+.menu-links {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+/* 3. Style the sidebar on the project pages (pictures.html, projects.html, etc.) */
+.sidebar {
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+/* 4. Update the "Knowledge" section containers on the main page */
+#experience .details-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 5. Update the Contact section container for a clean look */
+.contact-info-upper-container {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1.5rem;
+}
+
+/* 6. A slight adjustment for popup backgrounds for consistency */
+#video-popup-overlay, #youtube-popup-overlay {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.video-popup-container, .youtube-popup-container {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+

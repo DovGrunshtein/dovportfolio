@@ -6,6 +6,7 @@
     <title>Video Sections</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" media="print" onload="this.media='all'" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
       .logo a {
         cursor: default;
@@ -13,7 +14,6 @@
     </style>
   </head>
   <body>
-    <!-- DESKTOP NAV -->
     <nav id="desktop-nav">
       <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Dov Grunshtein" style="height: 40px; width: auto;"></a></div>
       <div>
@@ -27,7 +27,6 @@
       <button id="lang-switch" class="lang-switcher" onclick="toggleLanguage()">עב / EN</button>
     </nav>
 
-    <!-- HAMBURGER NAV -->
     <nav id="hamburger-nav">
       <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Dov Grunshtein" style="height: 40px; width: auto;"></a></div>
       <div class="hamburger-menu">
@@ -46,8 +45,7 @@
       </div>
     </nav>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" data-aos="fade-right">
       <ul>
         <li><a href="#film">Film</a></li>
         <li><a href="#social">Social Media</a></li>
@@ -55,126 +53,89 @@
       </ul>
     </div>
 
-    <!-- SECTIONS -->
     <section id="film" class="project-section">
-      <h2 class="section-title">FILM</h2>
+      <h2 class="section-title" data-aos="fade-up">FILM</h2>
       <div class="video-row horizontal">
     
-        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="VgLbjTJIjnQ">
-          <img src="https://img.youtube.com/vi/VgLbjTJIjnQ/maxresdefault.jpg" alt="Forum - Te viste bien" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="VgLbjTJIjnQ" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://i.ytimg.com/vi/VgLbjTJIjnQ/hqdefault.jpg" alt="Forum - Te viste bien" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="1P6JHbbxBY4">
-          <img src="https://img.youtube.com/vi/1P6JHbbxBY4/maxresdefault.jpg" alt="Especie Humana - My Story" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="1P6JHbbxBY4" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://i.ytimg.com/vi/1P6JHbbxBY4/hqdefault.jpg" alt="Especie Humana - My Story" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="uPkaeN7DHz0">
-          <img src="https://img.youtube.com/vi/uPkaeN7DHz0/maxresdefault.jpg" alt="iota Soft Living / Indoor Collection" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="uPkaeN7DHz0" data-aos="zoom-in" data-aos-delay="300">
+          <img src="https://i.ytimg.com/vi/uPkaeN7DHz0/hqdefault.jpg" alt="iota Soft Living / Indoor Collection" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="ysX7PsvA_Xk">
-          <img src="https://img.youtube.com/vi/ysX7PsvA_Xk/maxresdefault.jpg" alt="Especie Humana" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail" data-youtube-id="ysX7PsvA_Xk" data-aos="zoom-in" data-aos-delay="400">
+          <img src="https://i.ytimg.com/vi/ysX7PsvA_Xk/hqdefault.jpg" alt="Especie Humana" loading="lazy" />
         </div>
         
       </div>
     </section>
 
     <section id="social" class="project-section">
-      <h2 class="section-title">SOCIAL MEDIA</h2>
+      <h2 class="section-title" data-aos="fade-up">SOCIAL MEDIA</h2>
       <div class="video-row vertical">
     
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="vLfrWGAL7Es">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="vLfrWGAL7Es" data-aos="zoom-in-up">
           <img src="thumbnails/videos/Drop 2 - reel 2.aep_thumb.jpg" alt="Video 1" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="rfwESTEVcWo">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="rfwESTEVcWo" data-aos="zoom-in-up" data-aos-delay="50">
           <img src="thumbnails/videos/iota Soft Living 1_thumb.jpg" alt="Video 2" loading="lazy" />
         </div>
         
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="0r9bOuK2pGc">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="0r9bOuK2pGc" data-aos="zoom-in-up" data-aos-delay="100">
           <img src="thumbnails/videos/Shock1.jpg" alt="Video 4" loading="lazy" />
         </div>
 
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="U_wiRCrNI0s">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="U_wiRCrNI0s" data-aos="zoom-in-up" data-aos-delay="150">
           <img src="thumbnails/videos/Tana6_thumb.jpg" alt="Video 3" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="7erj-6X6nYo">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="7erj-6X6nYo" data-aos="zoom-in-up" data-aos-delay="200">
           <img src="thumbnails/videos/Reel 4_thumb.jpg" alt="Video 4" loading="lazy" />
         </div>
-
     
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="KEG73PhnTEI">
-          <img src="https://img.youtube.com/vi/KEG73PhnTEI/hqdefault.jpg" alt="Video 5" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="KEG73PhnTEI" data-aos="zoom-in-up" data-aos-delay="250">
+          <img src="https://i.ytimg.com/vi/KEG73PhnTEI/hqdefault.jpg" alt="Video 5" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="53hx7RVq5l8">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="53hx7RVq5l8" data-aos="zoom-in-up" data-aos-delay="300">
           <img src="thumbnails/videos/Ceci Gervaso_thumb.jpg" alt="Video 6" loading="lazy" />
         </div>
     
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="QoWG4jM-4F4">
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="QoWG4jM-4F4" data-aos="zoom-in-up" data-aos-delay="350">
           <img src="thumbnails/videos/Main reel 10 - Drop 1_thumb.jpg" alt="Video 7" loading="lazy" />
         </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="j13-ZO9DMmo">
-          <img src="https://img.youtube.com/vi/j13-ZO9DMmo/hqdefault.jpg" alt="Video 8" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="Wl_lM9HXJiQ">
-          <img src="thumbnails/videos/Pieza 3_thumb.jpg" alt="Video 9" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="5EQYv0-J7S4">
-          <img src="thumbnails/videos/Alfonso_thumb.jpg" alt="Video 10" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="MnH6AIS8zac">
-          <img src="https://img.youtube.com/vi/MnH6AIS8zac/hqdefault.jpg" alt="Video 11" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="g5gMeWd5YAc">
-          <img src="https://img.youtube.com/vi/g5gMeWd5YAc/hqdefault.jpg" alt="Video 12" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="mzFMq6XF9IA">
-          <img src="https://img.youtube.com/vi/mzFMq6XF9IA/hqdefault.jpg" alt="Video 13" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="1mCVZYtcmJ0">
-          <img src="https://img.youtube.com/vi/1mCVZYtcmJ0/hqdefault.jpg" alt="Video 14" loading="lazy" />
-        </div>
-    
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="p619wIzy_Eg">
-          <img src="https://img.youtube.com/vi/p619wIzy_Eg/hqdefault.jpg" alt="Video 15" loading="lazy" />
-        </div>
-    
       </div>
     </section>
     
     
     <section id="bts" class="project-section">
-      <h2 class="section-title">BTS</h2>
+      <h2 class="section-title" data-aos="fade-up">BTS</h2>
       <div class="video-row horizontal">
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="BCIiuh5WmQE">
-          <img src="https://img.youtube.com/vi/BCIiuh5WmQE/maxresdefault.jpg" alt="AMEX" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="BCIiuh5WmQE" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://i.ytimg.com/vi/BCIiuh5WmQE/hqdefault.jpg" alt="AMEX" loading="lazy" />
         </div>
-        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="sgzNr3AsE-M">
-          <img src="https://img.youtube.com/vi/sgzNr3AsE-M/maxresdefault.jpg" alt="AMEX" loading="lazy" />
+        <div class="video-thumbnail youtube-thumbnail vertical" data-youtube-id="sgzNr3AsE-M" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://i.ytimg.com/vi/sgzNr3AsE-M/hqdefault.jpg" alt="AMEX" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- Video Popup -->
     <div id="video-popup-overlay">
       <div class="video-popup-container">
         <video id="popup-video" controls preload="none">
           Your browser does not support the video tag.
         </video>
-        <button class="close-popup" onclick="closeVideoPopup()">&times;</button>
+        <button class="close-popup" onclick="closeVideoPopup()">×</button>
       </div>
     </div>
 
-    <!-- YouTube Popup -->
     <div id="youtube-popup-overlay">
       <div class="youtube-popup-container">
         <iframe id="popup-youtube" 
@@ -182,10 +143,11 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowfullscreen>
         </iframe>
-        <button class="close-popup" onclick="closeYouTubePopup()">&times;</button>
+        <button class="close-popup" onclick="closeYouTubePopup()">×</button>
       </div>
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js" defer></script>
   </body>
 </html>
