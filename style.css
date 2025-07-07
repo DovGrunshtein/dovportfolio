@@ -17,9 +17,9 @@ body {
   font-family: "Poppins", sans-serif;
   color: rgb(85, 85, 85); /* Default text color */
   background-color: #ffffff; /* Explicit background color */
-  background-image: url('assets/Dots BG.png');
+  background-image: url('assets/dots-tile.png');
   background-repeat: repeat;
-  background-size: auto;
+  background-size: 50px 50px; /* or auto for natural size */
   display: flex;
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
