@@ -17,7 +17,7 @@ body {
   font-family: "Poppins", sans-serif;
   color: rgb(85, 85, 85); /* Default text color */
   background-color: #ffffff; /* Explicit background color */
-  background-image: url('assets/dots-tile.png');
+  background-image: url('assets/Dots\ BG.png');
   background-repeat: repeat;
   background-size: 50px 50px; /* or auto for natural size */
   display: flex;
@@ -33,11 +33,11 @@ body::before {
   content: '';
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100vw;
+  left: -200px;
+  width: 120vw;
   height: 100vh;
   background-image: url('assets/Dots BG.png');
-  background-repeat: repeat;
+  background-repeat:no-repeat;
   background-size: auto;
   opacity: 1;
   filter: blur(2.2px);
