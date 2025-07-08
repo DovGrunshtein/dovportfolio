@@ -16,35 +16,9 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   color: rgb(85, 85, 85); /* Default text color */
-  background-color: #ffffff; /* Explicit background color */
-  background-image: url('assets/Dots\ BG.png');
-  background-repeat: repeat;
-  background-size: 50px 50px; /* or auto for natural size */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center direct children of body (nav, main, footer) */
-  min-height: 100vh;
-  line-height: 1.6; /* Improved default line height */
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  background-color: #ffffff, #ff0000; /* Explicit background color */
 }
-
-/* Optional: Cool background effect from your CSS */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: -200px;
-  width: 120vw;
-  height: 100vh;
-  background-image: url('assets/Dots BG.png');
-  background-repeat:no-repeat;
-  background-size: auto;
-  opacity: 1;
-  filter: blur(2.2px);
-  z-index: -1;
-  pointer-events: none;
-}
-
+ 
 p {
   color: rgb(85, 85, 85);
 }
