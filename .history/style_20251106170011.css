@@ -1323,24 +1323,6 @@ body[lang="he"] #experience .article-container article {
   aspect-ratio: 16/9;
 }
 
-@media screen and (max-width: 768px) {
-  #bts .video-row.horizontal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 0 0.5rem;
-  }
-  #bts .video-thumbnail,
-  #bts .video-thumbnail.horizontal {
-    width: 100%;
-    max-width: 100vw;
-    min-width: 0;
-    aspect-ratio: 16/9;
-    height: auto;
-  }
-}
-
 #social .video-row.vertical {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
