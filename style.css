@@ -15,8 +15,8 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
-  color: rgb(85, 85, 85); /* Default text color */
-  background-color: #ffffff; /* Solid white background */
+  color: rgb(190, 190, 190); /* Default text color */
+  background-color: #d9d9d9c1; /* Slightly darker background */
   display: flex;
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
@@ -828,7 +828,7 @@ html[dir="rtl"] .about-details-centered .text-container {
   transition: all 0.3s ease;
 
   /* --- NEW: Glass Effect --- */
-  background: rgba(255, 255, 255, 0.097);
+  background: rgba(160, 144, 144, 0.097);
   backdrop-filter: blur(0.5px);
   -webkit-backdrop-filter: blur(0.5px);
   border-radius: 1rem;
@@ -1415,7 +1415,7 @@ nav#hamburger-nav {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgb(93, 93, 93);
     border-radius: 1.5rem;
 }
 
