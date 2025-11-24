@@ -1239,20 +1239,7 @@ footer p {
   .scroll-to-top { bottom: 80px; right: 15px; }
 
   .gallery {
-    grid-template-columns: repeat(2, 1fr); /* Two pictures per row on mobile */
-    gap: 0.5rem; /* small gap to fit images tightly */
-    padding-left: 0; /* remove extra padding so the grid fills more of the screen */
-    padding-right: 0;
-    width: 100%;
-    max-width: 100vw;
-    margin: 0 auto;
-  }
-
-  .gallery img {
-    max-width: none; /* let images fill the grid column */
-    width: 100%;
-    aspect-ratio: 4/5; /* portrait shape */
-    border-radius: 1px;
+    grid-template-columns: 1fr;
   }
 
   html[dir="rtl"] #hamburger-nav .menu-links {
