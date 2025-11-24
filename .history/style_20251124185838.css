@@ -673,9 +673,6 @@ html[dir="rtl"] .about-details-centered .text-container {
   padding-top: 2vh;
   padding-bottom: 2vh;
   margin-bottom: 1.5rem;
-  display: flex; /* center content vertically and horizontally */
-  align-items: center;
-  justify-content: center;
 }
 #projects::before {
   content: '';
