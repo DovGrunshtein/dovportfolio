@@ -18,8 +18,6 @@ body {
   color: rgb(190, 190, 190); /* Default text color */
   background-color: #d9d9d9c1; /* Slightly darker background */
   display: flex;
-  
-  /* Accessibility: reduced motion handled globally later */
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
   min-height: 100vh;
@@ -1009,53 +1007,28 @@ footer p {
 .video-thumbnail:hover { transform: scale(1.02); }
 .video-thumbnail img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .video-thumbnail::after {
-  /* Use a custom play icon image and show it monochrome by default */
-  content: '';
+  content: '▶';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 64px; /* unified size for all thumbnails */
-  height: 64px;
-  border-radius: 0; /* no circle behind the icon */
-  background-image: url('assets/PlayIcon.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 80% 80%; /* make the icon itself bigger within the pseudo element */
-  background-color: transparent;
-  box-shadow: none;
-  opacity: 0.95;
-  pointer-events: none; /* clicks should go through */
-  z-index: 2;
-  /* Make the icon B/W by default, add a subtle drop-shadow for visibility. Hover will remove the filter (reveal colored icon) */
-  filter: grayscale(1) saturate(0) contrast(0.95) drop-shadow(0 1px 2px rgba(0,0,0,0.35)); /* monochrome */
-  transition: filter 0.35s ease, transform 0.25s ease, opacity 0.25s ease;
-  animation: breathe 2.6s ease-in-out infinite; /* breathing effect */
+  color: white;
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
 }
-  .video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.12); filter: none; }
+.video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 
 .video-thumbnail.horizontal {
-  width: 100%;
-  max-width: 420px;
-  aspect-ratio: 16/9;
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 16/9;
 }
 .video-thumbnail.vertical {
     width: 100%;
     max-width: 220px;
     aspect-ratio: 9/16;
-}
-
-/* Smaller play icon for vertical thumbnails */
-.video-thumbnail.vertical::after { /* keep the same size for vertical thumbnails */
-  width: 64px;
-  height: 64px;
-  background-size: 80% 80%;
-}
-
-@keyframes breathe {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.07); }
-  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 #social .video-row {
@@ -1282,19 +1255,6 @@ footer p {
     border-radius: 1px;
   }
 
-  /* On small screens make the play icon smaller and touch-friendly */
-  .video-thumbnail::after {
-    width: 64px;
-    height: 64px;
-    background-size: 80% 80%;
-    background-color: transparent;
-  }
-  .video-thumbnail.vertical::after {
-    width: 40px;
-    height: 40px;
-    background-size: 58% 58%;
-  }
-
   html[dir="rtl"] #hamburger-nav .menu-links {
     right: auto;
     left: 0;
@@ -1506,29 +1466,26 @@ nav#hamburger-nav {
   -webkit-backdrop-filter: blur(5px);
 }
 
-/* Mobile: change play icon appearance to smaller touch-friendly image */
+/* Mobile: change play icon appearance to circular, smaller and centered for touch */
 @media screen and (max-width: 768px) {
   .video-thumbnail::after {
-    content: '';
+    content: '▶';
+    font-size: 1.2rem; /* Smaller icon on mobile */
     width: 44px;
     height: 44px;
-    background-image: url('assets/PlayIcon.png');
-    background-size: 80% 80%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    border-radius: 0;
+    line-height: 44px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 1;
-    box-shadow: none;
+    opacity: 1; /* Ensure visible on mobile */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
     pointer-events: none;
-  }
-  .video-thumbnail.vertical::after {
-    width: 40px;
-    height: 40px;
-    background-size: 78% 78%;
   }
 }

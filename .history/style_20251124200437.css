@@ -18,8 +18,6 @@ body {
   color: rgb(190, 190, 190); /* Default text color */
   background-color: #d9d9d9c1; /* Slightly darker background */
   display: flex;
-  
-  /* Accessibility: reduced motion handled globally later */
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
   min-height: 100vh;
@@ -998,41 +996,55 @@ footer p {
   margin-bottom: 2rem;
   justify-content: center;
 }
-.video-thumbnail {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 1px;
-  transition: transform 0.3s ease;
-  background-color: #eee;
-}
-.video-thumbnail:hover { transform: scale(1.02); }
-.video-thumbnail img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Play Icon overlays: base grayscale icon (::after) and color bubble (::before) */
 .video-thumbnail::after {
-  /* Use a custom play icon image and show it monochrome by default */
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 64px; /* unified size for all thumbnails */
+  width: 64px;
   height: 64px;
-  border-radius: 0; /* no circle behind the icon */
   background-image: url('assets/PlayIcon.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 80% 80%; /* make the icon itself bigger within the pseudo element */
-  background-color: transparent;
-  box-shadow: none;
+  background-size: 80% 80%;
+  filter: grayscale(100%) contrast(120%) drop-shadow(0 1px 1px rgba(0,0,0,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.6));
+  -webkit-filter: grayscale(100%) contrast(120%);
   opacity: 0.95;
-  pointer-events: none; /* clicks should go through */
+  pointer-events: none;
   z-index: 2;
-  /* Make the icon B/W by default, add a subtle drop-shadow for visibility. Hover will remove the filter (reveal colored icon) */
-  filter: grayscale(1) saturate(0) contrast(0.95) drop-shadow(0 1px 2px rgba(0,0,0,0.35)); /* monochrome */
-  transition: filter 0.35s ease, transform 0.25s ease, opacity 0.25s ease;
   animation: breathe 2.6s ease-in-out infinite; /* breathing effect */
 }
-  .video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.12); filter: none; }
+
+.video-thumbnail::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background-image: url('assets/PlayIcon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  pointer-events: none;
+  z-index: 3;
+  clip-path: circle(0% at 50% 50%);
+  -webkit-clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.35s ease, -webkit-clip-path 0.35s ease;
+}
+
+.video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+.video-thumbnail:hover::before, .video-thumbnail:focus::before, .video-thumbnail:focus-within::before { clip-path: circle(60% at 50% 50%); -webkit-clip-path: circle(60% at 50% 50%); }
+
+  /* Focus & keyboard visibility */
+  .video-thumbnail:focus, .video-thumbnail:focus-within { outline: none; }
+  .video-thumbnail:focus::after, .video-thumbnail:focus-within::after {
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18); /* gentle focus shadow */
+  }
 
 .video-thumbnail.horizontal {
   width: 100%;
@@ -1045,8 +1057,8 @@ footer p {
     aspect-ratio: 9/16;
 }
 
-/* Smaller play icon for vertical thumbnails */
-.video-thumbnail.vertical::after { /* keep the same size for vertical thumbnails */
+/* Reset vertical-specific sizing so all thumbnails use the same size */
+.video-thumbnail.vertical::after {
   width: 64px;
   height: 64px;
   background-size: 80% 80%;
@@ -1284,10 +1296,11 @@ footer p {
 
   /* On small screens make the play icon smaller and touch-friendly */
   .video-thumbnail::after {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     background-size: 80% 80%;
     background-color: transparent;
+    filter: grayscale(100%) contrast(120%);
   }
   .video-thumbnail.vertical::after {
     width: 40px;
@@ -1527,8 +1540,8 @@ nav#hamburger-nav {
     pointer-events: none;
   }
   .video-thumbnail.vertical::after {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     background-size: 78% 78%;
   }
 }

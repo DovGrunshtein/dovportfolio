@@ -18,8 +18,6 @@ body {
   color: rgb(190, 190, 190); /* Default text color */
   background-color: #d9d9d9c1; /* Slightly darker background */
   display: flex;
-  
-  /* Accessibility: reduced motion handled globally later */
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
   min-height: 100vh;
@@ -1027,8 +1025,8 @@ footer p {
   opacity: 0.95;
   pointer-events: none; /* clicks should go through */
   z-index: 2;
-  /* Make the icon B/W by default, add a subtle drop-shadow for visibility. Hover will remove the filter (reveal colored icon) */
-  filter: grayscale(1) saturate(0) contrast(0.95) drop-shadow(0 1px 2px rgba(0,0,0,0.35)); /* monochrome */
+  /* Make the icon B/W by default, transition the filter to reveal the color on hover */
+  filter: grayscale(1) saturate(0) contrast(0.9); /* monochrome */
   transition: filter 0.35s ease, transform 0.25s ease, opacity 0.25s ease;
   animation: breathe 2.6s ease-in-out infinite; /* breathing effect */
 }
@@ -1284,8 +1282,8 @@ footer p {
 
   /* On small screens make the play icon smaller and touch-friendly */
   .video-thumbnail::after {
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     background-size: 80% 80%;
     background-color: transparent;
   }
