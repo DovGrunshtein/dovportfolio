@@ -1486,14 +1486,6 @@ body.gallery-page .project-section {
   aspect-ratio: 9/16;
 }
 
-/* Smaller play icon for vertical thumbnails */
-.video-thumbnail.vertical::after {
-  /* keep the same size for vertical thumbnails */
-  width: 64px;
-  height: 64px;
-  background-size: 80% 80%;
-}
-
 @keyframes breathe {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -2085,31 +2077,24 @@ nav#hamburger-nav {
   -webkit-backdrop-filter: blur(5px);
 }
 
-/* Mobile: change play icon appearance to smaller touch-friendly image */
+/* Mobile: Smaller play button for touch devices */
 @media screen and (max-width: 768px) {
   .video-thumbnail::after {
-    content: '';
-    width: 44px;
-    height: 44px;
-    background-image: url('assets/PlayIcon.png');
-    background-size: 80% 80%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    border-radius: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    box-shadow: none;
-    pointer-events: none;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .video-thumbnail::before {
+    border-width: 10px 0 10px 16px;
   }
 
   .video-thumbnail.vertical::after {
-    width: 40px;
-    height: 40px;
-    background-size: 78% 78%;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .video-thumbnail.vertical::before {
+    border-width: 8px 0 8px 14px;
   }
 
   /* Strategy Section - Black & White Style */
