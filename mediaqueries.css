@@ -98,6 +98,10 @@
     font-size: 2rem;
   }
   .text-container {
-    text-align: justify;
+    text-align: left; /* Changed from justify for better readability */
   }
+}
+
+html[dir="rtl"] .text-container {
+    text-align: right;
 }

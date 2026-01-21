@@ -18,6 +18,8 @@ body {
   color: rgb(190, 190, 190); /* Default text color */
   background-color: #d9d9d9c1; /* Slightly darker background */
   display: flex;
+  
+  /* Accessibility: reduced motion handled globally later */
   flex-direction: column;
   align-items: center; /* Center direct children of body (nav, main, footer) */
   min-height: 100vh;
@@ -1007,28 +1009,30 @@ footer p {
 .video-thumbnail:hover { transform: scale(1.02); }
 .video-thumbnail img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .video-thumbnail::after {
-  /* Use a custom play icon image instead of a text glyph */
+  /* Use a custom play icon image and show it monochrome by default */
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 0; /* remove circular background */
+  width: 64px; /* unified size for all thumbnails */
+  height: 64px;
+  border-radius: 0; /* no circle behind the icon */
   background-image: url('assets/PlayIcon.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 80% 80%; /* make the icon itself bigger within the pseudo element */
-  background-color: transparent; /* remove the dark circular background */
-  box-shadow: none; /* remove shadow so only the icon image shows */
+  background-color: transparent;
+  box-shadow: none;
   opacity: 0.95;
-  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-  pointer-events: none; /* allow clicking underlying thumbnail */
+  pointer-events: none; /* clicks should go through */
   z-index: 2;
+  /* Make the icon B/W by default, add a subtle drop-shadow for visibility. Hover will remove the filter (reveal colored icon) */
+  filter: grayscale(1) saturate(0) contrast(0.95) drop-shadow(0 1px 2px rgba(0,0,0,0.35)); /* monochrome */
+  transition: filter 0.35s ease, transform 0.25s ease, opacity 0.25s ease;
   animation: breathe 2.6s ease-in-out infinite; /* breathing effect */
 }
-  .video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+  .video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.12); filter: none; }
 
 .video-thumbnail.horizontal {
   width: 100%;
@@ -1042,10 +1046,10 @@ footer p {
 }
 
 /* Smaller play icon for vertical thumbnails */
-.video-thumbnail.vertical::after {
-  width: 56px;
-  height: 56px;
-  background-size: 60% 60%;
+.video-thumbnail.vertical::after { /* keep the same size for vertical thumbnails */
+  width: 64px;
+  height: 64px;
+  background-size: 80% 80%;
 }
 
 @keyframes breathe {
@@ -1280,8 +1284,8 @@ footer p {
 
   /* On small screens make the play icon smaller and touch-friendly */
   .video-thumbnail::after {
-    width: 44px;
-    height: 44px;
+    width: 64px;
+    height: 64px;
     background-size: 80% 80%;
     background-color: transparent;
   }
@@ -1502,26 +1506,110 @@ nav#hamburger-nav {
   -webkit-backdrop-filter: blur(5px);
 }
 
-/* Mobile: change play icon appearance to circular, smaller and centered for touch */
+/* Mobile: change play icon appearance to smaller touch-friendly image */
 @media screen and (max-width: 768px) {
   .video-thumbnail::after {
-    content: '▶';
-    font-size: 1.2rem; /* Smaller icon on mobile */
+    content: '';
     width: 44px;
     height: 44px;
-    line-height: 44px;
-    background: rgba(0, 0, 0, 0.65);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+    background-image: url('assets/PlayIcon.png');
+    background-size: 80% 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border-radius: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 1; /* Ensure visible on mobile */
-    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    opacity: 1;
+    box-shadow: none;
     pointer-events: none;
   }
+  .video-thumbnail.vertical::after {
+    width: 40px;
+    height: 40px;
+    background-size: 78% 78%;
+  }
+
+  /* Strategy Section Styling */
+.strategy-section {
+    padding: 100px 0;
+    background-color: var(--bg-color); /* שומר על הצבע הכהה של האתר */
+}
+
+.strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.strategy-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(247, 215, 148, 0.1); /* צהוב עדין מהלוגו */
+    transition: transform 0.3s ease;
+}
+
+.strategy-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+}
+
+.strategy-card h3 {
+    color: var(--primary-color); /* הצהוב של הלוגו */
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.strategy-card p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.strategy-list {
+    list-style: none;
+    padding: 0;
+}
+
+.strategy-list li {
+    margin-bottom: 15px;
+    color: #fff;
+    position: relative;
+    padding-left: 25px;
+}
+
+.hebrew-card .strategy-list li {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+/* Lollipop Bullet Point */
+.strategy-list li::before {
+    content: '●';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+.hebrew-card .strategy-list li::before {
+    left: auto;
+    right: 0;
+}
+
+.hebrew-inline {
+    font-family: 'Assistant', sans-serif; /* או כל פונט עברי שיש לך */
+    font-weight: 300;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .strategy-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 }

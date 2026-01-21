@@ -31,13 +31,15 @@ document.addEventListener("click", (e) => {
   // Prevent smooth scroll for links that don't start with #
   if (!href || !href.startsWith("#")) return;
 
+  // Don't interfere with gallery sub-nav on pictures page
   e.preventDefault();
   const targetId = href.substring(1);
   const targetElement = document.getElementById(targetId);
 
   if (targetElement) {
     const nav = document.querySelector("nav#desktop-nav") || document.querySelector("nav#hamburger-nav");
-    const navHeight = nav ? nav.offsetHeight : 0;
+    const subNav = document.querySelector(".gallery-sub-nav");
+    const navHeight = (nav ? nav.offsetHeight : 0) + (subNav ? subNav.offsetHeight : 0);
     const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
 
     window.scrollTo({ top: offsetTop, behavior: "smooth" });
@@ -50,62 +52,64 @@ document.addEventListener("click", (e) => {
 });
 
 
-// Image popup functionality for pictures.html
-if (document.body.classList.contains("gallery-page")) {
-  const galleryImages = document.querySelectorAll(".gallery img");
-const popupOverlay = document.getElementById("popup-overlay");
-const popupImage = document.getElementById("popup-image");
+// =====================================================
+// IMAGE POPUP FUNCTIONALITY FOR GALLERY PAGES
+// =====================================================
+(function() {
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const popupOverlay = document.getElementById("popup-overlay");
+    const popupImage = document.getElementById("popup-image");
 
-  if (galleryImages.length > 0 && popupOverlay && popupImage) {
-    // Use event delegation for better performance
-    document.querySelectorAll('.gallery').forEach(gallery => {
-      gallery.addEventListener('click', (e) => {
-        const img = e.target.closest('img');
-        if (img) {
-          // Set the image source to the full-size version
-          popupImage.src = img.getAttribute('data-full');
-          popupImage.alt = img.alt;
+    if (!popupOverlay || !popupImage) return; // Exit if popup elements don't exist
+
+    // Open popup when clicking on any image with data-full attribute
+    document.addEventListener('click', function(e) {
+      const img = e.target.closest('img[data-full]');
+      
+      if (img) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const fullSrc = img.getAttribute('data-full');
+        if (fullSrc) {
+          popupImage.src = fullSrc;
+          popupImage.alt = img.alt || 'Gallery Image';
           
-          // Show the overlay
           popupOverlay.style.display = 'flex';
           document.body.style.overflow = 'hidden';
           
-          // Trigger the animation after a small delay
           requestAnimationFrame(() => {
-    popupOverlay.classList.add("show");
+            popupOverlay.classList.add("show");
           });
         }
-  });
-});
+      }
+    });
 
-    popupOverlay.addEventListener("click", (e) => {
+    // Close popup when clicking on overlay (but not on the image itself)
+    popupOverlay.addEventListener("click", function(e) {
       if (e.target === popupOverlay) {
-        // Remove the show class first for fade out
-  popupOverlay.classList.remove("show");
-        
-        // Wait for the fade out animation to complete
-        setTimeout(() => {
-          popupOverlay.style.display = 'none';
-          document.body.style.overflow = '';
-        }, 300); // Match this with the CSS transition duration
+        closePopup();
       }
     });
 
     // Close popup with Escape key
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && popupOverlay.classList.contains('show')) {
-        // Remove the show class first for fade out
-        popupOverlay.classList.remove("show");
-
-        // Wait for the fade out animation to complete
-        setTimeout(() => {
-          popupOverlay.style.display = 'none';
-          document.body.style.overflow = '';
-        }, 300); // Match this with the CSS transition duration
+        closePopup();
       }
     });
-  }
-}
+
+    function closePopup() {
+      popupOverlay.classList.remove("show");
+      setTimeout(() => {
+        popupOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        popupImage.src = ''; // Clear image source
+      }, 300);
+    }
+  });
+})();
 
 // Video popup functionality
 function openVideoPopup(videoSrc) {
