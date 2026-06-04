@@ -1004,30 +1004,40 @@ footer p {
 .video-thumbnail:hover { transform: scale(1.02); }
 .video-thumbnail img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .video-thumbnail::after {
-  /* Use a custom play icon image and show it monochrome by default */
-  content: '';
+  content: '▶';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 64px; /* unified size for all thumbnails */
-  height: 64px;
-  border-radius: 0; /* no circle behind the icon */
-  background-image: url('assets/PlayIcon.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 80% 80%; /* make the icon itself bigger within the pseudo element */
-  background-color: transparent;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  text-align: center;
+  padding-left: 3px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.88);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-image: none;
   box-shadow: none;
-  opacity: 0.95;
-  pointer-events: none; /* clicks should go through */
+  filter: none;
+  opacity: 0.82;
+  pointer-events: none;
   z-index: 2;
-  /* Make the icon B/W by default, add a subtle drop-shadow for visibility. Hover will remove the filter (reveal colored icon) */
-  filter: grayscale(1) saturate(0) contrast(0.95) drop-shadow(0 1px 2px rgba(0,0,0,0.35)); /* monochrome */
-  transition: filter 0.35s ease, transform 0.25s ease, opacity 0.25s ease;
-  animation: breathe 2.6s ease-in-out infinite; /* breathing effect */
+  transition: opacity 0.3s ease, transform 0.25s ease, border-color 0.3s ease, background 0.3s ease;
+  animation: breathe 2.6s ease-in-out infinite;
 }
-  .video-thumbnail:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.12); filter: none; }
+.video-thumbnail:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.12);
+  background: rgba(255, 255, 255, 0.12);
+  background-image: none;
+  border-color: rgba(255, 255, 255, 0.9);
+  filter: none;
+}
 
 .video-thumbnail.horizontal {
   width: 100%;
@@ -1041,10 +1051,11 @@ footer p {
 }
 
 /* Smaller play icon for vertical thumbnails */
-.video-thumbnail.vertical::after { /* keep the same size for vertical thumbnails */
-  width: 64px;
-  height: 64px;
-  background-size: 80% 80%;
+.video-thumbnail.vertical::after {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
 }
 
 @keyframes breathe {
@@ -1279,15 +1290,16 @@ footer p {
 
   /* On small screens make the play icon smaller and touch-friendly */
   .video-thumbnail::after {
-    width: 64px;
-    height: 64px;
-    background-size: 80% 80%;
-    background-color: transparent;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
   }
   .video-thumbnail.vertical::after {
-    width: 40px;
-    height: 40px;
-    background-size: 58% 58%;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 11px;
   }
 
   html[dir="rtl"] #hamburger-nav .menu-links {
@@ -1501,30 +1513,19 @@ nav#hamburger-nav {
   -webkit-backdrop-filter: blur(5px);
 }
 
-/* Mobile: change play icon appearance to smaller touch-friendly image */
+/* Mobile: smaller play icon */
 @media screen and (max-width: 768px) {
   .video-thumbnail::after {
-    content: '';
-    width: 44px;
-    height: 44px;
-    background-image: url('assets/PlayIcon.png');
-    background-size: 80% 80%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    border-radius: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    box-shadow: none;
-    pointer-events: none;
-  }
-  .video-thumbnail.vertical::after {
     width: 40px;
     height: 40px;
-    background-size: 78% 78%;
+    line-height: 40px;
+    font-size: 13px;
+  }
+  .video-thumbnail.vertical::after {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 11px;
   }
 }
 
@@ -1698,12 +1699,13 @@ nav#hamburger-nav {
 }
 
 .masonry-gallery {
-  columns: 3;
-  column-gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
 }
 
 .masonry-category-title {
-  column-span: all;
+  grid-column: 1 / -1;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -1716,8 +1718,8 @@ nav#hamburger-nav {
 .masonry-category-title:first-child { margin-top: 0.5rem; }
 
 .masonry-item {
-  break-inside: avoid;
-  margin-bottom: 0.75rem;
+  aspect-ratio: 2 / 3;
+  margin-bottom: 0;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -1725,8 +1727,9 @@ nav#hamburger-nav {
 }
 .masonry-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
   border-radius: 2px;
   transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               filter 0.45s ease;
@@ -1760,12 +1763,11 @@ nav#hamburger-nav {
 }
 
 @media screen and (max-width: 992px) {
-  .masonry-gallery { columns: 2; }
+  .masonry-gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery-sub-nav ul { gap: 1.5rem; justify-content: flex-start; }
 }
 @media screen and (max-width: 600px) {
-  .masonry-gallery { columns: 2; column-gap: 0.4rem; }
-  .masonry-item { margin-bottom: 0.4rem; }
+  .masonry-gallery { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
   .project-section-full { padding: 1rem 0.5rem; }
   .gallery-sub-nav { padding: 0.5rem 1rem; }
   .gallery-sub-nav ul { gap: 1.2rem; }
@@ -1923,7 +1925,7 @@ footer p { color: #4a4a4a; }
 
 /* --- Masonry category titles dark --- */
 .masonry-category-title {
-  color: #555;
+  color: #666;
   border-bottom-color: rgba(255, 255, 255, 0.07);
 }
 

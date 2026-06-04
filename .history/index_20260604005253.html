@@ -13,6 +13,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body>
+    <div class="page-loader" aria-hidden="true"></div>
     <nav id="desktop-nav">
       <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Dov Grunshtein" style="height: 40px; width: auto;"></a></div>
       <div>
@@ -55,6 +56,11 @@
           <p class="hero-tagline" data-aos="fade-up" data-aos-delay="400" data-en="Capturing stories in motion and stillness" data-he="לוכד סיפורים בתנועה ובסטילס">Capturing stories in motion and stillness</p>
           <div class="hero-btns" data-aos="fade-up" data-aos-delay="600">
             <button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')" data-en="Download CV" data-he="הורד קו״ח">Download CV</button>
+          </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="scroll-indicator-mouse">
+            <div class="scroll-indicator-dot"></div>
           </div>
         </div>
       </section>
@@ -103,22 +109,21 @@
       <section id="projects">
         <div class="experience-details-container">
           <div class="about-containers">
-            <a href="projects.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="100"><div class="details-container color-container project-box" style="background-image: url('./BOXES/VIDEOS');">
+            <a href="projects.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="100"><div class="details-container color-container project-box" style="background-image: url('./BOXES/VIDEOS.jpg');">
+              <div class="project-box-overlay"></div>
               <div class="project-box-label" data-en="VIDEO" data-he="וידאו">VIDEO</div>
             </div></a>
-            <a href="pictures.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="200"><div class="details-container color-container project-box" style="background-image: url('./BOXES/Pictures');">
+            <a href="pictures.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="200"><div class="details-container color-container project-box" style="background-image: url('./BOXES/PICTURES.jpg');">
+              <div class="project-box-overlay"></div>
               <div class="project-box-label" data-en="PICTURES" data-he="תמונות">PICTURES</div>
             </div></a>
-            <a href="motion.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="300"><div class="details-container color-container project-box" style="background-image: url('./BOXES/MOTION');">
+            <a href="motion.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="300"><div class="details-container color-container project-box" style="background-image: url('./BOXES/MOTION.png');">
+              <div class="project-box-overlay"></div>
               <div class="project-box-label" data-en="MOTION" data-he="גרפיקה">MOTION</div>
             </div></a>
           </div>
         </div>
       </section>
-
-
-    </div>
-</section>
 
       <section id="experience"> <h1 class="title" data-aos="fade-up" data-en="Knowledge" data-he="ידע">Knowledge</h1>
         <div class="experience-details-container">
@@ -200,30 +205,6 @@
         </div>
       </section>
 
-      <section id="strategy">
-    <h2 data-i18n="strategy-title">The Strategy</h2>
-    <div class="knowledge-grid">
-        
-        <div class="knowledge-item">
-            <i class="fa-solid fa-gem"></i> <h3 data-i18n="strategy-brand-title">Consistent Branding</h3>
-            <p data-i18n="strategy-brand-desc">Building a tailored visual language with a monthly plan that works.</p>
-        </div>
-
-        <div class="knowledge-item">
-            <i class="fa-solid fa-calendar-check"></i>
-            <h3 data-i18n="strategy-weekly-title">Weekly Content</h3>
-            <p data-i18n="strategy-weekly-desc">A steady stream of high-end content delivered every single week.</p>
-        </div>
-
-        <div class="knowledge-item">
-            <i class="fa-solid fa-video"></i>
-            <h3 data-i18n="strategy-process-title">Efficiency</h3>
-            <p data-i18n="strategy-process-desc">1-2 shooting days yielding 4-8 ready-to-post assets.</p>
-        </div>
-
-    </div>
-</section>
-
       <section id="contact">
         <p class="section__text__p1" data-aos="fade-up" data-en="" data-he="בואו נדבר">Get in Touch</p>
         <h1 class="title" data-aos="fade-up" data-aos-delay="100" data-en="Contact Me" data-he="צרו קשר">Contact Me</h1>
@@ -266,6 +247,9 @@
 
     <button class="scroll-to-top" onclick="scrollToTop()">
       </button>
+
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
