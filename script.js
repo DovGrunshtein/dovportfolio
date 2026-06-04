@@ -367,3 +367,77 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 })();
+
+// =================================
+// ===== CUSTOM CURSOR =============
+// =================================
+(function () {
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  if (!dot || !ring) return;
+
+  // Only activate on fine-pointer (mouse) devices
+  if (!window.matchMedia('(pointer: fine)').matches) {
+    dot.style.display = 'none';
+    ring.style.display = 'none';
+    return;
+  }
+
+  let ringX = 0, ringY = 0;
+  let mouseX = 0, mouseY = 0;
+  let rafId;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+  });
+
+  // Ring follows with smooth lag
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    rafId = requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Expand ring on interactive elements
+  const hoverTargets = 'a, button, .video-thumbnail, .masonry-item, .project-box, .gallery img, .contact-info-container';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(hoverTargets)) ring.classList.add('expanded');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(hoverTargets)) ring.classList.remove('expanded');
+  });
+
+  // Hide when leaving window
+  document.addEventListener('mouseleave', () => { dot.classList.add('hidden'); ring.classList.add('hidden'); });
+  document.addEventListener('mouseenter', () => { dot.classList.remove('hidden'); ring.classList.remove('hidden'); });
+})();
+
+// =================================
+// ===== PROJECT BOX 3D TILT =======
+// =================================
+(function () {
+  const boxes = document.querySelectorAll('.project-box');
+  if (!boxes.length) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  boxes.forEach(box => {
+    box.addEventListener('mousemove', (e) => {
+      const rect = box.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 to 0.5
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      const tiltX = (-y * 10).toFixed(2); // rotate around X axis
+      const tiltY = ( x * 10).toFixed(2); // rotate around Y axis
+      box.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.04)`;
+    });
+
+    box.addEventListener('mouseleave', () => {
+      box.style.transform = '';
+    });
+  });
+})();
