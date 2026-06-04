@@ -115,51 +115,54 @@ document.addEventListener("click", (e) => {
 function openVideoPopup(videoSrc) {
   const popup = document.getElementById('video-popup-overlay');
   const video = document.getElementById('popup-video');
-  
-  if(popup && video){
-  video.src = videoSrc;
-  popup.style.display = 'flex';
-  video.play();
+  if (popup && video) {
+    video.src = videoSrc;
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => popup.classList.add('visible'));
+    video.play();
   }
 }
 
 function closeVideoPopup() {
   const popup = document.getElementById('video-popup-overlay');
   const video = document.getElementById('popup-video');
-  
-  if(popup && video){
-  video.pause();
-  video.src = '';
-  popup.style.display = 'none';
-}
+  if (popup && video) {
+    popup.classList.remove('visible');
+    video.pause();
+    setTimeout(() => {
+      popup.style.display = 'none';
+      video.src = '';
+      document.body.style.overflow = '';
+    }, 350);
+  }
 }
 
 // YouTube popup functionality
 function openYouTubePopup(youtubeId) {
   const popup = document.getElementById('youtube-popup-overlay');
   const iframe = document.getElementById('popup-youtube');
-  
   if (!popup || !iframe) {
     console.error('YouTube Popup elements not found!');
     return;
   }
-  
-  const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
-  
-  iframe.src = embedUrl;
+  iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
   popup.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => popup.classList.add('visible'));
 }
 
 function closeYouTubePopup() {
   const popup = document.getElementById('youtube-popup-overlay');
   const iframe = document.getElementById('popup-youtube');
-  
-  if(popup && iframe){
-      iframe.src = '';
+  if (popup && iframe) {
+    popup.classList.remove('visible');
+    setTimeout(() => {
       popup.style.display = 'none';
+      iframe.src = '';
       document.body.style.overflow = '';
-    }
+    }, 350);
+  }
 }
 
 // ✅ הדגשת קישור סיידבר לפי מיקום גלילה
@@ -266,8 +269,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  // Page loader — remove from DOM after curtain animation ends
+  const loader = document.querySelector('.page-loader');
+  if (loader) {
+    loader.addEventListener('animationend', () => loader.remove(), { once: true });
+    setTimeout(() => loader.remove(), 1500); // fallback
+  }
+
+  // Scroll indicator — click scrolls to #about
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const about = document.getElementById('about');
+      if (about) {
+        const nav = document.querySelector('nav#desktop-nav') || document.querySelector('nav#hamburger-nav');
+        const navHeight = nav ? nav.offsetHeight : 0;
+        window.scrollTo({ top: about.offsetTop - navHeight - 20, behavior: 'smooth' });
+      }
+    });
+  }
+
   // Set initial language from localStorage
-  setLanguage(localStorage.getItem('language') || 'en'); 
+  setLanguage(localStorage.getItem('language') || 'en');
 
   // Social Media section
   var socialSection = document.getElementById('social');
@@ -333,3 +356,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language') || 'en';
     setLanguage(savedLang);
 });
+
+// Nav — transparent when at hero, glassmorphism when scrolled
+(function () {
+  const navs = document.querySelectorAll('nav#desktop-nav, nav#hamburger-nav');
+  function updateNav() {
+    const atTop = window.scrollY < 60;
+    navs.forEach(nav => nav.classList.toggle('nav-top', atTop));
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();

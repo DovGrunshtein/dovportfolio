@@ -527,7 +527,7 @@ html[dir="rtl"] .about-details-centered .text-container {
 }
 
 /* KNOWLEDGE (EXPERIENCE) SECTION */
-#experience, #strategy {
+#experience {
   position: relative;
   background: url('assets/Knowledge.jpg') top center/cover no-repeat scroll;
   width: 100vw;
@@ -548,18 +548,18 @@ html[dir="rtl"] .about-details-centered .text-container {
   filter: blur(2px);
   z-index: 1;
 }
-#experience, #strategy > * {
+#experience > * {
   position: relative;
   z-index: 2;
 }
 
-#experience , #strategy .title {
+#experience .title {
     color: #fff !important;
     position: relative;
     display: inline-block;
     margin-bottom: 2.5rem !important;
 }
-#experience , #strategy .title::after {
+#experience .title::after {
     content: '';
     display: block;
     margin: 0.5rem auto 0 auto;
@@ -1531,5 +1531,4 @@ nav#hamburger-nav {
     height: 40px;
     background-size: 78% 78%;
   }
-
 }
