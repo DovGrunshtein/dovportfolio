@@ -268,6 +268,8 @@ section {
   z-index: 1;
   filter: brightness(0.75);
   animation: heroFadeIn 1.2s ease;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 @keyframes heroFadeIn {
   from { opacity: 0; transform: scale(1.05); }
@@ -423,6 +425,8 @@ section {
   background: url('assets/About me.jpg') center center/cover no-repeat;
   filter: brightness(0.62);
   z-index: 1;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 .about-overlay {
   position: absolute;
@@ -1567,7 +1571,6 @@ nav#hamburger-nav {
   transform: translate(-50%, -50%);
   will-change: transform;
   transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
-  mix-blend-mode: difference;
 }
 .cursor-ring {
   position: fixed;
@@ -1580,19 +1583,39 @@ nav#hamburger-nav {
   transform: translate(-50%, -50%);
   will-change: transform;
   transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.3s ease;
-  mix-blend-mode: difference;
 }
 .cursor-ring.expanded {
-  width: 56px; height: 56px;
-  border-color: rgba(255, 255, 255, 0.7);
+  width: 64px; height: 64px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.cursor-dot.expanded {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.1);
 }
 .cursor-dot.hidden, .cursor-ring.hidden {
   opacity: 0;
 }
 
 /* =================================== */
-/* ====== BUTTON SHIMMER ============= */
+/* ====== ANIMATIONS & EFFECTS ======= */
 /* =================================== */
+
+.magnetic {
+  will-change: transform;
+}
+
+[data-aos="reveal-up"] {
+  transform: translateY(100%);
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transition-property: transform, opacity, clip-path;
+}
+[data-aos="reveal-up"].aos-animate {
+  transform: translateY(0);
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
 
 @keyframes btnShimmer {
   0%   { left: -100%; }

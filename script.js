@@ -21,7 +21,7 @@ function debounce(func, wait) {
   };
 }
 
-// גלילה חלקה עם קיזוז ניווט
+// גלילה חלקה (עודכן לשימוש עם Lenis)
 document.addEventListener("click", (e) => {
   const link = e.target.closest("a");
   if (!link) return;
@@ -32,11 +32,11 @@ document.addEventListener("click", (e) => {
   if (!href || !href.startsWith("#")) return;
 
   // Don't interfere with gallery sub-nav on pictures page
-  e.preventDefault();
   const targetId = href.substring(1);
   const targetElement = document.getElementById(targetId);
 
   if (targetElement) {
+    e.preventDefault();
     const nav = document.querySelector("nav#desktop-nav") || document.querySelector("nav#hamburger-nav");
     const subNav = document.querySelector(".gallery-sub-nav");
     const navHeight = (nav ? nav.offsetHeight : 0) + (subNav ? subNav.offsetHeight : 0);
@@ -405,12 +405,18 @@ document.addEventListener('DOMContentLoaded', () => {
   animateRing();
 
   // Expand ring on interactive elements
-  const hoverTargets = 'a, button, .video-thumbnail, .masonry-item, .project-box, .gallery img, .contact-info-container';
+  const hoverTargets = 'a, button, .video-thumbnail, .masonry-item, .project-box, .gallery img, .contact-info-container, .hamburger-icon';
   document.addEventListener('mouseover', (e) => {
-    if (e.target.closest(hoverTargets)) ring.classList.add('expanded');
+    if (e.target.closest(hoverTargets)) {
+      ring.classList.add('expanded');
+      dot.classList.add('expanded');
+    }
   });
   document.addEventListener('mouseout', (e) => {
-    if (e.target.closest(hoverTargets)) ring.classList.remove('expanded');
+    if (e.target.closest(hoverTargets)) {
+      ring.classList.remove('expanded');
+      dot.classList.remove('expanded');
+    }
   });
 
   // Hide when leaving window
@@ -439,5 +445,74 @@ document.addEventListener('DOMContentLoaded', () => {
     box.addEventListener('mouseleave', () => {
       box.style.transform = '';
     });
+  });
+})();
+
+// =================================
+// ===== MAGNETIC ELEMENTS =========
+// =================================
+(function() {
+  if (!window.matchMedia('(pointer: fine)').matches) return; // Only for mouse
+
+  const targets = document.querySelectorAll('.btn, .hamburger-icon, #desktop-nav .nav-links a');
+  
+  targets.forEach(elem => {
+    elem.classList.add('magnetic');
+    
+    elem.addEventListener('mousemove', (e) => {
+      const rect = elem.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // reduce transition during movement for snappiness
+      elem.style.transition = 'transform 0.1s ease-out';
+      elem.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+
+    elem.addEventListener('mouseleave', () => {
+      // restore smooth transition for bounce back
+      elem.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+      elem.style.transform = 'translate(0px, 0px)';
+    });
+  });
+})();
+
+// =================================
+// ===== SEAMLESS TRANSITIONS ======
+// =================================
+(function() {
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+    
+    // Ignore internal anchor links
+    const currentBase = window.location.href.split('#')[0];
+    const linkBase = link.href.split('#')[0];
+    if (linkBase === currentBase) return;
+    
+    // Ignore external links or new tabs
+    if (link.hostname !== window.location.hostname || link.target === '_blank') return;
+
+    e.preventDefault();
+    
+    // Create and append an exit curtain
+    const exitLoader = document.createElement('div');
+    exitLoader.className = 'page-loader';
+    exitLoader.style.animation = 'none'; // Prevent entrance animation
+    exitLoader.style.transformOrigin = 'bottom';
+    exitLoader.style.transform = 'scaleY(0)';
+    exitLoader.style.zIndex = '100000';
+    document.body.appendChild(exitLoader);
+
+    // Trigger exit animation
+    requestAnimationFrame(() => {
+      exitLoader.style.transition = 'transform 0.5s cubic-bezier(0.77, 0, 0.175, 1)';
+      exitLoader.style.transform = 'scaleY(1)';
+    });
+
+    // Navigate after animation
+    setTimeout(() => {
+      window.location.href = link.href;
+    }, 500);
   });
 })();
