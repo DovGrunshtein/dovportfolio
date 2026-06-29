@@ -1353,12 +1353,14 @@ body[lang="he"] #experience .article-container article {
   justify-items: center;
   align-items: stretch; /* make items stretch to same height */
   grid-auto-rows: 1fr; /* ensure rows are equal height */
-  padding-left: 10rem;
-  padding-right: 10rem;
+  width: 100%;
+  max-width: 1276px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 #film .video-thumbnail.horizontal {
   width: 100%;
-  max-width: 420px; /* increase width so height scales up */
+  max-width: 100%; /* fill the grid cell width perfectly */
   aspect-ratio: 16/9;
   height: 100%; /* fill the grid cell height */
 }
@@ -1416,8 +1418,10 @@ body[lang="he"] #experience .article-container article {
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem; /* Match film gap */
   justify-items: center;
-  padding-left: 10rem; /* Match film padding */
-  padding-right: 10rem; /* Match film padding */
+  width: 100%;
+  max-width: 1276px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 #social .video-thumbnail.vertical {
   width: 100%;
