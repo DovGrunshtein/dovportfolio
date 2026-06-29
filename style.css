@@ -1414,12 +1414,14 @@ body[lang="he"] #experience .article-container article {
 #social .video-row.vertical {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 0.5rem; /* Match film gap */
   justify-items: center;
+  padding-left: 10rem; /* Match film padding */
+  padding-right: 10rem; /* Match film padding */
 }
 #social .video-thumbnail.vertical {
   width: 100%;
-  max-width: 200px;
+  max-width: 100%; /* Allow to stretch to grid edges like film */
   aspect-ratio: 9/16;
 }
 
