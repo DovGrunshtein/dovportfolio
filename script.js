@@ -276,18 +276,19 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => loader.remove(), 1500); // fallback
   }
 
-  // Scroll indicator — click scrolls to #about
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (scrollIndicator) {
+  // Scroll indicator — click scrolls to #about (home) or one viewport down (gallery pages)
+  document.querySelectorAll('.scroll-indicator').forEach((scrollIndicator) => {
     scrollIndicator.addEventListener('click', () => {
       const about = document.getElementById('about');
       if (about) {
         const nav = document.querySelector('nav#desktop-nav') || document.querySelector('nav#hamburger-nav');
         const navHeight = nav ? nav.offsetHeight : 0;
         window.scrollTo({ top: about.offsetTop - navHeight - 20, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: window.innerHeight * 0.92, behavior: 'smooth' });
       }
     });
-  }
+  });
 
   // Set initial language from localStorage
   setLanguage(localStorage.getItem('language') || 'en');
@@ -475,6 +476,52 @@ document.addEventListener('DOMContentLoaded', () => {
       elem.style.transform = 'translate(0px, 0px)';
     });
   });
+})();
+
+// ==========================================
+// ===== HOME: SCROLL-LINKED DISSOLVE =======
+// ==========================================
+// The hero and about background images dissolve in/out
+// based on scroll position (cinematic cross-dissolve feel).
+(function () {
+  const heroBg = document.querySelector('.hero-bg');
+  const aboutBg = document.querySelector('.about-bg');
+  const aboutSection = document.getElementById('about');
+  if (!heroBg && !aboutBg) return;
+
+  let ticking = false;
+  const clamp = (v) => Math.min(Math.max(v, 0), 1);
+
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+
+    // Hero image dissolves out (with a slight zoom) over the first ~85% of the viewport scroll
+    if (heroBg) {
+      const p = clamp(window.scrollY / (vh * 0.85));
+      heroBg.style.opacity = (1 - p).toFixed(3);
+      heroBg.style.transform = 'scale(' + (1 + p * 0.05).toFixed(4) + ')';
+    }
+
+    // About image dissolves in as it enters the viewport, and out as it leaves
+    if (aboutBg && aboutSection) {
+      const rect = aboutSection.getBoundingClientRect();
+      const fadeIn  = clamp(1 - rect.top / (vh * 0.75));
+      const fadeOut = clamp(rect.bottom / (vh * 0.45));
+      aboutBg.style.opacity = Math.min(fadeIn, fadeOut).toFixed(3);
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
 })();
 
 // =================================
