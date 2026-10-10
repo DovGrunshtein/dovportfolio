@@ -2122,3 +2122,15 @@ body.gallery-page { background-color: #0f0f0f; }
   .page-intro-list li { font-size: 0.92rem; }
   .scroll-indicator { bottom: 1.4rem; }
 }
+/* --- Project boxes: identical size regardless of label length --- */
+.project-box {
+  flex: 0 0 300px;
+  width: 300px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media screen and (max-width: 600px) {
+  .project-box { flex-basis: auto; width: 80vw; max-width: 300px; }
+}
