@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>עורך סדר - Dovi Visual</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cg transform='rotate(45 32 32)'%3E%3Crect x='26' y='8' width='12' height='8' rx='2' fill='%23ff8fa3'/%3E%3Crect x='26' y='17' width='12' height='4' fill='%23ccc'/%3E%3Crect x='26' y='21' width='12' height='26' fill='%23e8c26a'/%3E%3Cpath d='M26 47h12l-6 11z' fill='%23f3dcb2'/%3E%3Cpath d='M30 54.3h4L32 58z' fill='%23333'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+  :root { --bg:#111; --panel:#1b1b1b; --line:#2c2c2c; --text:#eee; --muted:#888; --accent:#e8c26a; --danger:#ff6b6b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.4 -apple-system, "Segoe UI", Arial, sans-serif; }
+  header { position:sticky; top:0; z-index:10; background:#0c0c0c; border-bottom:1px solid var(--line);
+           display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:12px 20px; }
+  header h1 { font-size:16px; margin:0 0 0 12px; }
+  .tabs { display:flex; gap:6px; }
+  .tabs button, .btn { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px;
+                       padding:7px 14px; cursor:pointer; font:inherit; text-decoration:none; }
+  .tabs button.active { border-color:var(--accent); color:var(--accent); }
+  .spacer { flex:1; }
+  .btn.primary { background:var(--accent); color:#111; border-color:var(--accent); font-weight:600; }
+  .btn.danger { background:var(--danger); color:#fff; border-color:var(--danger); font-weight:600; }
+  .btn:disabled { opacity:.4; cursor:default; }
+  #status { color:var(--muted); min-width:120px; }
+  #status.err { color:var(--danger); }
+  main { padding:20px; }
+  .group { margin-bottom:36px; }
+  .group h2 { font-size:14px; letter-spacing:.08em; margin:0 0 10px; display:flex; gap:10px; align-items:center; }
+  .group h2 .count { color:var(--muted); font-weight:400; }
+  .group h2 .changed { color:var(--accent); font-size:12px; font-weight:400; }
+  .group h2 .btn { padding:3px 10px; font-size:12px; letter-spacing:0; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:10px; }
+  .card { position:relative; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden;
+          cursor:grab; user-select:none; }
+  .card.new, .card.edited { border-color:var(--accent); }
+  .card.dragging { opacity:.3; }
+  .card img { display:block; width:100%; aspect-ratio:9/12; object-fit:cover; background:#222; pointer-events:none; }
+  .card .num { position:absolute; top:6px; right:6px; background:rgba(0,0,0,.75); color:var(--accent);
+               border-radius:4px; padding:1px 7px; font-weight:700; font-size:13px; cursor:pointer; }
+  .card .icon { position:absolute; top:6px; width:26px; height:26px; border-radius:50%; border:none;
+                background:rgba(0,0,0,.75); font-size:14px; line-height:26px; cursor:pointer; padding:0; }
+  .card .del { left:6px; color:var(--danger); font-size:17px; }
+  .card .del:hover { background:var(--danger); color:#fff; }
+  .card .edit { left:38px; color:var(--text); }
+  .card .edit:hover { background:var(--accent); color:#111; }
+  .card .tag { position:absolute; bottom:38px; left:6px; border-radius:4px; padding:0 5px; font-size:11px; }
+  .card .tag.yt { background:#c00; color:#fff; }
+  .card .tag.newtag { background:var(--accent); color:#111; left:auto; right:6px; }
+  .card .meta { padding:6px 8px; display:flex; gap:4px; align-items:center; }
+  .card .title { flex:1; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; direction:ltr; text-align:left; }
+  .card .meta button { background:none; border:1px solid var(--line); color:var(--text); border-radius:4px; cursor:pointer;
+                       padding:0 6px; font-size:12px; }
+  .hint { color:var(--muted); margin:0 0 20px; }
+  .btn.publish { background:#2f6f3e; border-color:#2f6f3e; color:#fff; font-weight:600; }
+  .group h2 .cat-btn { background:none; border:1px solid var(--line); color:var(--muted); border-radius:4px;
+                       cursor:pointer; padding:1px 7px; font-size:12px; }
+  .group h2 .cat-btn:hover { color:var(--text); }
+  .empty { color:var(--muted); border:1px dashed var(--line); border-radius:8px; padding:24px; text-align:center; }
+  #pubBody ul { max-height:200px; overflow:auto; margin:6px 0; padding-inline-start:18px; direction:ltr; text-align:left;
+                font-family:ui-monospace, Menlo, monospace; font-size:12px; color:var(--muted); }
+  .ok { color:#7bd88f; }
+  dialog { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:10px; width:min(480px, 92vw); padding:20px; }
+  dialog::backdrop { background:rgba(0,0,0,.6); }
+  dialog h3 { margin:0 0 14px; font-size:16px; }
+  dialog label { display:block; margin:12px 0 4px; color:var(--muted); font-size:12px; }
+  dialog label.check { display:flex; gap:6px; align-items:center; color:var(--text); font-size:13px; }
+  dialog textarea, dialog input[type=text], dialog input[type=number] {
+    width:100%; background:#111; color:var(--text); border:1px solid var(--line); border-radius:6px; padding:8px; font:inherit; }
+  dialog textarea { height:90px; direction:ltr; font-family:ui-monospace, Menlo, monospace; font-size:12px; }
+  dialog .preview { display:flex; gap:12px; align-items:center; margin-top:12px; min-height:20px; }
+  dialog .preview img { width:70px; aspect-ratio:9/12; object-fit:cover; border-radius:6px; }
+  dialog .err { color:var(--danger); font-size:13px; }
+  dialog .actions { display:flex; gap:8px; justify-content:flex-start; margin-top:18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>עורך סדר</h1>
+  <div class="tabs" id="tabs"></div>
+  <div class="spacer"></div>
+  <span id="status"></span>
+  <a class="btn" id="view" target="_blank">צפה בעמוד</a>
+  <button class="btn" id="reset" disabled>בטל שינויים</button>
+  <button class="btn primary" id="save" disabled>שמור</button>
+  <button class="btn publish" id="publish">פרסם לאתר</button>
+</header>
+<main>
+  <p class="hint">כדי להזיז כרטיס, גרור אותו או לחץ על המספר שלו. ✎ פותח עריכה ו-× מוחק. כדי להוסיף, השתמש בכפתור "+" ליד שם הקטגוריה. שום דבר לא נכתב לקבצים עד שלוחצים "שמור", ושום דבר לא עולה לאתר עד שלוחצים "פרסם לאתר".</p>
+  <div id="groups"></div>
+  <button class="btn" id="addCategory">+ קטגוריה חדשה</button>
+</main>
+
+<dialog id="categoryDialog">
+  <h3 id="catHeading"></h3>
+  <label>שם הקטגוריה</label>
+  <input type="text" id="catTitle" dir="auto">
+  <div id="catRowWrap">
+    <label>סוג תצוגה</label>
+    <label class="check"><input type="radio" name="catRow" value="vertical" checked> אנכי (כמו Social Media)</label>
+    <label class="check"><input type="radio" name="catRow" value="horizontal"> אופקי (כמו Film)</label>
+  </div>
+  <p class="err" id="catErr"></p>
+  <div class="actions">
+    <button class="btn primary" id="catOk"></button>
+    <button class="btn" id="catCancel">ביטול</button>
+  </div>
+</dialog>
+
+<dialog id="publishDialog">
+  <h3>פרסום לאתר</h3>
+  <div id="pubBody"></div>
+  <div id="pubForm">
+    <label>תיאור קצר של השינוי</label>
+    <input type="text" id="pubMessage" dir="auto" value="עדכון תוכן">
+  </div>
+  <p class="err" id="pubErr"></p>
+  <div class="actions">
+    <button class="btn primary" id="pubOk">פרסם</button>
+    <button class="btn" id="pubCancel">סגור</button>
+  </div>
+</dialog>
+
+<input type="file" id="imagePicker" accept="image/*" multiple hidden>
+
+<dialog id="itemDialog">
+  <h3 id="dlgHeading"></h3>
+  <div id="dlgYoutubeRow">
+    <label>קוד embed או קישור ליוטיוב</label>
+    <textarea id="dlgEmbed" placeholder='<iframe src="https://www.youtube.com/embed/..." ...></iframe>'></textarea>
+  </div>
+  <label>כותרת</label>
+  <input type="text" id="dlgTitle" dir="ltr">
+  <label id="dlgFileLabel"></label>
+  <input type="file" id="dlgFile" accept="image/*">
+  <label class="check" id="dlgYtThumbRow"><input type="checkbox" id="dlgYtThumb"> השתמש בתמונה של יוטיוב</label>
+  <div id="dlgPosRow">
+    <label>מיקום</label>
+    <input type="number" id="dlgPos" min="1" value="1">
+  </div>
+  <div class="preview" id="dlgPreview"></div>
+  <div class="actions">
+    <button class="btn primary" id="dlgOk"></button>
+    <button class="btn" id="dlgCancel">ביטול</button>
+  </div>
+</dialog>
+
+<dialog id="deleteDialog">
+  <h3 id="delHeading">למחוק את הפריט?</h3>
+  <div class="preview" id="delPreview"></div>
+  <p class="hint" id="delHint" style="margin:12px 0 0"></p>
+  <div class="actions">
+    <button class="btn danger" id="delOk">כן, מחק</button>
+    <button class="btn" id="delCancel">ביטול</button>
+  </div>
+</dialog>
+
+<script>
+const FIELDS = ["title", "youtube", "thumb", "full"];
+const state = { layout: [], page: null, original: {}, newCount: 0 };
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ytThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+
+function key(page, gid) { return page + "::" + gid; }
+function thumbUrl(src) { return /^(https?:|blob:)/.test(src) ? src : "/" + encodeURI(src); }
+function displayThumb(it) { return it.preview || it.thumb; }
+function currentPage() { return state.layout.find(p => p.page === state.page); }
+
+async function load() {
+  const res = await fetch("/api/layout");
+  state.layout = await res.json();
+  state.original = {};
+  for (const p of state.layout)
+    for (const g of p.groups) {
+      state.original[key(p.page, g.id)] = g.items.map(i => i.fp);
+      g.items.forEach(i => i.orig = Object.fromEntries(FIELDS.map(k => [k, i[k]])));
+    }
+  if (!state.page) state.page = state.layout[0].page;
+  renderTabs(); render(); updateButtons();
+}
+
+function itemDiff(it) {
+  if (it.isNew) return null;
+  const d = {};
+  for (const k of FIELDS) if (it[k] !== it.orig[k]) d[k] = it[k];
+  return Object.keys(d).length ? d : null;
+}
+function itemEdited(it) { return !it.isNew && (it.file || itemDiff(it)); }
+
+function groupChanged(page, g) {
+  return g.items.map(i => i.fp).join() !== state.original[key(page, g.id)].join() || g.items.some(itemEdited);
+}
+
+function changes() {
+  const out = {};
+  for (const p of state.layout)
+    for (const g of p.groups)
+      if (groupChanged(p.page, g))
+        (out[p.page] ||= {})[g.id] = g.items.map(i => {
+          if (i.isNew) return { new: Object.fromEntries(FIELDS.map(k => [k, i[k] || ""])) };
+          const d = itemDiff(i);
+          return d ? { fp: i.fp, edit: d } : i.fp;
+        });
+  return out;
+}
+
+function changedCount() { return Object.values(changes()).reduce((n, g) => n + Object.keys(g).length, 0); }
+
+function updateButtons() {
+  const n = changedCount();
+  $("#save").disabled = $("#reset").disabled = n === 0;
+  if (!$("#status").classList.contains("err")) setStatus(n ? `${n} קטגוריות שונו` : "");
+  document.querySelectorAll(".tabs button").forEach(b => {
+    b.textContent = b.dataset.page.replace(".html", "") + (changes()[b.dataset.page] ? " •" : "");
+  });
+}
+
+function setStatus(msg, err) { const s = $("#status"); s.textContent = msg; s.className = err ? "err" : ""; }
+function refresh() { setStatus(""); render(); updateButtons(); }
+
+function renderTabs() {
+  const tabs = $("#tabs"); tabs.innerHTML = "";
+  for (const p of state.layout) {
+    const b = document.createElement("button");
+    b.dataset.page = p.page;
+    b.className = p.page === state.page ? "active" : "";
+    b.onclick = () => { state.page = p.page; renderTabs(); render(); updateButtons(); };
+    tabs.appendChild(b);
+  }
+  $("#view").href = "/" + state.page;
+}
+
+function render() {
+  const page = currentPage();
+  const root = $("#groups"); root.innerHTML = "";
+  for (const g of page.groups) {
+    const sec = document.createElement("section"); sec.className = "group";
+    const h = document.createElement("h2");
+    h.innerHTML = `${esc(g.title)} <span class="count">(${g.items.length})</span>`;
+    if (g.editable) {
+      const add = document.createElement("button");
+      add.className = "btn";
+      add.textContent = g.kind === "video" ? "+ הוסף וידאו" : "+ הוסף תמונות";
+      add.onclick = () => g.kind === "video" ? openItemDialog(g, null) : pickImages(g);
+      h.appendChild(add);
+    }
+    const rename = document.createElement("button");
+    rename.className = "cat-btn"; rename.textContent = "✎ שם"; rename.title = "שנה שם קטגוריה";
+    rename.onclick = () => openCategoryDialog(g);
+    h.appendChild(rename);
+    if (!g.items.length) {
+      const del = document.createElement("button");
+      del.className = "cat-btn"; del.textContent = "מחק קטגוריה";
+      del.onclick = () => deleteCategory(g);
+      h.appendChild(del);
+    }
+    if (groupChanged(page.page, g)) h.insertAdjacentHTML("beforeend", '<span class="changed">שונה</span>');
+    sec.appendChild(h);
+    if (!g.editable) sec.insertAdjacentHTML("beforeend", `<p class="hint">יש בקטגוריה הזאת קוד שהעורך לא מזהה, ולכן אי אפשר לערוך אותה.</p>`);
+    if (!g.items.length) {
+      sec.insertAdjacentHTML("beforeend", `<div class="empty">הקטגוריה ריקה. אפשר להוסיף לה פריטים עם הכפתור "+" למעלה.</div>`);
+      root.appendChild(sec); continue;
+    }
+    const grid = document.createElement("div"); grid.className = "grid";
+    g.items.forEach((it, idx) => grid.appendChild(card(g, it, idx)));
+    if (g.editable) enableDrag(grid, g);
+    sec.appendChild(grid); root.appendChild(sec);
+  }
+}
+
+function card(g, it, idx) {
+  const el = document.createElement("div");
+  el.className = "card" + (it.isNew ? " new" : "") + (itemEdited(it) ? " edited" : "");
+  el.draggable = g.editable; el.dataset.fp = it.fp;
+  el.innerHTML = `<img loading="lazy" src="${esc(thumbUrl(displayThumb(it)))}" alt="">
+    <span class="num" title="לחץ כדי לשנות מיקום">${idx + 1}</span>
+    ${g.editable ? '<button class="icon del" title="מחק">×</button><button class="icon edit" title="ערוך">✎</button>' : ""}
+    ${it.youtube ? '<span class="tag yt">YT</span>' : ""}
+    ${it.isNew ? '<span class="tag newtag">חדש</span>' : itemEdited(it) ? '<span class="tag newtag">נערך</span>' : ""}
+    <div class="meta"><span class="title"></span>
+      <button data-dir="-1" title="אחורה">→</button><button data-dir="1" title="קדימה">←</button></div>`;
+  el.querySelector(".title").textContent = it.title || it.youtube || it.thumb;
+  el.querySelector(".title").title = it.title;
+  if (!g.editable) return el;
+  el.querySelector(".num").onclick = () => {
+    const to = parseInt(window.prompt(`מיקום חדש (1-${g.items.length})`, idx + 1), 10);
+    if (to >= 1 && to <= g.items.length) move(g, idx, to - 1);
+  };
+  el.querySelector(".del").onclick = () => confirmDelete(g, it);
+  el.querySelector(".edit").onclick = () => openItemDialog(g, it);
+  el.querySelectorAll(".meta button").forEach(b =>
+    b.onclick = () => move(g, idx, Math.min(g.items.length - 1, Math.max(0, idx + +b.dataset.dir))));
+  return el;
+}
+
+function move(g, from, to) {
+  if (from === to) return;
+  const [it] = g.items.splice(from, 1);
+  g.items.splice(to, 0, it);
+  render(); updateButtons();
+}
+
+function enableDrag(grid, g) {
+  let dragged = null;
+  grid.addEventListener("dragstart", e => {
+    dragged = e.target.closest(".card"); dragged.classList.add("dragging");
+    e.dataTransfer.effectAllowed = "move";
+  });
+  grid.addEventListener("dragover", e => {
+    if (!dragged) return;
+    e.preventDefault();
+    const over = e.target.closest(".card");
+    if (!over || over === dragged) return;
+    const r = over.getBoundingClientRect();
+    const after = e.clientX < r.left + r.width / 2; // RTL: left half means "after"
+    grid.insertBefore(dragged, after ? over.nextSibling : over);
+  });
+  grid.addEventListener("dragend", () => {
+    if (!dragged) return;
+    dragged.classList.remove("dragging"); dragged = null;
+    const order = [...grid.children].map(c => c.dataset.fp);
+    const pool = {};
+    g.items.forEach(i => (pool[i.fp] ||= []).push(i));
+    g.items = order.map(fp => pool[fp].shift());
+    render(); updateButtons();
+  });
+}
+
+// ---- Delete ----
+let pendingDelete = null;
+function confirmDelete(g, it) {
+  pendingDelete = { g, it };
+  $("#delHeading").textContent = "למחוק את הפריט?";
+  $("#delHint").textContent = 'הפריט יוסר מהעמוד אחרי שתלחץ "שמור". הקבצים עצמם נשארים בתיקייה.';
+  $("#delPreview").innerHTML = `<img src="${esc(thumbUrl(displayThumb(it)))}" alt=""><span dir="ltr">${esc(it.title || it.youtube)}</span>`;
+  $("#deleteDialog").showModal();
+}
+$("#delCancel").onclick = () => $("#deleteDialog").close();
+$("#delOk").onclick = async () => {
+  const { g, it, category } = pendingDelete;
+  $("#deleteDialog").close();
+  if (category) {
+    try { await categoryRequest({ action: "delete", id: category.id }); setStatus("הקטגוריה נמחקה ✓"); }
+    catch (e) { setStatus("שגיאה: " + e.message, true); }
+    return;
+  }
+  g.items.splice(g.items.indexOf(it), 1);
+  refresh();
+};
+
+// ---- Add images ----
+let imageTarget = null;
+function pickImages(g) { imageTarget = g; $("#imagePicker").value = ""; $("#imagePicker").click(); }
+$("#imagePicker").onchange = (e) => {
+  const added = [...e.target.files].map(file => ({
+    fp: "new-" + (++state.newCount), isNew: true, file, preview: URL.createObjectURL(file),
+    title: imageTarget.title, thumb: "", full: "", youtube: "",
+  }));
+  imageTarget.items.unshift(...added);
+  refresh();
+};
+
+// ---- Add / edit dialog ----
+let dlg = null;   // { g, it }  (it === null when adding)
+function parseYouTube(text) {
+  const t = text.trim();
+  const m = t.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|shorts\/|live\/|watch\?(?:.*&)?v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  return /^[A-Za-z0-9_-]{11}$/.test(t) ? t : null;
+}
+
+function openItemDialog(g, it) {
+  dlg = { g, it };
+  const video = g.kind === "video";
+  $("#dlgHeading").textContent = (it ? (video ? "עריכת וידאו" : "עריכת תמונה") : "הוספת וידאו") + " - " + g.title;
+  $("#dlgOk").textContent = it ? "עדכן" : "הוסף";
+  $("#dlgYoutubeRow").hidden = !video;
+  $("#dlgYtThumbRow").hidden = !video;
+  $("#dlgPosRow").hidden = !!it;
+  $("#dlgFileLabel").textContent = video
+    ? "תמונה ממוזערת משלך (לא חובה)"
+    : "החלפת התמונה (לא חובה)";
+  $("#dlgEmbed").value = it && it.youtube ? `https://www.youtube.com/watch?v=${it.youtube}` : "";
+  $("#dlgTitle").value = it ? it.title : "";
+  $("#dlgFile").value = "";
+  $("#dlgYtThumb").checked = !it || /i\.ytimg\.com/.test(it.thumb) && !it.file;
+  $("#dlgPos").value = 1; $("#dlgPos").max = g.items.length + 1;
+  updatePreview();
+  $("#itemDialog").showModal();
+  (video ? $("#dlgEmbed") : $("#dlgTitle")).focus();
+}
+
+function dialogThumb() {
+  const { g, it } = dlg;
+  const file = $("#dlgFile").files[0];
+  if (file) return URL.createObjectURL(file);
+  if (g.kind === "video") {
+    const id = parseYouTube($("#dlgEmbed").value);
+    if ($("#dlgYtThumb").checked) return id ? ytThumb(id) : null;
+  }
+  return it ? displayThumb(it) : null;
+}
+
+function updatePreview() {
+  const p = $("#dlgPreview");
+  if (dlg.g.kind === "video" && $("#dlgEmbed").value.trim() && !parseYouTube($("#dlgEmbed").value)) {
+    p.innerHTML = '<span class="err">לא מצאתי מזהה יוטיוב בקוד הזה</span>'; return;
+  }
+  const src = dialogThumb();
+  const id = parseYouTube($("#dlgEmbed").value);
+  p.innerHTML = src ? `<img src="${esc(thumbUrl(src))}" alt=""><span dir="ltr">${esc(id || "")}</span>` : "";
+}
+
+$("#dlgEmbed").oninput = () => {
+  const m = $("#dlgEmbed").value.match(/title="([^"]*)"/);
+  if (m && (!$("#dlgTitle").value || !dlg.it)) $("#dlgTitle").value = m[1];
+  updatePreview();
+};
+$("#dlgFile").onchange = () => { if ($("#dlgFile").files[0]) $("#dlgYtThumb").checked = false; updatePreview(); };
+$("#dlgYtThumb").onchange = () => { if ($("#dlgYtThumb").checked) $("#dlgFile").value = ""; updatePreview(); };
+$("#dlgCancel").onclick = () => $("#itemDialog").close();
+
+$("#dlgOk").onclick = () => {
+  const { g, it } = dlg;
+  const video = g.kind === "video";
+  const id = video ? parseYouTube($("#dlgEmbed").value) : "";
+  if (video && !id) { $("#dlgPreview").innerHTML = '<span class="err">צריך קוד embed או קישור תקין ליוטיוב</span>'; return; }
+  const file = $("#dlgFile").files[0] || null;
+  const title = $("#dlgTitle").value.trim() || (it ? it.title : id);
+  const target = it || { fp: "new-" + (++state.newCount), isNew: true, thumb: "", full: "" };
+  target.title = title;
+  if (video) target.youtube = id;
+  if (file) {
+    target.file = file; target.preview = URL.createObjectURL(file); target.uploaded = false;
+  } else if (video && $("#dlgYtThumb").checked) {
+    target.file = null; target.preview = null; target.thumb = ytThumb(id);
+  }
+  if (!it) {
+    const pos = Math.min(g.items.length, Math.max(0, (parseInt($("#dlgPos").value, 10) || 1) - 1));
+    g.items.splice(pos, 0, target);
+  }
+  $("#itemDialog").close();
+  refresh();
+};
+
+// ---- Categories (written to the file immediately) ----
+let catTarget = null;   // group being renamed, or null when adding
+function needsSaveFirst(el) {
+  if (!changedCount()) return false;
+  el.textContent = 'יש שינויים שלא נשמרו. לחץ קודם "שמור" או "בטל שינויים".';
+  return true;
+}
+function openCategoryDialog(g) {
+  catTarget = g;
+  $("#catHeading").textContent = g ? `שינוי שם - ${g.title}` : "קטגוריה חדשה";
+  $("#catOk").textContent = g ? "שנה שם" : "צור";
+  $("#catTitle").value = g ? g.title : "";
+  $("#catRowWrap").hidden = !!g || currentPage().kind !== "video";
+  $("#catErr").textContent = "";
+  needsSaveFirst($("#catErr"));
+  $("#categoryDialog").showModal();
+  $("#catTitle").focus();
+}
+async function categoryRequest(payload) {
+  const res = await fetch("/api/category", { method: "POST", headers: { "Content-Type": "application/json" },
+                                              body: JSON.stringify({ page: state.page, ...payload }) });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error);
+  await load();
+  return data;
+}
+$("#addCategory").onclick = () => openCategoryDialog(null);
+$("#catCancel").onclick = () => $("#categoryDialog").close();
+$("#catOk").onclick = async () => {
+  if (needsSaveFirst($("#catErr"))) return;
+  const title = $("#catTitle").value.trim();
+  if (!title) { $("#catErr").textContent = "צריך שם לקטגוריה"; return; }
+  try {
+    const row = document.querySelector('input[name="catRow"]:checked').value;
+    const data = await categoryRequest(catTarget ? { action: "rename", id: catTarget.id, title } : { action: "add", title, row });
+    $("#categoryDialog").close();
+    setStatus(catTarget ? "השם עודכן ✓" : "הקטגוריה נוצרה ✓");
+    if (!catTarget) document.querySelectorAll(".group")[currentPage().groups.findIndex(g => g.id === data.id)]?.scrollIntoView({ behavior: "smooth" });
+  } catch (e) { $("#catErr").textContent = "שגיאה: " + e.message; }
+};
+async function deleteCategory(g) {
+  if (changedCount()) return setStatus('יש שינויים שלא נשמרו. לחץ קודם "שמור"', true);
+  pendingDelete = { category: g };
+  $("#delHeading").textContent = "למחוק את הקטגוריה?";
+  $("#delHint").textContent = "הקטגוריה והקישור אליה בתפריט יימחקו מהעמוד מיד.";
+  $("#delPreview").innerHTML = `<span>קטגוריה: <b>${esc(g.title)}</b></span>`;
+  $("#deleteDialog").showModal();
+}
+
+// ---- Publish ----
+async function openPublish() {
+  $("#pubErr").textContent = ""; $("#pubForm").hidden = false; $("#pubOk").hidden = false;
+  $("#pubBody").innerHTML = "בודק שינויים...";
+  $("#publishDialog").showModal();
+  if (changedCount()) {
+    $("#pubBody").innerHTML = '<p class="err">יש שינויים שלא נשמרו. לחץ קודם "שמור" ואז "פרסם".</p>';
+    $("#pubForm").hidden = $("#pubOk").hidden = true; return;
+  }
+  try {
+    const res = await fetch("/api/git"); const s = await res.json();
+    if (!res.ok) throw new Error(s.error);
+    if (!s.files.length && !s.ahead) {
+      $("#pubBody").innerHTML = '<p class="ok">אין שינויים חדשים. האתר כבר מעודכן.</p>';
+      $("#pubForm").hidden = $("#pubOk").hidden = true; return;
+    }
+    $("#pubBody").innerHTML = (s.files.length ? `<p>הקבצים שיעלו לאתר (${s.files.length}):</p><ul>${s.files.map(f => `<li>${esc(f)}</li>`).join("")}</ul>` : "")
+      + (s.ahead ? `<p>ועוד ${s.ahead} שמירות קודמות שעוד לא עלו.</p>` : "");
+  } catch (e) { $("#pubBody").innerHTML = `<p class="err">שגיאה: ${esc(e.message)}</p>`; $("#pubOk").hidden = true; }
+}
+$("#publish").onclick = openPublish;
+$("#pubCancel").onclick = () => $("#publishDialog").close();
+$("#pubOk").onclick = async () => {
+  $("#pubOk").disabled = true; $("#pubErr").textContent = "";
+  $("#pubBody").innerHTML = "מפרסם... זה יכול לקחת כמה שניות.";
+  try {
+    const res = await fetch("/api/publish", { method: "POST", headers: { "Content-Type": "application/json" },
+                                              body: JSON.stringify({ message: $("#pubMessage").value }) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+    $("#pubBody").innerHTML = '<p class="ok">פורסם ✓ האתר יתעדכן תוך דקה-שתיים.</p>';
+    $("#pubForm").hidden = $("#pubOk").hidden = true;
+  } catch (e) {
+    $("#pubBody").innerHTML = ""; $("#pubErr").textContent = "הפרסום נכשל: " + e.message;
+  } finally { $("#pubOk").disabled = false; }
+};
+
+// ---- Save ----
+async function uploadPending() {
+  for (const p of state.layout)
+    for (const g of p.groups)
+      for (const it of g.items) {
+        if (!it.file || it.uploaded) continue;
+        const kind = g.kind === "video" ? "video" : "gallery";
+        const folder = g.folder || "images/" + g.title;
+        const name = it.youtube ? `${it.title || it.youtube}.jpg` : it.file.name;
+        const res = await fetch(`/api/upload?kind=${kind}&folder=${encodeURIComponent(folder)}&name=${encodeURIComponent(name)}`,
+                                { method: "POST", body: it.file });
+        const data = await res.json();
+        if (!res.ok) throw new Error(`${it.file.name}: ${data.error}`);
+        it.thumb = data.thumb;
+        if (data.full) it.full = data.full;
+        it.uploaded = true;
+      }
+}
+
+$("#save").onclick = async () => {
+  $("#save").disabled = true;
+  try {
+    setStatus("מעלה תמונות...");
+    await uploadPending();
+    setStatus("שומר...");
+    const res = await fetch("/api/save", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(changes()) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+    await load(); setStatus("נשמר ✓");
+  } catch (e) {
+    setStatus("שגיאה: " + e.message, true); updateButtons();
+  }
+};
+$("#reset").onclick = () => { setStatus(""); load(); };
+window.addEventListener("beforeunload", e => { if (changedCount()) e.preventDefault(); });
+load().catch(() => setStatus("השרת לא רץ. הפעל: python3 _editor/editor.py", true));
+</script>
+</body>
+</html>

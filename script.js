@@ -293,26 +293,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set initial language from localStorage
   setLanguage(localStorage.getItem('language') || 'en');
 
-  // Social Media section
-  var socialSection = document.getElementById('social');
-  if (socialSection) {
-    socialSection.querySelectorAll('.youtube-thumbnail').forEach(function(thumb) {
-      thumb.addEventListener('click', function() {
-        var overlay = document.getElementById('youtube-popup-overlay');
-        if (overlay) overlay.classList.add('vertical-reel');
-      });
-    });
-  }
-
-  // All other YouTube thumbnails (outside Social Media)
+  // Vertical rows (e.g. Social Media) open the popup as a vertical reel
   document.querySelectorAll('.youtube-thumbnail').forEach(function(thumb) {
-    // Only add this if not in Social Media
-    if (!socialSection || !socialSection.contains(thumb)) {
-      thumb.addEventListener('click', function() {
-        var overlay = document.getElementById('youtube-popup-overlay');
-        if (overlay) overlay.classList.remove('vertical-reel');
-      });
-    }
+    var vertical = !!thumb.closest('.video-row.vertical');
+    thumb.addEventListener('click', function() {
+      var overlay = document.getElementById('youtube-popup-overlay');
+      if (overlay) overlay.classList.toggle('vertical-reel', vertical);
+    });
   });
 });
 
