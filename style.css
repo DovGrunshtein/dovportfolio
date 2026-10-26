@@ -2134,3 +2134,15 @@ body.gallery-page { background-color: #0f0f0f; }
 @media screen and (max-width: 600px) {
   .project-box { flex-basis: auto; width: 80vw; max-width: 300px; }
 }
+
+/* Mobile/touch only: iOS turns the '▶' character into a blue emoji, so draw the triangle as an image instead */
+@media (hover: none), (max-width: 768px) {
+  .video-thumbnail::after,
+  .video-thumbnail:hover::after {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Cpath d='M0 0L10 6L0 12z' fill='%23fff' fill-opacity='.88'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 56% 50%;
+    background-size: 30%;
+  }
+}
