@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Set initial language from localStorage
-  setLanguage(localStorage.getItem('language') || 'en');
+  setLanguage(localStorage.getItem('language') || 'he');
 
   // Vertical rows (e.g. Social Media) open the popup as a vertical reel
   document.querySelectorAll('.youtube-thumbnail').forEach(function(thumb) {
@@ -334,14 +334,14 @@ function setLanguage(lang) {
 }
 
 function toggleLanguage() {
-    const currentLang = localStorage.getItem('language') || 'en';
+    const currentLang = localStorage.getItem('language') || 'he';
     const newLang = currentLang === 'en' ? 'he' : 'en';
     setLanguage(newLang);
 }
 
 // Set initial language on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('language') || 'en';
+    const savedLang = localStorage.getItem('language') || 'he';
     setLanguage(savedLang);
 });
 
