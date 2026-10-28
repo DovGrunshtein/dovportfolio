@@ -407,7 +407,7 @@ section {
 /* ABOUT SECTION */
 #about.about-bg-section {
   position: relative;
-  min-height: 90vh;
+  min-height: 75vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -1924,10 +1924,10 @@ footer p { color: #4a4a4a; }
 #about,
 #projects,
 #experience {
-  padding-top: 5rem !important;
-  padding-bottom: 5rem !important;
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
 }
-#contact { padding-top: 4rem; padding-bottom: 4rem; }
+#contact { padding-top: 3rem; padding-bottom: 3rem; }
 
 /* --- Project box: transition override --- */
 .project-box {
@@ -2142,7 +2142,7 @@ html[lang="he"] .clients-label { letter-spacing: 0.02em; font-size: 0.9rem; }
 }
 
 /* Services */
-#services, #process, #work { padding-block: 5rem; }
+#services, #process, #work { padding-block: 3.5rem; }
 .services-intro { max-width: 620px; margin: 0 auto 2.5rem; font-size: 1rem; }
 .packages {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
