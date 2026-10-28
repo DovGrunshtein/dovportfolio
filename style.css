@@ -264,7 +264,7 @@ section {
 .hero-bg {
   position: absolute;
   top: -15%; left: 0; width: 100%; height: 115%;
-  background: url('assets/First pic_optimized.jpg') center top/cover no-repeat;
+  background: url('assets/About me.jpg') center center/cover no-repeat;
   z-index: 1;
   filter: brightness(0.75);
   animation: heroFadeIn 1.2s ease;
@@ -422,7 +422,7 @@ section {
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100%;
   height: 100%;
-  background: url('assets/About me.jpg') center center/cover no-repeat;
+  background: url('assets/about-beach_optimized.jpg') center center/cover no-repeat;
   filter: brightness(0.62);
   z-index: 1;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
