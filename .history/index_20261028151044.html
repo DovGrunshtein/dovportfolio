@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dovi Visuals — Content &amp; Growth Studio</title>
+    <meta name="description" content="סטודיו לתוכן ושיווק למותגי אופנה, בית ולייף־סטייל. יום צילום בכל חודש, רילס ופוסטים, ניהול אינסטגרם, קמפיינים במטא ומיתוג." />
+    <meta property="og:title" content="Dovi Visuals — Content &amp; Growth Studio" />
+    <meta property="og:description" content="תוכן, קמפיינים ממומנים ומיתוג למותגי אופנה, בית ולייף־סטייל." />
+    <meta property="og:image" content="https://dovportfolio.com/assets/First%20pic_optimized.jpg" />
+    <meta property="og:url" content="https://dovportfolio.com/" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600&display=swap" />
+    <link rel="icon" href="assets/dovi-new-logo.png" type="image/png" />
+    <link rel="shortcut icon" href="assets/dovi-new-logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/dovi-new-logo.png" />
+    <link rel="preload" fetchpriority="high" as="image" href="assets/2509.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-loader" aria-hidden="true"></div>
+    <nav id="desktop-nav">
+      <div class="logo"><a href="index.html"><img src="assets/dovi-new-logo.png" alt="Dovi Visual" style="height: 40px; width: auto; border-radius: 4px;"></a></div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#services" data-en="Services" data-he="שירותים">Services</a></li>
+          <li><a href="#work" data-en="Work" data-he="עבודות">Work</a></li>
+          <li><a href="#projects" data-en="Portfolio" data-he="תיק עבודות">Portfolio</a></li>
+          <li><a href="#about" data-en="About" data-he="על הסטודיו">About</a></li>
+          <li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li>
+        </ul>
+      </div>
+      <button id="lang-switch" class="lang-switcher" onclick="toggleLanguage()">עב / EN</button>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo"><a href="index.html"><img src="assets/dovi-new-logo.png" alt="Dovi Visual" style="height: 40px; width: auto; border-radius: 4px;"></a></div>
+      <div class="hamburger-menu">
+        <button class="lang-switcher" onclick="toggleLanguage()">עב / EN</button>
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <ul>
+            <li><a href="#services" onclick="toggleMenu()" data-en="Services" data-he="שירותים">Services</a></li>
+            <li><a href="#work" onclick="toggleMenu()" data-en="Work" data-he="עבודות">Work</a></li>
+            <li><a href="#projects" onclick="toggleMenu()" data-en="Portfolio" data-he="תיק עבודות">Portfolio</a></li>
+            <li><a href="#about" onclick="toggleMenu()" data-en="About" data-he="על הסטודיו">About</a></li>
+            <li><a href="#contact" onclick="toggleMenu()" data-en="Contact" data-he="צור קשר">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-title" data-aos="reveal-up" data-en="Dovi Visuals" data-he="Dovi Visuals">Dovi Visuals</h1>
+          <h2 class="hero-subtitle" data-aos="fade-down" data-aos-delay="200" data-en="Content &amp; Growth Studio" data-he="סטודיו לתוכן ושיווק">Content &amp; Growth Studio</h2>
+          <p class="hero-tagline" data-aos="fade-up" data-aos-delay="400" data-en="Content, paid ads and branding for fashion, home and lifestyle brands" data-he="תוכן, קמפיינים ממומנים ומיתוג למותגי אופנה, בית ולייף־סטייל">Content, paid ads and branding for fashion, home and lifestyle brands</p>
+          <div class="hero-btns" data-aos="fade-up" data-aos-delay="600">
+            <a class="btn btn-solid" href="https://wa.me/972524065621?text=%D7%94%D7%99%D7%99%20%D7%93%D7%95%D7%91%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA%20%D7%A2%D7%9C%20%D7%9C%D7%99%D7%95%D7%95%D7%99%20%D7%A9%D7%99%D7%95%D7%95%D7%A7%D7%99%20%D7%9C%D7%9E%D7%95%D7%AA%D7%92%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" data-en="Book a call" data-he="לתיאום שיחה">Book a call</a>
+            <a class="btn btn-color-2" href="#services" data-en="See packages" data-he="לחבילות">See packages</a>
+          </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="scroll-indicator-mouse">
+            <div class="scroll-indicator-dot"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clients" aria-label="Clients">
+        <p class="clients-label" data-en="Brands we work with · over 165K followers combined" data-he="מותגים שעבדנו איתם · יותר מ־165 אלף עוקבים ביחד">Brands we work with · over 165K followers combined</p>
+        <ul class="clients-list">
+          <li>Forum Industries</li>
+          <li>MILØ</li>
+          <li>iota softliving</li>
+          <li>Especie Humana</li>
+          <li>Casa De Básico</li>
+          <li>JUV Israel</li>
+          <li>Vesogia</li>
+        </ul>
+      </section>
+
+      <section id="about" class="about-bg-section">
+        <div class="about-bg"></div>
+        <div class="about-overlay"></div>
+        <div class="about-content-centered">
+          <h1 class="title" data-aos="fade-up" data-en="About the studio" data-he="על הסטודיו">About the studio</h1>
+          <div class="about-details-centered">
+            <div class="about-containers">
+              <div class="details-container" data-aos="fade-right" data-aos-delay="200">
+                <img
+                  src="./assets/experience.png"
+                  alt="Experience icon"
+                  class="icon"
+                  onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
+                />
+                <h3 data-en="Experience" data-he="ניסיון">Experience</h3>
+                <p data-en="5+ years" data-he="5+ שנים">5+ years</p>
+              </div>
+              <div class="details-container" data-aos="fade-left" data-aos-delay="300">
+                <img
+                  src="./assets/education.png"
+                  alt="Education icon"
+                  class="icon"
+                  onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
+                />
+                <h3 data-en="More Than" data-he="יותר מ">More Than</h3>
+                <p data-en="30 Companies<br />80 Projects" data-he="30 חברות<br />80 פרויקטים">30 Companies<br />80 Projects</p>
+              </div>
+            </div>
+            <div class="text-container" data-aos="fade-up" data-aos-delay="400">
+              <p data-en="Dovi Visuals is a content and marketing studio founded by Dov Grunshtein, a photographer and filmmaker. We run a brand's Instagram from the shoot to the campaign: a shoot every month, reels and posts, a consistent visual style, and Meta campaigns. Most of our clients are fashion, home, design and lifestyle brands. We have years of video production behind us, and we run brands of our own, so we know the business owner's side well." data-he="Dovi Visuals הוא סטודיו לתוכן ושיווק שהקים דוב גרונשטיין, צלם ובמאי. אנחנו מנהלים את האינסטגרם של המותג מהצילום ועד הקמפיין: יום צילום בכל חודש, רילס ופוסטים, שפה ויזואלית אחידה וקמפיינים במטא. רוב הלקוחות שלנו הם מותגי אופנה, בית, עיצוב ולייף־סטייל. יש לנו שנים של ניסיון בהפקות וידאו, ואנחנו מנהלים גם מותגים משלנו, אז אנחנו מכירים מקרוב את הצד של בעל העסק.">Dovi Visuals is a content and marketing studio founded by Dov Grunshtein, a photographer and filmmaker. We run a brand's Instagram from the shoot to the campaign: a shoot every month, reels and posts, a consistent visual style, and Meta campaigns. Most of our clients are fashion, home, design and lifestyle brands. We have years of video production behind us, and we run brands of our own, so we know the business owner's side well.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <p class="section__text__p1" data-aos="fade-up" data-en="Monthly retainer" data-he="ליווי חודשי">Monthly retainer</p>
+        <h1 class="title" data-aos="fade-up" data-en="Packages" data-he="החבילות">Packages</h1>
+        <p class="services-intro" data-aos="fade-up" data-en="Every package covers content, Instagram management and creative planning. All prices exclude VAT and do not include payments to Meta or influencers." data-he="כל חבילה כוללת תוכן, ניהול אינסטגרם ותכנון קריאייטיב. כל ההצעות הן ללא מע״מ ואינן כוללות תשלום למטא ולמשפיעניות.">Every package covers content, Instagram management and creative planning. All prices exclude VAT and do not include payments to Meta or influencers.</p>
+        <div class="packages">
+            <article class="package" data-aos="fade-up">
+              
+              <h3 class="package-name">Essential</h3>
+              <p class="package-price" data-en="₪4,850 / month" data-he="₪4,850 לחודש">₪4,850 / month</p>
+              <ul class="package-list">
+                <li data-en="Half-day shoot every month" data-he="חצי יום צילום בחודש">Half-day shoot every month</li>
+                <li data-en="4 reels or posts a month" data-he="4 רילס או פוסטים בחודש">4 reels or posts a month</li>
+                <li data-en="Reels and posts publishing" data-he="פרסום רילז ופוסטים">Reels and posts publishing</li>
+                <li data-en="Monthly calendar, topic planning and creative thinking" data-he="בניית לו״ז חודשי, תכנון וחשיבה על קריאייטיב">Monthly calendar, topic planning and creative thinking</li>
+                <li data-en="Ongoing story management and posting throughout the week" data-he="ניהול והעלאה שוטפת של סטוריז לאורך השבוע">Ongoing story management and posting throughout the week</li>
+                <li data-en="Report and meeting once a month" data-he="דוח ופגישה פעם בחודש">Report and meeting once a month</li>
+              </ul>
+              <a class="btn package-cta" href="https://wa.me/972524065621?text=%D7%94%D7%99%D7%99%20%D7%93%D7%95%D7%91%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%9F/%D7%AA%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%AA%20Essential%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" data-en="Let's talk" data-he="בואו נדבר">Let's talk</a>
+            </article>
+            <article class="package featured" data-aos="fade-up">
+              <span class="package-badge" data-en="Most popular" data-he="הכי מבוקשת">Most popular</span>
+              <h3 class="package-name">Growth</h3>
+              <p class="package-price" data-en="₪6,200 / month" data-he="₪6,200 לחודש">₪6,200 / month</p>
+              <ul class="package-list">
+                <li data-en="Half-day shoot every month" data-he="חצי יום צילום בחודש">Half-day shoot every month</li>
+                <li data-en="4 reels or posts a month" data-he="4 רילס או פוסטים בחודש">4 reels or posts a month</li>
+                <li data-en="Reels and posts publishing" data-he="פרסום רילז ופוסטים">Reels and posts publishing</li>
+                <li data-en="Monthly calendar, topic planning and creative thinking" data-he="בניית לו״ז חודשי, תכנון וחשיבה על קריאייטיב">Monthly calendar, topic planning and creative thinking</li>
+                <li data-en="Ongoing story management and posting throughout the week" data-he="ניהול והעלאה שוטפת של סטוריז לאורך השבוע">Ongoing story management and posting throughout the week</li>
+                <li data-en="Meta campaign management" data-he="ניהול קמפיינים במטא">Meta campaign management</li>
+                <li data-en="Report and meeting once a month" data-he="דוח ופגישה פעם בחודש">Report and meeting once a month</li>
+              </ul>
+              <a class="btn package-cta" href="https://wa.me/972524065621?text=%D7%94%D7%99%D7%99%20%D7%93%D7%95%D7%91%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%9F/%D7%AA%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%AA%20Growth%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" data-en="Let's talk" data-he="בואו נדבר">Let's talk</a>
+            </article>
+            <article class="package" data-aos="fade-up">
+              
+              <h3 class="package-name">Signature</h3>
+              <p class="package-price" data-en="₪7,400 / month" data-he="₪7,400 לחודש">₪7,400 / month</p>
+              <ul class="package-list">
+                <li data-en="Full shoot day every month" data-he="יום צילום מלא בחודש">Full shoot day every month</li>
+                <li data-en="8 reels or photos a month" data-he="8 רילס או תמונות בחודש">8 reels or photos a month</li>
+                <li data-en="Reels and posts publishing" data-he="פרסום רילז ופוסטים">Reels and posts publishing</li>
+                <li data-en="Monthly calendar, topic planning and creative thinking" data-he="בניית לו״ז חודשי, תכנון וחשיבה על קריאייטיב">Monthly calendar, topic planning and creative thinking</li>
+                <li data-en="Ongoing story management and posting throughout the week" data-he="ניהול והעלאה שוטפת של סטוריז לאורך השבוע">Ongoing story management and posting throughout the week</li>
+                <li data-en="Meta campaign management" data-he="ניהול קמפיינים במטא">Meta campaign management</li>
+                <li data-en="A seasonal campaign concept" data-he="קונספט לקמפיין עונתי">A seasonal campaign concept</li>
+                <li data-en="Collaboration ideas with UGC creators and other brands" data-he="הצעות לשיתופי פעולה עם UGC וחברות שונות">Collaboration ideas with UGC creators and other brands</li>
+                <li data-en="Report and meeting every two weeks" data-he="דוח ופגישה כל שבועיים">Report and meeting every two weeks</li>
+              </ul>
+              <a class="btn package-cta" href="https://wa.me/972524065621?text=%D7%94%D7%99%D7%99%20%D7%93%D7%95%D7%91%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%9F/%D7%AA%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%AA%20Signature%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" data-en="Let's talk" data-he="בואו נדבר">Let's talk</a>
+            </article>
+        </div>
+        <p class="services-note" data-en="We recommend a media budget of ₪4,000–10,000 a month, paid directly to Meta. The first month includes a one-time setup: a brand refresh, the ad account and a page redesign. It's free with a 6-month commitment." data-he="אנחנו ממליצים על תקציב מדיה של ₪4,000–10,000 בחודש, שמשולם ישירות למטא. בחודש הראשון יש הקמה חד־פעמית: רענון מיתוג, חשבון מודעות ועיצוב העמוד. מי שמתחייב לחצי שנה לא משלם עליה.">We recommend a media budget of ₪4,000–10,000 a month, paid directly to Meta. The first month includes a one-time setup: a brand refresh, the ad account and a page redesign. It's free with a 6-month commitment.</p>
+      </section>
+
+      <section id="process">
+        <h1 class="title" data-aos="fade-up" data-en="How it works" data-he="איך זה עובד">How it works</h1>
+        <ol class="process-steps">
+            <li class="process-step" data-aos="fade-up">
+              <span class="step-num">01</span>
+              <h3 data-en="Discovery call" data-he="שיחת היכרות">Discovery call</h3>
+              <p data-en="A conversation to get to know each other, the brand, what you want to achieve and the budget." data-he="שיחה שבה אנחנו מכירים, לומדים את המותג, מה אתם רוצים להשיג ומה התקציב.">A conversation to get to know each other, the brand, what you want to achieve and the budget.</p>
+            </li>
+            <li class="process-step" data-aos="fade-up">
+              <span class="step-num">02</span>
+              <h3 data-en="Brand setup" data-he="הקמה">Brand setup</h3>
+              <p data-en="We build the visual style, set up the ad account and pixel, and plan the first month's content." data-he="בונים שפה ויזואלית, מקימים חשבון מודעות ופיקסל, ומכינים תוכנית תוכן לחודש הראשון.">We build the visual style, set up the ad account and pixel, and plan the first month's content.</p>
+            </li>
+            <li class="process-step" data-aos="fade-up">
+              <span class="step-num">03</span>
+              <h3 data-en="Monthly shoot" data-he="יום צילום חודשי">Monthly shoot</h3>
+              <p data-en="We shoot, edit and schedule the month's content." data-he="מצלמים, עורכים ומתזמנים את התוכן של החודש.">We shoot, edit and schedule the month's content.</p>
+            </li>
+            <li class="process-step" data-aos="fade-up">
+              <span class="step-num">04</span>
+              <h3 data-en="Campaigns and report" data-he="קמפיינים ודוח">Campaigns and report</h3>
+              <p data-en="We run the campaigns and improve them as we go. Once a month we sit down together over the results." data-he="מריצים את הקמפיינים ומשפרים אותם תוך כדי, ופעם בחודש יושבים יחד על התוצאות.">We run the campaigns and improve them as we go. Once a month we sit down together over the results.</p>
+            </li>
+        </ol>
+      </section>
+
+      <section id="work">
+        <h1 class="title" data-aos="fade-up" data-en="Selected work" data-he="עבודות נבחרות">Selected work</h1>
+        <!-- TODO: add a results line to each case (views / followers / ROAS) once the numbers are in -->
+        <div class="cases">
+            <a class="case" href="projects.html" data-aos="fade-up">
+              <div class="case-media"><img src="https://i.ytimg.com/vi/U-SNHzJzE14/hqdefault.jpg" alt="Forum Industries" loading="lazy" /></div>
+              <div class="case-body">
+                <h3 class="case-name">Forum Industries</h3>
+                <p class="case-tag" data-en="Fashion · 77K followers" data-he="אופנה · 77K עוקבים">Fashion · 77K followers</p>
+                <p class="case-text" data-en="Campaign films and social content for the FW26 collection." data-he="סרטי קמפיין ותוכן לרשתות לקולקציית FW26.">Campaign films and social content for the FW26 collection.</p>
+              </div>
+            </a>
+            <a class="case" href="projects.html" data-aos="fade-up">
+              <div class="case-media"><img src="https://i.ytimg.com/vi/uPkaeN7DHz0/hqdefault.jpg" alt="iota softliving" loading="lazy" /></div>
+              <div class="case-body">
+                <h3 class="case-name">iota softliving</h3>
+                <p class="case-tag" data-en="Handmade furniture · Jaffa" data-he="ריהוט בעבודת יד · יפו">Handmade furniture · Jaffa</p>
+                <p class="case-text" data-en="Collection film and ongoing reels for the indoor and outdoor lines." data-he="סרט קולקציה ורילס שוטפים לקווי הפנים והחוץ.">Collection film and ongoing reels for the indoor and outdoor lines.</p>
+              </div>
+            </a>
+            <a class="case" href="projects.html" data-aos="fade-up">
+              <div class="case-media"><img src="https://i.ytimg.com/vi/1P6JHbbxBY4/hqdefault.jpg" alt="Especie Humana" loading="lazy" /></div>
+              <div class="case-body">
+                <h3 class="case-name">Especie Humana</h3>
+                <p class="case-tag" data-en="Textiles and rugs" data-he="טקסטיל ושטיחים">Textiles and rugs</p>
+                <p class="case-text" data-en="Brand story film, an artist series and product content." data-he="סרט סיפור מותג, סדרת אמנים ותוכן מוצר.">Brand story film, an artist series and product content.</p>
+              </div>
+            </a>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h1 class="title" data-aos="fade-up" data-en="Portfolio" data-he="תיק עבודות">Portfolio</h1>
+        <div class="experience-details-container">
+          <div class="about-containers">
+            <a href="projects.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="100"><div class="details-container color-container project-box" style="background-image: url('./BOXES/VIDEOS.jpg');">
+              <div class="project-box-overlay"></div>
+              <div class="project-box-label" data-en="VIDEO" data-he="וידאו">VIDEO</div>
+            </div></a>
+            <a href="pictures.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="200"><div class="details-container color-container project-box" style="background-image: url('./BOXES/PICTURES.jpg');">
+              <div class="project-box-overlay"></div>
+              <div class="project-box-label" data-en="PICTURES" data-he="תמונות">PICTURES</div>
+            </div></a>
+            <a href="motion.html" style="text-decoration:none;" data-aos="zoom-in-up" data-aos-delay="300"><div class="details-container color-container project-box" style="background-image: url('./BOXES/MOTION.png');">
+              <div class="project-box-overlay"></div>
+              <div class="project-box-label" data-en="MOTION" data-he="גרפיקה">MOTION</div>
+            </div></a>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience"> <h1 class="title" data-aos="fade-up" data-en="Knowledge" data-he="ידע">Knowledge</h1>
+        <div class="experience-details-container">
+          <div class="about-containers"> 
+            <div class="details-container" data-aos="fade-right" data-aos-delay="100">
+              <h2 class="experience-sub-title" data-en="Softwares" data-he="תוכנות">Softwares</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>After Effects</h3>
+                    <p data-en="Experienced" data-he="מנוסה">Experienced</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>Premiere Pro</h3>
+                    <p data-en="Experienced" data-he="מנוסה">Experienced</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>Photoshop</h3>
+                    <p data-en="Experienced" data-he="מנוסה">Experienced</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>Cubase</h3>
+                    <p data-en="Experienced" data-he="מנוסה">Experienced</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>Lightroom</h3>
+                    <p data-en="Experienced" data-he="מנוסה">Experienced</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>Blender</h3>
+                    <p data-en="Intermediate" data-he="בינוני">Intermediate</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3>DaVinci Resolve</h3>
+                    <p data-en="(Color Grading)" data-he="(Color Grading)">(Color Grading)</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="details-container" data-aos="fade-left" data-aos-delay="200">
+              <h2 class="experience-sub-title" data-en="Languages" data-he="שפות">Languages</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3 data-en="Hebrew" data-he="עברית">Hebrew</h3>
+                    <p data-en="Native" data-he="שפת אם">Native</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3 data-en="English" data-he="אנגלית">English</h3>
+                    <p data-en="Excellent" data-he="מצוינת">Excellent</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Checkmark icon" class="icon" />
+                  <div>
+                    <h3 data-en="Spanish" data-he="ספרדית">Spanish</h3>
+                    <p data-en="Excellent" data-he="מצוינת">Excellent</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <p class="section__text__p1" data-aos="fade-up" data-en="Let's talk" data-he="בואו נדבר">Let's talk</p>
+        <h1 class="title" data-aos="fade-up" data-aos-delay="100" data-en="Book a discovery call" data-he="לתיאום שיחת היכרות">Book a discovery call</h1>
+        <p class="contact-lead" data-aos="fade-up" data-aos-delay="150" data-en="A conversation to get to know each other, no commitment. Tell us about your brand and we'll come back with a plan." data-he="שיחה שבה אנחנו מכירים, בלי התחייבות. ספרו לנו על המותג ונחזור עם הצעה.">A conversation to get to know each other, no commitment. Tell us about your brand and we'll come back with a plan.</p>
+        <div class="contact-info-upper-container" data-aos="flip-up" data-aos-delay="200">
+          <div class="contact-info-container">
+            <img
+              src="./assets/email.png"
+              alt="Email icon"
+              class="icon contact-icon email-icon"
+              onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
+            />
+            <p><a href="mailto:Doviprodm@gmail.com">Doviprodm@gmail.com</a></p>
+          </div>
+          <div class="contact-info-container">
+            <img
+              src="./assets/whatsapp.png"
+              alt="WhatsApp icon"
+              class="icon contact-icon"
+              onerror="this.onerror=null;this.src='https://placehold.co/32x32/E0E0E0/B0B0B0?text=Icon';"
+            />
+            <p><a href="https://wa.me/972524065621?text=%D7%94%D7%99%D7%99%20%D7%93%D7%95%D7%91%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA%20%D7%A2%D7%9C%20%D7%9C%D7%99%D7%95%D7%95%D7%99%20%D7%A9%D7%99%D7%95%D7%95%D7%A7%D7%99%20%D7%9C%D7%9E%D7%95%D7%AA%D7%92%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener">052-406-5621</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#services" data-en="Services" data-he="שירותים">Services</a></li>
+            <li><a href="#work" data-en="Work" data-he="עבודות">Work</a></li>
+            <li><a href="#projects" data-en="Portfolio" data-he="תיק עבודות">Portfolio</a></li>
+            <li><a href="#about" data-en="About" data-he="על הסטודיו">About</a></li>
+            <li><a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p data-en="© 2026 Dovi Visuals · Dov Grunshtein. All rights reserved." data-he="© 2026 Dovi Visuals · דוב גרונשטיין. כל הזכויות שמורות.">© 2026 Dovi Visuals · Dov Grunshtein. All rights reserved.</p>
+    </footer>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">
+      </button>
+
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
