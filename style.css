@@ -2125,7 +2125,7 @@ html[lang="he"] body { font-family: 'Noto Sans Hebrew', 'Arial', sans-serif; }
 /* Clients strip */
 #clients {
   padding-block: 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 .clients-label {
   font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
