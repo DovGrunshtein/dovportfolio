@@ -362,7 +362,10 @@ document.addEventListener('DOMContentLoaded', () => {
 (function () {
   const dot = document.querySelector('.cursor-dot');
   const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
+  // Custom dot/ring cursor retired in favour of the macOS arrow (style.css)
+  if (dot) dot.remove();
+  if (ring) ring.remove();
+  return;
 
   // Only activate on fine-pointer (mouse) devices
   if (!window.matchMedia('(pointer: fine)').matches) {
