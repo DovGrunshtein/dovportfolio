@@ -2241,7 +2241,7 @@ html, body {
 .hero-title.hero-logo { line-height: 0; margin-bottom: 1.25rem; text-shadow: none; }
 .hero-logo img {
   display: block; margin: 0 auto;
-  width: clamp(180px, 28vw, 320px); height: auto;
+  width: clamp(170px, 45vw, 320px); max-width: 100%; height: auto;
   filter: none;
 }
 
