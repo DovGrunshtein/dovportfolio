@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Set initial language from localStorage
-  setLanguage(localStorage.getItem('language') || 'he');
+  setLanguage(getInitialLanguage());
 
   // Vertical rows (e.g. Social Media) open the popup as a vertical reel
   document.querySelectorAll('.youtube-thumbnail').forEach(function(thumb) {
@@ -339,10 +339,16 @@ function toggleLanguage() {
     setLanguage(newLang);
 }
 
+// Initial language: ?lang=he / ?lang=en in the link wins, then the visitor's saved choice, then Hebrew
+function getInitialLanguage() {
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (urlLang === 'he' || urlLang === 'en') return urlLang;
+    try { return localStorage.getItem('language') || 'he'; } catch (e) { return 'he'; }
+}
+
 // Set initial language on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('language') || 'he';
-    setLanguage(savedLang);
+    setLanguage(getInitialLanguage());
 });
 
 // Nav — transparent when at hero, glassmorphism when scrolled
