@@ -2265,3 +2265,40 @@ html[lang="he"] .experience-sub-title {
 
 /* Mouse scroll cue is desktop-only (touch screens, and it overlapped the hero buttons) */
 @media (max-width: 768px), (hover: none) { .scroll-indicator { display: none !important; } }
+
+/* --- Knowledge: text centred, check icon sits just beside it --- */
+#experience .details-container:last-child .article-container article {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 0.75rem;
+  width: 100%;
+  max-width: 320px;
+}
+#experience .details-container:last-child .article-container article .icon { justify-self: end; }
+#experience .details-container:last-child .article-container article div { width: auto; text-align: center; }
+
+@media screen and (max-width: 768px) {
+  #experience .details-container { padding: 2rem 1.25rem; }
+  #experience .details-container:first-child .article-container {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    margin-top: 2rem;
+    justify-items: center;
+  }
+  #experience .details-container:first-child .article-container article,
+  #experience .details-container:last-child .article-container article {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 0.75rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
+    padding: 0;
+  }
+  #experience .details-container .article-container article .icon { justify-self: end; margin: 0; }
+  #experience .details-container .article-container article div { width: auto; text-align: center; }
+  #experience .details-container:last-child .article-container { margin: 2rem auto 0.5rem; gap: 1.6rem; }
+  #experience article:hover { transform: none; }
+}
