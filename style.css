@@ -1224,10 +1224,6 @@ footer p {
     align-items: center;
     justify-content: center;
   }
-  #about .details-container {
-    margin-left: -2rem ;
-    margin-right: -2rem;
-  }
 
   #experience, #projects { background-attachment: scroll; padding: 3rem 1rem; }
   #experience .title::after, #projects .title::after, #about .title::after { width: 100px; }
@@ -2218,4 +2214,51 @@ html[dir="rtl"] .case-name { text-align: right; }
 
 @media (prefers-reduced-motion: reduce) {
   .case, .case-media img, .hero-btns .btn-solid { transition: none; transform: none; }
+}
+
+
+/* --- Mobile: lock horizontal movement --- */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  overscroll-behavior-x: none;
+}
+@supports (overflow-x: clip) {
+  html, body { overflow-x: clip; }
+}
+@media screen and (max-width: 768px) {
+  /* Side-sliding animations push cards off-screen on phones; slide up instead */
+  [data-aos="fade-left"]:not(.aos-animate),
+  [data-aos="fade-right"]:not(.aos-animate) {
+    transform: translate3d(0, 40px, 0) !important;
+  }
+  #experience .details-container { min-width: 0; max-width: 100%; }
+  #about .about-containers { gap: 1rem; }
+  #about .details-container { min-width: 0; flex: 1; padding: 1.5rem 0.5rem; }
+}
+
+/* --- Hero logo --- */
+.hero-title.hero-logo { line-height: 0; margin-bottom: 1.25rem; text-shadow: none; }
+.hero-logo img {
+  display: block; margin: 0 auto;
+  width: clamp(180px, 28vw, 320px); height: auto;
+  filter: none;
+}
+
+/* --- Section titles: uppercase, matching package names --- */
+.title, .section-title, .experience-sub-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.title, .section-title { font-size: 2rem; }
+@media screen and (max-width: 768px) {
+  .title, .section-title { font-size: 1.6rem; letter-spacing: 0.08em; }
+}
+html[lang="he"] .title,
+html[lang="he"] .section-title,
+html[lang="he"] .experience-sub-title {
+  font-family: 'Noto Sans Hebrew', 'Arial', sans-serif;
+  letter-spacing: 0.02em;
 }
