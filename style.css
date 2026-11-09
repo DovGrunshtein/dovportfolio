@@ -1438,25 +1438,18 @@ body[lang="he"] #experience .article-container article {
   }
 }
 
-#motion .video-row.horizontal {
-  padding-left: 2rem;
-  padding-right: 2rem;
+/* Graphics page: videos and pictures share a row, each keeps its own shape */
+.graphics-page .video-row {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+  gap: 1rem; padding-inline: 2rem; width: 100%;
 }
-@media screen and (max-width: 992px) {
-  #motion .video-row.horizontal {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
+.graphics-page .video-row .video-thumbnail { flex: 0 0 auto; height: 280px; width: auto; max-width: none; }
+.image-thumbnail::after { display: none; }
 @media screen and (max-width: 768px) {
-  #motion .video-row.horizontal {
-    grid-template-columns: 1fr !important;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  #motion .video-thumbnail.horizontal {
-    max-width: 100% !important;
-  }
+  .graphics-page .video-row { padding-inline: 0; gap: 0.75rem; }
+  .graphics-page .video-row .video-thumbnail { height: auto; min-width: 0; flex: 0 0 100%; width: 100%; }
+  /* Portrait items sit two to a row on phones */
+  .graphics-page .video-row .video-thumbnail.vertical { flex-basis: calc(50% - 0.375rem); width: calc(50% - 0.375rem); }
 }
 
 /* =================================== */
@@ -1948,7 +1941,7 @@ footer p { color: #4a4a4a; }
 .project-section { background-color: #0f0f0f; }
 .project-section-full { background-color: #0f0f0f; }
 body.gallery-page { background-color: #0f0f0f; }
-#film, #social, #bts, #motion { background-color: #0f0f0f; }
+#film, #social, #bts, #graphics { background-color: #0f0f0f; }
 
 /* --- Section title decorative line — keep white on dark --- */
 #projects .title::after,

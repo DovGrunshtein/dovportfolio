@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Vertical rows (e.g. Social Media) open the popup as a vertical reel
   document.querySelectorAll('.youtube-thumbnail').forEach(function(thumb) {
-    var vertical = !!thumb.closest('.video-row.vertical');
+    var vertical = thumb.classList.contains('vertical') || !!thumb.closest('.video-row.vertical');
     thumb.addEventListener('click', function() {
       var overlay = document.getElementById('youtube-popup-overlay');
       if (overlay) overlay.classList.toggle('vertical-reel', vertical);

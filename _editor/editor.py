@@ -21,7 +21,9 @@ from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 PORT = 8765
-PAGES = ["projects.html", "motion.html", "pictures.html"]
+PAGES = ["projects.html", "graphics.html", "pictures.html"]
+# Pages where a video category can also hold pictures, each portrait or landscape.
+MIXED_PAGES = {"graphics.html"}
 
 ITEM_START = re.compile(r'<div class="(video-thumbnail|masonry-item)\b')
 SECTION_START = re.compile(r'<section id="([^"]+)" class="project-section"')
@@ -33,9 +35,13 @@ H2_TEXT = re.compile(r"(<h2[^>]*>)(.*?)(</h2>)")
 COMMENT = re.compile(r"^\s*<!--.*-->\s*$")
 ATTR = lambda name: re.compile(name + r'="([^"]*)"')
 YOUTUBE_ID = re.compile(r"[A-Za-z0-9_-]{11}")
+RATIO = re.compile(r"\d+(?:\.\d+)? / \d+(?:\.\d+)?")
+ASPECT = re.compile(r"aspect-ratio:\s*([^;\"]+)")
+ORIENT = re.compile(r'<div class="video-thumbnail\b[^"]*\b(vertical|horizontal)\b')
 WEB_IMAGE = {".jpg", ".jpeg", ".png", ".webp"}
 GALLERY_THUMB_SIZE = 600   # longest side, px
 VIDEO_THUMB_SIZE = 1280
+IMAGE_THUMB_SIZE = 900    # pictures inside video categories
 # Never published by the Publish button.
 GIT_EXCLUDE = [":(exclude,glob)**/.DS_Store", ":(exclude,glob).history/**"]
 
@@ -110,6 +116,8 @@ def parse(page):
                 "start": start, "end": end, "text": text, "fp": fingerprint(text), "body": body,
                 "title": get("alt"), "thumb": get("src"),
                 "youtube": get("data-youtube-id"), "full": get("data-full"),
+                "ratio": (ASPECT.search(body) or [None, ""])[1].strip(),
+                "orient": (ORIENT.search(body) or [None, ""])[1],
             })
             i = end
         i += 1
@@ -140,10 +148,10 @@ def layout():
         if not (ROOT / page).exists():
             continue
         _, groups = parse(page)
-        out.append({"page": page, "kind": groups[0]["kind"] if groups else "video", "groups": [{
+        out.append({"page": page, "kind": groups[0]["kind"] if groups else "video", "mixed": page in MIXED_PAGES, "groups": [{
             "id": g["id"], "title": g["title"], "editable": g["editable"], "kind": g["kind"],
             "folder": g["folder"], "row": g["row"],
-            "items": [{k: it[k] for k in ("fp", "title", "thumb", "youtube", "full")} for it in g["items"]],
+            "items": [{k: it[k] for k in ("fp", "title", "thumb", "youtube", "full", "ratio", "orient")} for it in g["items"]],
         } for g in groups]})
     return out
 
@@ -173,7 +181,38 @@ def item_template(g, nl):
             f'{ind}  <img src="" alt="" loading="lazy" />{nl}{ind}</div>{nl}')
 
 
+def check_orient(o):
+    if o not in ("vertical", "horizontal"):
+        raise ValueError(f"Bad orientation: {o}")
+    return o
+
+
+def check_ratio(r):
+    if not RATIO.fullmatch(r or ""):
+        raise ValueError(f"Bad aspect ratio: {r}")
+    return r
+
+
+def mixed_item_text(g, new, nl):
+    """A picture or a YouTube video inside a video category, with its own orientation."""
+    ind, e = g["indent"], lambda v: html.escape(v or "", quote=True)
+    orient = check_orient(new.get("orient"))
+    if new.get("full"):
+        ratio = check_ratio(new.get("ratio"))
+        return (f'{ind}<div class="video-thumbnail image-thumbnail {orient}" style="aspect-ratio: {ratio}" data-aos="zoom-in-up">{nl}'
+                f'{ind}  <img src="{e(new.get("thumb"))}" data-full="{e(new["full"])}" alt="{e(new.get("title"))}" loading="lazy" />{nl}'
+                f'{ind}</div>{nl}')
+    yt = check_youtube(new.get("youtube"))
+    thumb = new.get("thumb") or f"https://i.ytimg.com/vi/{yt}/hqdefault.jpg"
+    return (f'{ind}<!-- NEW: {e(new.get("title") or yt)} -->{nl}'
+            f'{ind}<div class="video-thumbnail youtube-thumbnail {orient}" data-youtube-id="{yt}" data-aos="zoom-in-up">{nl}'
+            f'{ind}  <img src="{e(thumb)}" alt="{e(new.get("title"))}" loading="lazy" />{nl}'
+            f'{ind}</div>{nl}')
+
+
 def new_item_text(g, new, nl):
+    if g["kind"] == "video" and new.get("orient"):
+        return mixed_item_text(g, new, nl)
     template = item_template(g, nl)
     text = re.sub(r'\s*data-aos-delay="[^"]*"', "", template)
     thumb = new.get("thumb") or ""
@@ -197,6 +236,18 @@ def edited_item_text(item, edit):
         text = set_attr("src", edit["thumb"], text)
     if "full" in edit:
         text = set_attr("data-full", edit["full"], text)
+    if edit.get("orient"):
+        o = check_orient(edit["orient"])
+        if ORIENT.search(text):
+            text = re.sub(r'(<div class="video-thumbnail\b[^"]*?)\b(?:vertical|horizontal)\b', lambda m: m.group(1) + o, text, count=1)
+        else:
+            text = re.sub(r'<div class="video-thumbnail\b', lambda m: m.group(0) + " " + o, text, count=1)
+    if edit.get("ratio"):
+        r = check_ratio(edit["ratio"])
+        if ASPECT.search(text):
+            text = ASPECT.sub(lambda _: f"aspect-ratio: {r}", text, count=1)
+        else:
+            text = re.sub(r'(<div class="video-thumbnail[^"]*")', lambda m: m.group(1) + f' style="aspect-ratio: {r}"', text, count=1)
     if "title" in edit:
         text = set_attr("alt", edit["title"], text)
         text = re.sub(r"<!-- NEW: .*? -->", lambda _: f"<!-- NEW: {html.escape(edit['title'])} -->", text, count=1)
@@ -345,13 +396,13 @@ def sips(src, dest, size=None):
 
 
 def upload(kind, filename, data, folder=""):
-    """Save an uploaded image. gallery: full image + thumbnail. video: thumbnail only. Returns site-relative paths."""
+    """Save an uploaded image. gallery / image: full image + thumbnail. video: thumbnail only. Returns site-relative paths."""
     name = safe_name(Path(filename).name)
     stem, ext = Path(name).stem, Path(name).suffix.lower()
     with tempfile.TemporaryDirectory() as tmp:
         src = Path(tmp) / f"upload{ext}"
         src.write_bytes(data)
-        if kind == "gallery":
+        if kind in ("gallery", "image"):
             images = (ROOT / "images").resolve()
             target = (ROOT / folder).resolve()
             if images not in target.parents:
@@ -364,7 +415,7 @@ def upload(kind, filename, data, folder=""):
                 full = unique_path(target, stem + ".jpg")
                 sips(src, full)
             thumb = unique_path(ROOT / "thumbnails" / "images", f"{full.stem}_thumb.jpg")
-            sips(src, thumb, GALLERY_THUMB_SIZE)
+            sips(src, thumb, IMAGE_THUMB_SIZE if kind == "image" else GALLERY_THUMB_SIZE)
             return {"full": full.relative_to(ROOT).as_posix(), "thumb": thumb.relative_to(ROOT).as_posix()}
         thumb = unique_path(ROOT / "thumbnails" / "videos", f"{stem}.jpg")
         sips(src, thumb, VIDEO_THUMB_SIZE)
