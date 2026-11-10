@@ -1,0 +1,10 @@
+# GitHub Pages build settings.
+# The site is plain HTML; these folders/files are not used by any page,
+# so they are left out of the published site to keep the deploy small and fast.
+exclude:
+  - videos
+  - Motion
+  - "*.py"
+  - README.md
+  - package-lock.json
+  - node_modules
