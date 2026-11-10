@@ -1,0 +1,11 @@
+# Videos live on YouTube — never upload video files to the site repo
+videos/
+Motion/
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.m4v
+*.webm
+# editor history
+.history/
