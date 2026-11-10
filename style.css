@@ -1938,10 +1938,10 @@ footer p { color: #4a4a4a; }
 }
 
 /* --- Video page background dark --- */
-.project-section { background-color: #0f0f0f; }
-.project-section-full { background-color: #0f0f0f; }
+.project-section { background-color: transparent; }
+.project-section-full { background-color: transparent; }
 body.gallery-page { background-color: #0f0f0f; }
-#film, #social, #bts, #graphics { background-color: #0f0f0f; }
+#film, #social, #bts, #graphics { background-color: transparent; }
 
 /* --- Section title decorative line — keep white on dark --- */
 #projects .title::after,
@@ -2007,7 +2007,7 @@ body.gallery-page { background-color: #0f0f0f; }
   justify-content: center;
   text-align: center;
   padding: 8rem 2rem 6rem;
-  background-color: #0f0f0f;
+  background-color: transparent;
   overflow: hidden;
 }
 .page-intro-content {
@@ -2319,3 +2319,58 @@ html[lang="he"] .experience-sub-title {
   font-size: 0.85rem; color: #777;
 }
 .services-footnotes li::before { content: "* "; }
+
+/* ============================================= */
+/* ===== SKETCH LAYER (home page drawings) ===== */
+/* ============================================= */
+.sketch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 6; /* above section backgrounds (uniform opacity); content boxes are masked out in JS */
+  color: #FFBA36; /* logo yellow */
+}
+.sketch-layer svg { display: block; overflow: hidden; }
+.sketch-layer path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-opacity: 0.15;
+}
+.sketch-layer path.sk-soft { stroke-width: 0.5; stroke-opacity: 0.07; }
+.sketch-layer path.sk-dash { stroke-dasharray: 7 6; stroke-opacity: 0.07; }
+.sketch-layer path.sk-dot  { stroke-dasharray: 1.5 6; stroke-opacity: 0.12; }
+.sketch-layer .sk-note {
+  fill: currentColor;
+  fill-opacity: 0.28;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+/* quiet draw-in */
+.sketch-layer .sk-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2.8s cubic-bezier(0.25, 0.6, 0.2, 1);
+}
+.sketch-layer .sk-fade { opacity: 0; transition: opacity 1.8s ease; }
+.sketch-layer .is-drawn .sk-draw { stroke-dashoffset: 0; }
+.sketch-layer .is-drawn .sk-fade { opacity: 1; }
+.sketch-layer .no-anim .sk-draw,
+.sketch-layer .no-anim .sk-fade { transition: none !important; }
+
+@media screen and (max-width: 768px) {
+  .sketch-layer path { stroke-opacity: 0.11; }
+  .sketch-layer path.sk-soft { stroke-opacity: 0.05; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sketch-layer .sk-draw { stroke-dashoffset: 0; transition: none; }
+  .sketch-layer .sk-fade { opacity: 1; transition: none; }
+}
