@@ -9,3 +9,6 @@ Motion/
 *.webm
 # editor history
 .history/
+
+# full-size originals kept locally only
+_originals/
