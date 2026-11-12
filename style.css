@@ -2374,3 +2374,6 @@ html[lang="he"] .experience-sub-title {
   .sketch-layer .sk-draw { stroke-dashoffset: 0; transition: none; }
   .sketch-layer .sk-fade { opacity: 1; transition: none; }
 }
+
+/* Items hidden from the editor: kept in the page, not shown */
+.video-thumbnail[data-hidden], .masonry-item[data-hidden] { display: none !important; }

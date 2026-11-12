@@ -37,13 +37,16 @@ ATTR = lambda name: re.compile(name + r'="([^"]*)"')
 YOUTUBE_ID = re.compile(r"[A-Za-z0-9_-]{11}")
 RATIO = re.compile(r"\d+(?:\.\d+)? / \d+(?:\.\d+)?")
 ASPECT = re.compile(r"aspect-ratio:\s*([^;\"]+)")
+ITEM_TAG = r'<div class="(?:video-thumbnail|masonry-item)\b[^>]*'
+HIDDEN = re.compile(ITEM_TAG + r'\sdata-hidden\b')
 ORIENT = re.compile(r'<div class="video-thumbnail\b[^"]*\b(vertical|horizontal)\b')
 WEB_IMAGE = {".jpg", ".jpeg", ".png", ".webp"}
 GALLERY_THUMB_SIZE = 600   # longest side, px
 VIDEO_THUMB_SIZE = 1280
 IMAGE_THUMB_SIZE = 900    # pictures inside video categories
-# Never published by the Publish button.
-GIT_EXCLUDE = [":(exclude,glob)**/.DS_Store", ":(exclude,glob).history/**"]
+# Never published by the Publish button. (.history is already in .gitignore; naming an ignored
+# folder here too makes `git add` fail, so it is left out.)
+GIT_EXCLUDE = [":(exclude,glob)**/.DS_Store"]
 
 
 def fingerprint(text):
@@ -118,6 +121,7 @@ def parse(page):
                 "youtube": get("data-youtube-id"), "full": get("data-full"),
                 "ratio": (ASPECT.search(body) or [None, ""])[1].strip(),
                 "orient": (ORIENT.search(body) or [None, ""])[1],
+                "hidden": bool(HIDDEN.search(body)),
             })
             i = end
         i += 1
@@ -151,7 +155,7 @@ def layout():
         out.append({"page": page, "kind": groups[0]["kind"] if groups else "video", "mixed": page in MIXED_PAGES, "groups": [{
             "id": g["id"], "title": g["title"], "editable": g["editable"], "kind": g["kind"],
             "folder": g["folder"], "row": g["row"],
-            "items": [{k: it[k] for k in ("fp", "title", "thumb", "youtube", "full", "ratio", "orient")} for it in g["items"]],
+            "items": [{k: it[k] for k in ("fp", "title", "thumb", "youtube", "full", "ratio", "orient", "hidden")} for it in g["items"]],
         } for g in groups]})
     return out
 
@@ -236,6 +240,11 @@ def edited_item_text(item, edit):
         text = set_attr("src", edit["thumb"], text)
     if "full" in edit:
         text = set_attr("data-full", edit["full"], text)
+    if "hidden" in edit:
+        # Hidden items stay in the file but the site's CSS doesn't show them.
+        text = re.sub(r"(" + ITEM_TAG + r")\sdata-hidden\b(?:=\"[^\"]*\")?", lambda m: m.group(1), text, count=1)
+        if edit["hidden"]:
+            text = re.sub(r'<div class="(?:video-thumbnail|masonry-item)\b[^"]*"', lambda m: m.group(0) + " data-hidden", text, count=1)
     if edit.get("orient"):
         o = check_orient(edit["orient"])
         if ORIENT.search(text):
